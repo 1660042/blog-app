@@ -19,6 +19,7 @@ class CreateTableMenuTable extends Migration
             $table->integer('level');
             $table->integer('parent_id')->nullable();
             $table->integer('number');
+            $table->string('url_page')->nullable();
             $table->timestamps();
         });
     }

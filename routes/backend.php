@@ -18,4 +18,15 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
         return view('backend.home');
     })->name('index');
 
+    Route::get('/categories', function() {
+        return view('backend.home');
+    })->name('categories');
+
+    Route::get('/post', function() {
+        return view('backend.home');
+    })->name('post');
+
+    Route::get('/users', function() {
+        return view('backend.home');
+    })->name('users');
 });

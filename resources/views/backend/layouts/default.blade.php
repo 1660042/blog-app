@@ -125,7 +125,7 @@
             @if($menuChild->parent_id == $menu->id)
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html') }}" class="nav-link">
+                <a href="{{ route('backend.'.$menuChild->url_page) }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $menuChild->name }}</p>
                 </a>

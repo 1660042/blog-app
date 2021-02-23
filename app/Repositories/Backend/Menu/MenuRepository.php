@@ -1,21 +1,18 @@
 <?php
 namespace App\Repositories\Backend\Menu;
 
-use App\Repositories\RepositoryInterface;
+use App\Models\Menu;
+use App\Repositories\BaseRepository;
+use App\Repositories\Backend\Menu\MenuRepositoryInterface;
 
-abstract class MenuRepository extends BaseRepository implements MenuRepositoryInterface {
+class MenuRepository extends BaseRepository implements MenuRepositoryInterface {
     
     public function getModel() {
-        return \App\Menu::class;
+        return \App\Models\Menu::class;
     }
 
     public function getMenu($level) {
-        return $this->_model->where([
-            ['parent_id', '=', $level]
-            //,
-            // ['status', '=', 1],
-            // ['view', '=', 1]
-        ])->orderByRaw('number')->get();
+        return $this->_model->whereNull('parent_id')->orderByRaw('number')->get();
     }
 
     public function getMenuCon() {

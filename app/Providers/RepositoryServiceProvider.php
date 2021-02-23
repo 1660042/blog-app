@@ -11,7 +11,7 @@ class RepositoryServiceProvider extends ServiceProvider
     protected static $repositories = [
         'menu' => [
             \App\Repositories\Backend\Menu\MenuRepositoryInterface::class,
-            \App\Repositories\Backend\Menu\MenuEloquentRepository::class
+            \App\Repositories\Backend\Menu\MenuRepository::class
         ],
     ];
 

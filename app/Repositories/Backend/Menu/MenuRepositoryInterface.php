@@ -9,15 +9,15 @@ interface MenuRepositoryInterface {
 
     public function getMenu($level);
 
-    public function getMenuConHD();
+    public function getMenuCon();
 
-    public function getMenuHD();
+    // public function getMenuHD();
 
-    public function countMenuConHD($id);
+    // public function countMenuConHD($id);
 
-    public function getMenuChaHD($id);
+    // public function getMenuChaHD($id);
 
-    public function getTablePivot($idQuyen, $idMenu);
+    // public function getTablePivot($idQuyen, $idMenu);
 
-    public function getMenuByRouteName($routeName);
+    // public function getMenuByRouteName($routeName);
 }

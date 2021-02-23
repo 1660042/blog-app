@@ -1,29 +1,21 @@
 <?php
 
-namespace App\Http\View\Composers;
+namespace App\Http\Views\Composers;
 
-use App\Repositories\UserRepository;
+use App\Repositories\Backend\Menu\MenuRepositoryInterface;
+use App\Repositories\Backend\Menu\MenuRepository;
+
 use Illuminate\View\View;
 
 class MenuComposer
 {
-    /**
-     * The user repository implementation.
-     *
-     * @var \App\Repositories\UserRepository
-     */
-    protected $users;
 
-    /**
-     * Create a new profile composer.
-     *
-     * @param  \App\Repositories\UserRepository  $users
-     * @return void
-     */
-    public function __construct(RepositoryInterface $res)
+    protected $menu;
+
+    public function __construct()
     {
         // Dependencies are automatically resolved by the service container...
-        $this->menu = $res;
+        $this->menu = new MenuRepository();
     }
 
     /**
@@ -35,6 +27,7 @@ class MenuComposer
     public function compose(View $view)
     {
         $listMenu = $this->menu->getMenu(1);
+        //dd($listMenu);
 		$listMenuCon = $this->menu->getMenuCon();
 		$data = compact('listMenu', 'listMenuCon');
 		$view->with($data);

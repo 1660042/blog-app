@@ -13,6 +13,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Backend\Menu\MenuRepositoryInterface::class,
             \App\Repositories\Backend\Menu\MenuRepository::class
         ],
+        'category' => [
+            \App\Repositories\Backend\Category\CategoryRepositoryInterface::class,
+            \App\Repositories\Backend\Category\CategoryRepository::class
+        ],
     ];
 
 

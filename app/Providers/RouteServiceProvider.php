@@ -49,7 +49,7 @@ class RouteServiceProvider extends ServiceProvider
             
             Route::prefix('dashboard')
                 ->middleware('backend')
-                ->namespace($this->namespace)
+                ->namespace($this->namespace.'\\Backend')
                 ->group(base_path('routes/backend.php'));
         });
     }

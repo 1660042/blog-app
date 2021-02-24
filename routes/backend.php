@@ -18,15 +18,32 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
         return view('backend.home');
     })->name('index');
 
-    Route::get('/categories', function() {
-        return view('backend.home');
-    })->name('categories');
+    // Route::namespace('Category')->group(function () {
+    //     Route::get('/categories', 'IndexController')->name('categories');
+    // });
 
-    Route::get('/post', function() {
-        return view('backend.home');
-    })->name('post');
+    Route::group(['namespace' => 'Category','as' => 'posts.'], function () {
+        Route::get('/categories', 'IndexController')->name('categories');
+        Route::get('/post', function() {
+            return view('backend.home');
+        })->name('post');
+    });
 
-    Route::get('/users', function() {
-        return view('backend.home');
-    })->name('users');
+    Route::as('accounts.')->group(function () {
+        Route::get('/users', function() {
+            return view('backend.home');
+        })->name('users');
+    });
+
+    // Route::get('/post', function() {
+    //     return view('backend.home');
+    // })->name('post');
+
+    // Route::get('/posts', function() {
+    //     return view('backend.home');
+    // })->name('posts');
+
+    // Route::get('/users', function() {
+    //     return view('backend.home');
+    // })->name('users');
 });

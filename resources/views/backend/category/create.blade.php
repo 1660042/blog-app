@@ -5,6 +5,7 @@
 <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+      @include('common.notification')
         <div class="row">
           <!-- left column -->
             <div class="col-md-12">
@@ -15,29 +16,34 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form id="form">
+                <form id="form" method="POST" action="{{ route('backend.posts.categories.store') }}">
 					@csrf
                   <div class="card-body">
                     <div class="form-group">
+                        <label class="text-danger">{{ $errors->first('name') }}</label></br>
                       <label for="">Tên chuyên mục</label>
-                      <input type="text" class="form-control" id="name" name="name" onchange="aaa()" placeholder="Nhập tên chuyên mục">
+                      <input type="text" class="form-control" id="name" name="name" onkeyup="getSlug()" onchange="getSlug()" placeholder="Nhập tên chuyên mục">
                     </div>
+                    
                     <div class="form-group">
+                    <label class="text-danger">{{ $errors->first('url_page') }}</label></br>
                       <label for="">Đường dẫn chuyên mục</label>
                       <input type="text" class="form-control" id="url_page" name="url_page" placeholder="Nhập đường dẫn chuyên mục">
                     </div>
                     <div class="form-group">
+                    <label class="text-danger">{{ $errors->first('parent_id') }}</label></br>
                         <label for="parent_id">Chuyên mục cha</label>
                         <select class="custom-select rounded-0" id="parent_id" name="parent_id">
-                            <option>Chọn chuyên mục cha</option>
-                            <option>Value 1</option>
-                            <option>Value 2</option>
-                            <option>Value 3</option>
+                            <option value="">Trống</option>
+                            @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                            @endforeach
                         </select>
                     </div>
 					<div class="form-group">
+                    <label class="text-danger">{{ $errors->first('status') }}</label></br>
                         <div class="custom-control custom-checkbox">
-							<input class="custom-control-input" type="checkbox" id="customCheckbox1" checked>
+							<input class="custom-control-input" value="1" name="status" type="checkbox" id="customCheckbox1" checked>
 							<label for="customCheckbox1" class="custom-control-label">Hoạt động</label>
 						</div>
 						
@@ -46,8 +52,9 @@
                   </div>
                   <!-- /.card-body -->
   
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Tạo chuyên mục</button>
+                  <div class="card-footer d-flex justify-content-start">
+                    <a href="{{ route('backend.posts.categories.index') }}" class="btn btn-dark mr-2">Quay lại</a>
+                    <button type="submit" class="btn btn-primary ">Lưu</button>
                   </div>
                 </form>
               </div>
@@ -59,34 +66,32 @@
     <!-- /.content -->
 
 	@push('ajax_slug')
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
-		console.log($('#name').val());
+    
 		
-		function aaa() {
-			var token =  $('input[name="_token"]').val();
+	function getSlug() {
+		var _token =  $('input[name="_token"]').val();
 			//console.log(token);
-			$.ajax({
-				type: 'POST', //THIS NEEDS TO BE GET
-				url: "{{ route('backend.ajax.slug') }}",
-				dataType: 'json',
-				data: {
-					//"_token" : {{ csrf_token() }},
-					"name" : $('#name').val(),
-				},
-				beforeSend: function(xhr) {
-					xhr.setRequestHeader('x-csrf-token', token);
-				},
-				success: function (data) {
-					console.log("thành công: ");
-				},
-				error:function(data, xhr){ 
-					console.log("thất bại");
-					console.log(xhr.status);
-        			//console.log(thrownError);
-				}
-    		});
-		}
+		$.ajax({
+			type: 'POST', //THIS NEEDS TO BE GET
+			url: "{{ route('backend.ajax.slug') }}",
+			//dataType: 'json',
+			data: {
+				"_token" : _token,
+				"name" : $('#name').val(),
+			},
+			// beforeSend: function(xhr) {
+			// 	xhr.setRequestHeader('x-csrf-token', _token);
+			// },
+			success: function (data) {
+                $('#url_page').val(data);
+				//console.log("thành công: " + data);
+			},
+			error:function(data, xhr){ 
+				 console.log("thất bại");
+			}
+    	});
+	}
 	</script>
 	@endpush
 	

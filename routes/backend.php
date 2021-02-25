@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
         Route::namespace('Category')->prefix('categories')->name('categories.')->group(function () {
             Route::get('/', 'IndexController')->name('index');
             Route::get('/create', 'CreateController')->name('create');
+            Route::post('/store', 'StoreController')->name('store');
+            Route::get('/edit/{id}', 'EditController')->name('edit');
+            Route::put('/update/{id}', 'UpdateController')->name('update');
         });
         
         Route::get('/post', function() {

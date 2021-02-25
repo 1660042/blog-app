@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Backend\Category;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repository\Backend\Category\CategoryRepositoryInterface;
+use App\Repositories\Backend\Category\CategoryRepositoryInterface;
 
 class CreateController extends Controller
 {
+    public function __construct(CategoryRepositoryInterface $cat) {
+        $this->cat = $cat;
+    }
     /**
      * Handle the incoming request.
      *
@@ -16,6 +19,8 @@ class CreateController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('backend.category.create');
+        $categories = $this->cat->getCategoryMain();
+        $data = compact('categories');
+        return view('backend.category.create', $data);
     }
 }

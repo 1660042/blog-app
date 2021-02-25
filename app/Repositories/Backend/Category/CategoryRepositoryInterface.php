@@ -11,7 +11,9 @@ interface CategoryRepositoryInterface {
 
     public function getCategoryCon();
 
+    public function getCategoryMain();
 
+    public function getCategoryMainWithParam($id);
 
     // public function getCategoryHD();
 

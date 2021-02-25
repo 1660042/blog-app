@@ -35,12 +35,24 @@ abstract class BaseRepository implements RepositoryInterface {
         return $result;
     }
 
+    public function max($val) {
+        return $this->_model->max($val);
+    }
+
     public function findWithParam($id, $key, $value) {
         $result = $this->_model->where([
             [$key, '=', $value],
             ['id', '=', $id]
         ])->get();
         return $result;
+    }
+
+    public function fill($data) {
+        return $this->_model->fill($data);
+    }
+
+    public function save() {
+        return $this->_model->save();
     }
 
     public function create(array $attributes) {

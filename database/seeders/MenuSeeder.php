@@ -35,7 +35,7 @@ class MenuSeeder extends Seeder
                 'level' => '2',
                 'parent_id' => 1,
                 'number' => '3',
-                'url_page' => 'categories'
+                'url_page' => 'categories.index'
             ],
             [
                 'name' => 'Viết bài mới',

@@ -11,5 +11,18 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
+    public function getMessage($result, $success, $error) {
+        if($result) {
+            $message = [
+                'message' => __($success), 
+                'type' => 'success'
+            ];
+        } else {
+            $message = [
+                'message' => __($error), 
+                'type' => 'danger'
+            ];
+        }
+        return $message;
+    }
 }

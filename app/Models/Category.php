@@ -11,6 +11,17 @@ class Category extends Model
 
     protected $table = 'category';
 
+    protected $fillable = [
+        'name',
+        'level',
+        'parent_id',
+        'number',
+        'url_page',
+        'status',
+        'create_by',
+        'update_by'
+    ];
+
     public function category() {
         return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
     }

@@ -9,6 +9,9 @@
                   <div class="card">
                     <div class="card-header">
                       <h3 class="card-title">Danh sách chuyên mục</h3>
+                      <div class="text-right">
+                        <a class=" btn btn-primary btn-sm" href="{{ route("backend.posts.categories.create") }}"><i class="fas fa-folder-plus"></i>&ensp;Tạo chuyên mục mới</a>
+                      </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -16,10 +19,11 @@
                         <thead>
                         <tr>
                           <th class="text-center">ID</th>
-                          <th>Tên chuyên mục</th>
-                          <th>Chuyên mục cha</th>
-                          <th>Đường dẫn chuyên mục</th>
-                          <th>Tác vụ</th>
+                          <th class="text-center">Tên chuyên mục</th>
+                          <th class="text-center">Chuyên mục cha</th>
+                          <th class="text-center">Đường dẫn chuyên mục</th>
+                          <th class="text-center">Trạng thái</th>
+                          <th class="text-center">Tác vụ</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,20 +32,22 @@
 
                         <tr>
                           <td class="text-center">#{{ $cat->id }}</td>
-                          <td>{{ $cat->name }}</td>
-                          <td> {{ $cat->parent_id }}</td>
-                          <td>{{ $cat->url_page }}</td>
-                          <td></td>
+                          <td class="text-center">{{ $cat->name }}</td>
+                          <td class="text-center {{ ($cat->category == null ? "text-danger" : "") }}"> {{ ($cat->category == null ? "(Trống)" : $cat->category->name) }}</td>
+                          <td class="text-center {{ ($cat->url_page == null ? "text-danger" : "") }}">{{ $cat->url_page == null ? "(Trống)" : $cat->url_page }}</td>
+                          <td class="text-center {{ $cat->status == '1' ? "" : "text-danger" }}">{{ $status[$cat->status] }}</td>
+                          <td class="text-center"></td>
                         </tr>
                         @endforeach
                         </tbody>
                         <tfoot>
                         <tr>
                             <th class="text-center">ID</th>
-                            <th>Tên chuyên mục</th>
-                            <th>Chuyên mục cha</th>
-                            <th>Đường dẫn chuyên mục</th>
-                            <th>Tác vụ</th>
+                            <th class="text-center">Tên chuyên mục</th>
+                            <th class="text-center">Chuyên mục cha</th>
+                            <th class="text-center">Đường dẫn chuyên mục</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th class="text-center">Tác vụ</th>
                         </tr>
                         </tfoot>
                       </table>

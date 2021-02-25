@@ -22,7 +22,8 @@ class IndexController extends Controller
     public function __invoke(Request $request)
     {
         $categories = $this->cat->getAll();
-        $data = compact('categories');
+        $status = config('status.status');
+        $data = compact('categories', 'status');
 
         return view('backend.category.index', $data);
     }

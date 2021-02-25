@@ -22,12 +22,23 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
     //     Route::get('/categories', 'IndexController')->name('categories');
     // });
 
-    Route::group(['namespace' => 'Category','as' => 'posts.'], function () {
-        Route::get('/categories', 'IndexController')->name('categories');
+    Route::group(['as' => 'posts.'], function () {
+        Route::namespace('Category')->prefix('categories')->name('categories.')->group(function () {
+            Route::get('/', 'IndexController')->name('index');
+            Route::get('/create', 'CreateController')->name('create');
+        });
+        
         Route::get('/post', function() {
             return view('backend.home');
         })->name('post');
     });
+
+    Route::namespace('Ajax')->name('ajax.')->group(function () {
+        Route::post('slug', 'AjaxController@getSlug')->name('slug');
+        //Route::get('/create', 'CreateController')->name('create');
+    });
+
+
 
     Route::as('accounts.')->group(function () {
         Route::get('/users', function() {

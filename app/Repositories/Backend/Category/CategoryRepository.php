@@ -37,4 +37,12 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             ['id', '!=', $id]
         ])->orderBy('number')->get();
     }
+
+    public function getChildCategories($id) {
+        return $this->_model
+        ->whereNotNull('parent_id')
+        ->where([
+            ['parent_id', '=', $id]
+        ])->get();
+    }
 }

@@ -38,17 +38,24 @@ class MenuSeeder extends Seeder
                 'url_page' => 'categories.index'
             ],
             [
-                'name' => 'Viết bài mới',
+                'name' => 'Danh sách bài viết',
                 'level' => '2',
                 'parent_id' => 1,
                 'number' => '4',
+                'url_page' => 'posts.index'
+            ],
+            [
+                'name' => 'Viết bài mới',
+                'level' => '2',
+                'parent_id' => 1,
+                'number' => '5',
                 'url_page' => 'post'
             ],
             [
                 'name' => 'Danh sách thành viên',
                 'level' => '2',
                 'parent_id' => 2,
-                'number' => '5',
+                'number' => '6',
                 'url_page' => 'users'
             ]
         ]);

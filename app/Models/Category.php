@@ -25,4 +25,12 @@ class Category extends Model
     public function category() {
         return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
     }
+
+    public function createBy() {
+        return $this->belongsTo('App\Models\User', 'create_by', 'id');
+    }
+
+    public function updateBy() {
+        return $this->belongsTo('App\Models\User', 'update_by', 'id');
+    }
 }

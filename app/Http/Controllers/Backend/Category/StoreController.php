@@ -43,7 +43,8 @@ class StoreController extends Controller
 
         $this->result = $this->cat->create($data);
 
-        $this->msg = $this->getMessage($this->result, 'Thêm thành công chuyên mục!', 'Thêm thất bại, vui lòng kiểm tra lại!');
+        $this->msg = $this->getMessage($this->result, 'Thêm thành công chuyên mục!'
+        , 'Thêm thất bại, vui lòng kiểm tra lại!');
 
 
         return redirect()->route('backend.posts.categories.index')->with($this->msg);

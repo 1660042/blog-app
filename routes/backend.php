@@ -29,11 +29,25 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
             Route::post('/store', 'StoreController')->name('store');
             Route::get('/edit/{id}', 'EditController')->name('edit');
             Route::put('/update/{id}', 'UpdateController')->name('update');
+            Route::delete('/delete/{id}', 'DeleteController')->name('delete');
+        });
+
+        Route::namespace('Post')->prefix('posts')->name('posts.')->group(function () {
+            Route::get('/', 'IndexController')->name('index');
+            // Route::get('/create', 'CreateController')->name('create');
+            // Route::post('/store', 'StoreController')->name('store');
+            // Route::get('/edit/{id}', 'EditController')->name('edit');
+            // Route::put('/update/{id}', 'UpdateController')->name('update');
+            // Route::delete('/delete/{id}', 'DeleteController')->name('delete');
         });
         
         Route::get('/post', function() {
             return view('backend.home');
         })->name('post');
+
+        // Route::get('/posts', function() {
+        //     return view('backend.home');
+        // })->name('posts');
     });
 
     Route::namespace('Ajax')->name('ajax.')->group(function () {

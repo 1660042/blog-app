@@ -271,7 +271,13 @@
 <!-- Toastr -->
 <script src="{{ asset('AdminLTE-3.1.0/plugins/toastr/toastr.min.js') }}"></script>
 
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script> CKEDITOR.replace('editor1'); </script>
+
 @stack('ajax_slug')
+
+@stack('script')
+
 @include('common.notification')
 </body>
 </html>

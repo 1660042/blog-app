@@ -17,6 +17,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Backend\Category\CategoryRepositoryInterface::class,
             \App\Repositories\Backend\Category\CategoryRepository::class
         ],
+        'post' => [
+            \App\Repositories\Backend\Post\PostRepositoryInterface::class,
+            \App\Repositories\Backend\Post\PostRepository::class
+        ],
     ];
 
 

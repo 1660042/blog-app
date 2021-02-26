@@ -20,7 +20,7 @@ class Controller extends BaseController
         } else {
             $message = [
                 'message' => __($error), 
-                'type' => 'danger'
+                'type' => 'error'
             ];
         }
         return $message;

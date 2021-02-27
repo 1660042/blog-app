@@ -1,4 +1,5 @@
 @extends('backend.layouts.default')
+@include('common.notification')
 @section('content')
 
 

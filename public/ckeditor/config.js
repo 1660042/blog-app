@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
 		{ name: 'links' },
-		{ name: 'insert' },
+		{ name: 'insert', groups: [ 'insert', 'Image' ]  },
 		{ name: 'forms' },
 		{ name: 'tools' },
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
@@ -28,7 +28,12 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
+	config.removeButtons = 'Underline,Subscript,Superscript,EasyImageUpload';
+
+    config.removePlugins = 'easyimage';
+    
+    // config.filebrowserUploadUrl = '{{ url(\"/dashboard\") }}/laravel-filemanager/upload?type=Files&_token=';
+    // config.filebrowserImageUploadUrl = '{{ url(\"/dashboard\") }}/laravel-filemanager/upload?type=Images&_token=';
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';

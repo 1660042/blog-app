@@ -22,6 +22,12 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
     //     Route::get('/categories', 'IndexController')->name('categories');
     // });
 
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+   
+   
+
     Route::group(['as' => 'posts.'], function () {
         Route::namespace('Category')->prefix('categories')->name('categories.')->group(function () {
             Route::get('/', 'IndexController')->name('index');
@@ -34,16 +40,16 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
 
         Route::namespace('Post')->prefix('posts')->name('posts.')->group(function () {
             Route::get('/', 'IndexController')->name('index');
-            // Route::get('/create', 'CreateController')->name('create');
-            // Route::post('/store', 'StoreController')->name('store');
-            // Route::get('/edit/{id}', 'EditController')->name('edit');
-            // Route::put('/update/{id}', 'UpdateController')->name('update');
-            // Route::delete('/delete/{id}', 'DeleteController')->name('delete');
+            Route::get('/create', 'CreateController')->name('create');
+            Route::post('/store', 'StoreController')->name('store');
+            Route::get('/edit/{id}', 'EditController')->name('edit');
+            Route::put('/update/{id}', 'UpdateController')->name('update');
+            Route::delete('/delete/{id}', 'DeleteController')->name('delete');
         });
         
-        Route::get('/post', function() {
-            return view('backend.home');
-        })->name('post');
+        // Route::get('/post', function() {
+        //     return view('backend.home');
+        // })->name('post');
 
         // Route::get('/posts', function() {
         //     return view('backend.home');

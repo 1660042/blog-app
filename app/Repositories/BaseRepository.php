@@ -19,7 +19,7 @@ abstract class BaseRepository implements RepositoryInterface {
     }
 
     public function getAll() {
-        return $this->_model->all();
+        return $this->_model->orderBy('id', 'desc')->get();
     }
 
     public function getAllWithParam($key, $value) {

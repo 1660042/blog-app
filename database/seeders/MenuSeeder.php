@@ -49,7 +49,7 @@ class MenuSeeder extends Seeder
                 'level' => '2',
                 'parent_id' => 1,
                 'number' => '5',
-                'url_page' => 'post'
+                'url_page' => 'posts.create'
             ],
             [
                 'name' => 'Danh sách thành viên',

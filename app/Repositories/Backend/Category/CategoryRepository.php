@@ -45,4 +45,12 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             ['parent_id', '=', $id]
         ])->get();
     }
+
+    public function getAllChildCategoriesActive() {
+        return $this->_model
+        ->whereNotNull('parent_id')
+        ->where([
+            ['status', '=', '1']
+        ])->get();
+    }
 }

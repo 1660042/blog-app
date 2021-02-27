@@ -18,11 +18,11 @@ class Post extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('path_image');
-            $table->string('content');
+            $table->longText('content');
             $table->integer('category_id');
             $table->integer('status')->default('1');
-            $table->integer('create_by')->nullable();
-            $table->integer('update_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

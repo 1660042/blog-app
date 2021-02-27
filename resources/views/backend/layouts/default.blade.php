@@ -23,9 +23,7 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/summernote/summernote-bs4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/toastr/toastr.min.css') }}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -46,7 +44,7 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    {{-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -55,16 +53,13 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> --}}
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <input type="submit" class="btn btn-dark" value="Đăng xuất">
-        </form>
+        <button class="btn btn-default"  data-toggle="modal" data-target="#modal-logout"><i class="fas fa-sign-out-alt"></i></button>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
@@ -73,6 +68,33 @@
       </li>
     </ul>
   </nav>
+  <div class="modal fade" id="modal-logout">
+    <div class="modal-dialog">
+      <div class="modal-content" id="modal-content-logout">
+        
+        <div class="modal-header">
+          <h4 class="modal-title">Thông báo</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn đăng xuất?</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+          <form id="form-logout" method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="btn btn-danger">Đăng xuất</button>
+          </form>
+          
+        </div>
+        
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -265,14 +287,6 @@
 <script src="{{ asset('AdminLTE-3.1.0/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('AdminLTE-3.1.0/dist/js/pages/dashboard.js') }}"></script>
-
-<!-- SweetAlert2 -->
-<script src="{{ asset('AdminLTE-3.1.0/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<!-- Toastr -->
-<script src="{{ asset('AdminLTE-3.1.0/plugins/toastr/toastr.min.js') }}"></script>
-
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script> CKEDITOR.replace('editor1'); </script>
 
 @stack('ajax_slug')
 

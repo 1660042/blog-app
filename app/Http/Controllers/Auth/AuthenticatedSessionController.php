@@ -30,9 +30,11 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate('username', 'password');
 
-        $request->session()->regenerate();
-
-        return redirect()->route('backend.index');
+        $this->result = $request->session()->regenerate();
+        
+        $this->message = $this->getMessage($this->result, 'Đăng nhập thành công!', 'Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin!');
+        
+        return redirect()->route('backend.index')->with($this->message);
     }
 
     /**

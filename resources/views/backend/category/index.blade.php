@@ -17,18 +17,18 @@
                       </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                      <table id="example2" class="table table-bordered table-hover">
+                    <div class="card-body table-responsive p-0" style="height: auto;">
+                        <table class="table table-hover table-bordered">
                         <thead>
                         <tr>
-                          <th class="text-center">ID</th>
-                          <th class="text-center">Tên chuyên mục</th>
-                          <th class="text-center">Chuyên mục cha</th>
-                          <th class="text-center">Đường dẫn chuyên mục</th>
-                          <th class="text-center">Trạng thái</th>
-                          <th class="text-center">Người tạo</th>
-                          <th class="text-center">Người sửa</th>
-                          <th class="text-center">Tác vụ</th>
+                          <th class="text-center align-middle">#ID</th>
+                          <th class="text-center align-middle">Tên chuyên mục</th>
+                          <th class="text-center align-middle">Chuyên mục cha</th>
+                          <th class="text-center align-middle">Đường dẫn chuyên mục</th>
+                          <th class="text-center align-middle">Trạng thái</th>
+                          <th class="text-center align-middle">Người tạo</th>
+                          <th class="text-center align-middle">Người sửa</th>
+                          <th class="text-center align-middle">Tác vụ</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,15 +36,15 @@
                         @foreach ($categories as $cat)
 
                         <tr>
-                          <td class="text-center">#{{ $cat->id }}</td>
-                          <td class="text-center">{{ $cat->name }}</td>
-                          <td class="text-center {{ ($cat->category == null ? "text-danger" : "") }}"> {{ ($cat->category == null ? "(Trống)" : $cat->category->name) }}</td>
-                          <td class="text-center {{ ($cat->url_page == null ? "text-danger" : "") }}">{{ $cat->url_page == null ? "(Trống)" : $cat->url_page }}</td>
-                          <td class="text-center {{ $cat->status == '1' ? "" : "text-danger" }}">{{ $status[$cat->status] }}</td>
-                          <td class="text-center">{{ $cat->createBy == null ? "" : $cat->createBy->name }}</td>
-                          <td class="text-center">{{ $cat->updateBy == null ? "" : $cat->updateBy->name }}</td>
-                          <td class="text-center">
-                             <div class="d-flex justify-content-around">
+                          <td class="text-center align-middle">#{{ $cat->id }}</td>
+                          <td class="text-center align-middle">{{ $cat->name }}</td>
+                          <td class="text-center align-middle {{ ($cat->category == null ? "text-danger" : "") }}"> {{ ($cat->category == null ? "(Trống)" : $cat->category->name) }}</td>
+                          <td class="text-center align-middle {{ ($cat->url_page == null ? "text-danger" : "") }}">{{ $cat->url_page == null ? "(Trống)" : $cat->url_page }}</td>
+                          <td class="text-center align-middle {{ $cat->status == '1' ? "" : "text-danger" }}">{{ $status[$cat->status] }}</td>
+                          <td class="text-center align-middle">{{ $cat->createdBy == null ? "" : $cat->createdBy->name }}</td>
+                          <td class="text-center align-middle">{{ $cat->updatedBy == null ? "" : $cat->updatedBy->name }}</td>
+                          <td class="text-center align-middle">
+                             <div class="">
                                 <!-- <div class="col-sm-6"> -->
                                 <a href="{{ route('backend.posts.categories.edit', $cat->id) }}" class="btn btn-primary btn-sm" title="Sửa chuyên mục"><i class="far fa-edit" ></i>&ensp;Sửa</a>
                                 <!-- </div>
@@ -62,18 +62,18 @@
                         
                         @endforeach
                         </tbody>
-                        <tfoot>
+                        {{-- <tfoot>
                         <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">Tên chuyên mục</th>
-                            <th class="text-center">Chuyên mục cha</th>
-                            <th class="text-center">Đường dẫn chuyên mục</th>
-                            <th class="text-center">Trạng thái</th>
-                            <th class="text-center">Người tạo</th>
-                            <th class="text-center">Người sửa</th>
-                            <th class="text-center">Tác vụ</th>
+                            <th class="text-center align-middle">ID</th>
+                            <th class="text-center align-middle">Tên chuyên mục</th>
+                            <th class="text-center align-middle">Chuyên mục cha</th>
+                            <th class="text-center align-middle">Đường dẫn chuyên mục</th>
+                            <th class="text-center align-middle">Trạng thái</th>
+                            <th class="text-center align-middle">Người tạo</th>
+                            <th class="text-center align-middle">Người sửa</th>
+                            <th class="text-center align-middle">Tác vụ</th>
                         </tr>
-                        </tfoot>
+                        </tfoot> --}}
                       </table>
                     </div>
                     <!-- /.card-body -->
@@ -102,7 +102,7 @@
                   </div>
                   <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                    <button type="button" onclick="deleteCategory({{ $cat->id }})" class="btn btn-danger">Xóa</button>
+                    <button onclick="deleteCategory({{ $cat->id }})" class="btn btn-danger">Xóa</button>
                   </div>
                   <form id="form-delete-{{ $cat->id }}" method="POST" action="{{ route('backend.posts.categories.delete', $cat->id) }}">
                     @csrf

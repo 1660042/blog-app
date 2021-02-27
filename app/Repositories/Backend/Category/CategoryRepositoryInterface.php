@@ -17,13 +17,5 @@ interface CategoryRepositoryInterface {
 
     public function getChildCategories($id);
 
-    // public function getCategoryHD();
-
-    // public function countCategoryConHD($id);
-
-    // public function getCategoryChaHD($id);
-
-    // public function getTablePivot($idQuyen, $idCategory);
-
-    // public function getCategoryByRouteName($routeName);
+    public function getAllChildCategoriesActive();
 }

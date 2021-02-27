@@ -8,7 +8,17 @@ return [
         'number',
         'url_page',
         'status',
-        'create_by',
-        'update_by'
+        'created_by',
+        'updated_by'
+    ],
+    'post' => [
+        'name',
+        'slug',
+        'path_image',
+        'content',
+        'category_id',
+        'status',
+        'created_by',
+        'updated_by'
     ]
 ];

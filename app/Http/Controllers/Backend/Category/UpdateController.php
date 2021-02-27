@@ -22,25 +22,34 @@ class UpdateController extends Controller
      */
     public function __invoke(EditRequest $request, $id) {
 
-        $fill = $this->getFillable();
+        $cat = $this->cat->find($id);
 
-        if($request->has('status') == false) {
-            $this->mergeRequest($request, 'status', '0');
-        }
+        if($cat == false) {
 
-        $data = $this->getFilterData($request, $fill);
-
-        if($request->parent_id == null) {
-            $data = Arr::add($data, 'parent_id', $request->parent_id);
-            $data = Arr::add($data, 'level', 1);
+            $this->result = false;
         } else {
-            $data = Arr::add($data, 'level', 2);
-        }
-        //$data = Arr::add($data, 'number', $this->cat->max('number') + 1);
-        $data = Arr::add($data, 'update_by', Auth::id());
 
-        //dd($data);
-        $this->result = $this->cat->update($id, $data);
+            $fill = $this->getFillable();
+
+            if($request->has('status') == false) {
+                $this->mergeRequest($request, 'status', '0');
+            }
+
+            $data = $this->getFilterData($request, $fill);
+
+            if($request->parent_id == null) {
+                $data = Arr::add($data, 'parent_id', $request->parent_id);
+                $data = Arr::add($data, 'level', 1);
+            } else {
+                $data = Arr::add($data, 'level', 2);
+            }
+            //$data = Arr::add($data, 'number', $this->cat->max('number') + 1);
+            $data = Arr::add($data, 'update_by', Auth::id());
+
+            //dd($data);
+            $this->result = $this->cat->update($id, $data);
+        }
+        
         $this->msg = $this->getMessage($this->result, 'Sửa thành công chuyên mục!', 'Sửa thất bại, vui lòng kiểm tra lại!');
 
 

@@ -21,8 +21,8 @@ class Category extends Migration
             $table->integer('number');
             $table->string('url_page')->nullable();
             $table->string('status')->default('1');
-            $table->integer('create_by')->nullable();
-            $table->integer('update_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

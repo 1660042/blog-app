@@ -50,6 +50,7 @@ class LoginRequest extends FormRequest
 
             throw ValidationException::withMessages([
                 'username' => __('auth.failed'),
+                'login' => __('Thông tin đăng nhập không chính xác! Vui lòng kiểm tra lại!')
             ]);
         }
 

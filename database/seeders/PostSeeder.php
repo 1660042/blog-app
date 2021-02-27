@@ -22,7 +22,7 @@ class postSeeder extends Seeder
                 'path_image' => '/hinh-anh-1',
                 'content' => 'Bài viết đầu tiên',
                 'category_id' => '3',
-                'create_by' => '1'
+                'created_by' => '1'
             ],
             [
                 'name' => 'Say goodbye',
@@ -30,7 +30,7 @@ class postSeeder extends Seeder
                 'path_image' => '/hinh-anh-2',
                 'content' => 'Bài viết thứ 2',
                 'category_id' => '4',
-                'create_by' => '1'
+                'created_by' => '1'
             ],
             
         ]);

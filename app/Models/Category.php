@@ -18,19 +18,19 @@ class Category extends Model
         'number',
         'url_page',
         'status',
-        'create_by',
-        'update_by'
+        'created_by',
+        'updated_by'
     ];
 
     public function category() {
         return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
     }
 
-    public function createBy() {
-        return $this->belongsTo('App\Models\User', 'create_by', 'id');
+    public function createdBy() {
+        return $this->belongsTo('App\Models\User', 'created_by', 'id');
     }
 
-    public function updateBy() {
-        return $this->belongsTo('App\Models\User', 'update_by', 'id');
+    public function updatedBy() {
+        return $this->belongsTo('App\Models\User', 'updated_by', 'id');
     }
 }

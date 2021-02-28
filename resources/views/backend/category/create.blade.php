@@ -5,7 +5,6 @@
 <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      @include('common.notification')
         <div class="row">
           <!-- left column -->
             <div class="col-md-12">

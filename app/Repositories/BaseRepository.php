@@ -25,9 +25,11 @@ abstract class BaseRepository implements RepositoryInterface {
     public function getAllWithParam($key, $value) {
         return $this->_model->where([
             [$key, '=', $value],
-            // ['status', '=', 1],
-            // ['view', '=', 1]
         ])->get();
+    }
+
+    public function getAllActive() {
+        return $this->_model->where('status', '=', '1')->orderBy('id', 'desc')->get();
     }
 
     public function find($id) {
@@ -70,5 +72,9 @@ abstract class BaseRepository implements RepositoryInterface {
         }
 
         return false;
+    }
+
+    public function getDataWithPagination($qty) {
+        return $this->_model->where('status', '=', '1')->orderBy('id', 'desc')->paginate($qty);
     }
 }

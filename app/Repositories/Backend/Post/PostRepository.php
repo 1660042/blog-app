@@ -11,6 +11,13 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface {
         return \App\Models\Post::class;
     }
 
+    public function getPost($key, $value) {
+        return $this->_model->where([
+            [$key, '=', $value],
+            ['status', '=', '1']
+        ])->first();
+    }
+
     // public function getPost($level) {
     //     return $this->_model->whereNull('parent_id')->orderByRaw('number')->get();
     // }

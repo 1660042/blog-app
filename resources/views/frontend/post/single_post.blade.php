@@ -14,7 +14,7 @@
                                     src="{{ asset('MiniBlog/images/person_1.jpg') }}" alt="Image" class="img-fluid">
                             </figure>
                             <span class="d-inline-block mt-1">Đăng bởi {{ $post->createdBy->name }}</span>
-                            <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
+                            <span>&nbsp;-&nbsp; {{ date('d-m-Y', strtotime($post->created_at)) }} </span>
                         </div>
                     </div>
                 </div>

@@ -77,4 +77,11 @@ abstract class BaseRepository implements RepositoryInterface {
     public function getDataWithPagination($qty) {
         return $this->_model->where('status', '=', '1')->orderBy('id', 'desc')->paginate($qty);
     }
+
+    public function getDataWithPaginationWithParam($qty, $key, $value, $compare) {
+        return $this->_model->where([
+            ['status', '=', '1'],
+            [$key, $compare, $value]
+        ])->orderBy('id', 'desc')->paginate($qty);
+    }
 }

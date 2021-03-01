@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="{{ asset('MiniBlog/css/aos.css') }}">
 
     <link rel="stylesheet" href="{{ asset('MiniBlog/css/style.css') }}">
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; // remove the gap so it doesn't close
+        }
+    </style>
 </head>
 
 <body>
@@ -55,26 +61,23 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
+                                            <a class="nav-link {{ !$category->getChildCategories->isEmpty() ? "dropdown-toggle" : "" }}" 
+                                                href="{{ url('/category', $category->url_page) }}" id='navbarDropdown' role="button" data-toggle=''
+                                                aria-haspopup="true" aria-expanded="false">
                                                 {{ $category->name }}
                                             </a>
-                                            @foreach ($childCategories as $childCat)
-                                                @if ($category->id == $childCat->parent_id)
-                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                        <a class="dropdown-item" href="#">{{ $childCat->name }}</a>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                            @if (!$category->getChildCategories->isEmpty())
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                @foreach ($category->getChildCategories as $childCat)
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('frontend.category.category', $childCat->url_page) }}">{{ $childCat->name }}</a>
+                                                @endforeach
+                                            </div> 
+                                            @endif
+                                            
                                         </li>
                                     @endif
                                 @endforeach
-                                {{-- <li><a href="{{ asset('MiniBlog/category.html') }}">Politics</a></li> --}}
-
-                                {{-- <li><a href="{{ asset('MiniBlog/category.html') }}">Tech</a></li>
-                                <li><a href="{{ asset('MiniBlog/category.html') }}">Entertainment</a></li>
-                                <li><a href="{{ asset('MiniBlog/category.html') }}">Travel</a></li> --}}
                                 <li class="d-none d-lg-inline-block"><a href="{{ url('/#') }}"
                                         class="js-search-toggle"><span class="icon-search"></span></a></li>
                             </ul>

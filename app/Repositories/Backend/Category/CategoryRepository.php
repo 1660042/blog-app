@@ -53,4 +53,11 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             ['status', '=', '1']
         ])->get();
     }
+
+    public function getCategoryActive($key, $value) {
+        return $this->_model->where([
+            [$key, '=', $value],
+            ['status', '=', '1']
+        ])->first();
+    }
 }

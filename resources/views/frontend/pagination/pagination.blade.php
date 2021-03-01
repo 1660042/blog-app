@@ -27,8 +27,8 @@
 
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
-                    <span>
-                        < </span>
+                    {{-- <span>
+                        < </span> --}}
                         @else
                             <a href="{{ $paginator->previousPageUrl() }}">
                                 < </a>
@@ -57,12 +57,14 @@
                     <a href="{{ $paginator->nextPageUrl() }}">
                         <span>></span>
                     </a>
-                @else
-                    <span>></span>
-
+                @elseif ($paginator->total() == $paginator->currentPage())
+                @else   
+                <span>></span>
                 @endif
             </div>
         </div>
         <!-- Pagination -->
     </div>
+    
+
 @endif

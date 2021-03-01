@@ -14,6 +14,8 @@ interface RepositoryInterface {
     public function max($val);
     public function getDataWithPagination($qty);
 
+    public function getDataWithPaginationWithParam($qty, $key, $value, $compare);
+
     public function fill($data);
 
     public function save();

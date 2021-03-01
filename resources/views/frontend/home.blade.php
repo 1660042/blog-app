@@ -59,7 +59,7 @@
     </div>
 
     <div class="site-section" id="recent_posts">
-        @include('frontend.pagination.pagination_home')
+        @include('frontend.pagination_home')
     </div>
 
     <div class="site-section bg-light">
@@ -134,26 +134,27 @@
     </div>
     @push('ajax')
         <script>
-            $(document).ready(function() {
-
-                $(document).on('click', '.pagination a', function(event) {
-                    event.preventDefault();
-                    var page = $(this).attr('href').split('page=')[1];
-                    fetch_data(page);
-                });
-
-                function fetch_data(page) {
-                    $.ajax({
-                        url: "?page=" + page,
-                        success: function(data) {
-                            $('#recent_posts').html(data);
-                        }
-                    });
-                }
-
+            $(document).on('click', '.custom-pagination a', function(event) {
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                console.log(page);
+                fetch_data(page);
+                window.history.pushState("", "", "{{ route('frontend.home') }}?page=" +
+                    page);
             });
+
+            function fetch_data(page) {
+                $.ajax({
+                    url: "{{ route('frontend.home') }}?page=" + page,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#recent_posts').html(data);
+                        //console.log(url);
+                        console.log("Thanh cong!");
+                    }
+                });
+            }
 
         </script>
     @endpush
-
 @endsection

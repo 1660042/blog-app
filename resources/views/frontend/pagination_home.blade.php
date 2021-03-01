@@ -18,14 +18,14 @@
                             <figure class="author-figure mb-0 mr-3 float-left"><img
                                     src="{{ asset('MiniBlog/images/person_1.jpg') }}" alt="Image" class="img-fluid">
                             </figure>
-                            <span class="d-inline-block mt-1">By <a href="#">{{ $post->createdBy->name }}</a></span>
-                            <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
+                            <span class="d-inline-block mt-1">Đăng bởi <a href="#">{{ $post->createdBy->name }}</a></span>
+                            <span>&nbsp;-&nbsp; {{ date('d-m-Y', strtotime($post->created_at)) }}</span>
                         </div>
 
                         <p>{!! Str::substr($post->content, 0, 200) !!}</p>
                         {{-- <p>{{ Str::length('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio, explicabo ad deleniti impedit facilis fugit recusandae! Illo, aliquid, dicta beatae quia porro id est.') }} --}}
                         </p>
-                        <p><a href="#">Xem thêm</a></p>
+                        <p><a href="{{ route('frontend.post.post', $post->slug) }}">Xem thêm</a></p>
                     </div>
                 </div>
             </div>

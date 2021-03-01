@@ -33,4 +33,12 @@ class Category extends Model
     public function updatedBy() {
         return $this->belongsTo('App\Models\User', 'updated_by', 'id');
     }
+
+    public function getPosts() {
+        return $this->hasMany('App\Models\Post', 'category_id', 'id');
+    }
+
+    public function getChildCategories() {
+        return $this->hasMany('App\Models\Category', 'parent_id', 'id');
+    }
 }

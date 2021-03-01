@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         //Số lượng bài viết mỗi trang
-        $qty = 2;
+        $qty = 1;
 
         $posts = $this->post->getDataWithPagination($qty);
 
@@ -24,7 +24,7 @@ class HomeController extends Controller
         $data = compact('posts', 'pathImage');
 
         if($request->ajax()) {
-            return view('frontend.pagination.pagination_home', $data)->render();
+            return view('frontend.pagination_home', $data)->render();
         }
 
         return view('frontend.home', $data);

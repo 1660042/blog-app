@@ -8,7 +8,8 @@ use App\Repositories\Backend\Post\PostRepositoryInterface;
 
 class DeleteController extends Controller
 {
-    public function __construct(PostRepositoryInterface $post) {
+    public function __construct(PostRepositoryInterface $post)
+    {
         $this->post = $post;
     }
     /**
@@ -21,14 +22,20 @@ class DeleteController extends Controller
     {
         $post = $this->post->find($id);
 
-        if($post == false) {
+        if ($post == false) {
             $this->result = false;
         } else {
             $this->result = $this->post->delete($id);
+
+            $post->getCategories()->detach();
+            $post->getTags()->detach();
         }
-        
-        $this->msg = $this->getMessage($this->result
-            , 'Xóa bài viết thành công!','Xóa bài viết thất bại, vui lòng kiểm tra lại!');
+
+        $this->msg = $this->getMessage(
+            $this->result,
+            'Xóa bài viết thành công!',
+            'Xóa bài viết thất bại, vui lòng kiểm tra lại!'
+        );
 
         return redirect()->route('backend.posts.posts.index')->with($this->msg);
     }

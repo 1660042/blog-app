@@ -1,389 +1,311 @@
 @extends('frontend.layouts.default')
+@section('title', 'Blog App - Trang chủ')
 @section('content')
 
-    <div class="site-cover site-cover-sm same-height overlay single-page"
-        style="background-image: url('{{ asset('MiniBlog/images/img_2.jpg') }}');">
-        <div class="container">
-            <div class="row same-height justify-content-center">
-                <div class="col-md-12 col-lg-10">
-                    <div class="post-entry text-center">
-                        <span class="post-category text-white bg-success mb-3">{{ $post->getCategory->name }}</span>
-                        <h1 class="mb-4"><a href="#">{{ $post->name }}</a></h1>
-                        <div class="post-meta align-items-center text-center">
-                            <figure class="author-figure mb-0 mr-3 d-inline-block"><img
-                                    src="{{ asset('MiniBlog/images/person_1.jpg') }}" alt="Image" class="img-fluid">
-                            </figure>
-                            <span class="d-inline-block mt-1">Đăng bởi {{ $post->createdBy->name }}</span>
-                            <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
+    <div class="s-content content">
+        <main class="row content__page">
+
+            <article class="column large-full entry format-standard">
+
+                {{-- <div class="media-wrap entry__media">
+                    <div class="entry__post-thumb">
+                        <img src="images/thumbs/single/standard/standard-1000.jpg" sizes="(max-width: 2000px) 100vw, 2000px"
+                            alt="">
+                    </div>
+                </div> --}}
+
+                <div class="content__page-header entry__header">
+                    <h1 class="display-1 entry__title">
+                        {{ $post->name }}
+                    </h1>
+                    <ul class="entry__header-meta">
+                        <li class="author">By <a href="#0">{{ $post->createdBy->name }}</a></li>
+                        <li class="date">{{ $post->created_at }}</li>
+                        <li class="cat-links">
+                            <a href="#0">{{ $post->getCategory->name }}</a>
+                            {{-- <a href="#0">Management</a> --}}
+                        </li>
+                    </ul>
+                </div> <!-- end entry__header -->
+
+                <div class="entry__content">
+
+                    {!! $post->content !!}
+
+
+                    <p class="entry__tags">
+                        <span>Post Tags</span>
+
+                        <span class="entry__tag-list">
+                            <a href="#0">orci</a>
+                            <a href="#0">lectus</a>
+                            <a href="#0">varius</a>
+                            <a href="#0">turpis</a>
+                        </span>
+
+                    </p>
+                </div> <!-- end entry content -->
+
+                <div class="entry__pagenav">
+                    <div class="entry__nav">
+                        <div class="entry__prev">
+                            <a href="#0" rel="prev">
+                                <span>Previous Post</span>
+                                Tips on Minimalist Design
+                            </a>
+                        </div>
+                        <div class="entry__next">
+                            <a href="#0" rel="next">
+                                <span>Next Post</span>
+                                Less Is More
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> <!-- end entry__pagenav -->
 
-    <section class="site-section py-lg">
-        <div class="container">
+                <div class="entry__related">
+                    <h3 class="h2">Related Articles</h3>
 
-            <div class="row blog-entries element-animate">
+                    <ul class="related">
+                        <li class="related__item">
+                            <a href="single-standard.html" class="related__link">
+                                <img src="images/thumbs/masonry/walk-600.jpg" alt="">
+                            </a>
+                            <h5 class="related__post-title">Using Repetition and Patterns in Photography.</h5>
+                        </li>
+                        <li class="related__item">
+                            <a href="single-standard.html" class="related__link">
+                                <img src="images/thumbs/masonry/dew-600.jpg" alt="">
+                            </a>
+                            <h5 class="related__post-title">Health Benefits Of Morning Dew.</h5>
+                        </li>
+                        <li class="related__item">
+                            <a href="single-standard.html" class="related__link">
+                                <img src="images/thumbs/masonry/rucksack-600.jpg" alt="">
+                            </a>
+                            <h5 class="related__post-title">The Art Of Visual Storytelling.</h5>
+                        </li>
+                    </ul>
+                </div> <!-- end entry related -->
 
-                <div class="col-md-12 col-lg-8 main-content">
+            </article> <!-- end column large-full entry-->
 
-                    <div class="post-content-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium nam quas inventore, ut iure
-                            iste modi eos adipisci ad ea itaque labore earum autem nobis et numquam, minima eius. Nam eius,
-                            non unde ut aut sunt eveniet rerum repellendus porro.</p>
-                        <p>Sint ab voluptates itaque, ipsum porro qui obcaecati cumque quas sit vel. Voluptatum provident id
-                            quis quo. Eveniet maiores perferendis officia veniam est laborum, expedita fuga doloribus natus
-                            repellendus dolorem ab similique sint eius cupiditate necessitatibus, magni nesciunt ex eos.</p>
-                        <p>Quis eius aspernatur, eaque culpa cumque reiciendis, nobis at earum assumenda similique ut?
-                            Aperiam vel aut, ex exercitationem eos consequuntur eaque culpa totam, deserunt, aspernatur quae
-                            eveniet hic provident ullam tempora error repudiandae sapiente illum rerum itaque voluptatem.
-                            Commodi, sequi.</p>
-                        <div class="row mb-5 mt-5">
-                            <div class="col-md-12 mb-4">
-                                <img src="{{ asset('MiniBlog/images/img_1.jpg') }}" alt="Image placeholder"
-                                    class="img-fluid rounded">
+
+            <div class="comments-wrap">
+
+                <div id="comments" class="column large-12">
+
+                    <h3 class="h2">5 Comments</h3>
+
+                    <!-- START commentlist -->
+                    <ol class="commentlist">
+
+                        <li class="depth-1 comment">
+
+                            <div class="comment__avatar">
+                                <img class="avatar" src="images/avatars/user-01.jpg" alt="" width="50" height="50">
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <img src="{{ asset('MiniBlog/images/img_2.jpg') }}" alt="Image placeholder"
-                                    class="img-fluid rounded">
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <img src="{{ asset('MiniBlog/images/img_3.jpg') }}" alt="Image placeholder"
-                                    class="img-fluid rounded">
-                            </div>
-                        </div>
-                        <p>Quibusdam autem, quas molestias recusandae aperiam molestiae modi qui ipsam vel. Placeat tenetur
-                            veritatis tempore quos impedit dicta, error autem, quae sint inventore ipsa quidem. Quo
-                            voluptate quisquam reiciendis, minus, animi minima eum officia doloremque repellat eos, odio
-                            doloribus cum.</p>
-                        <p>Temporibus quo dolore veritatis doloribus delectus dolores perspiciatis recusandae ducimus, nisi
-                            quod, incidunt ut quaerat, magnam cupiditate. Aut, laboriosam magnam, nobis dolore fugiat
-                            impedit necessitatibus nisi cupiditate, quas repellat itaque molestias sit libero voluptas
-                            eveniet omnis illo ullam dolorem minima.</p>
-                        <p>Porro amet accusantium libero fugit totam, deserunt ipsa, dolorem, vero expedita illo similique
-                            saepe nisi deleniti. Cumque, laboriosam, porro! Facilis voluptatem sequi nulla quidem, provident
-                            eius quos pariatur maxime sapiente illo nostrum quibusdam aliquid fugiat! Earum quod fuga id
-                            officia.</p>
-                        <p>Illo magnam at dolore ad enim fugiat ut maxime facilis autem, nulla cumque quis commodi eos nisi
-                            unde soluta, ipsa eius aspernatur sint atque! Nihil, eveniet illo ea, mollitia fuga accusamus
-                            dolor dolorem perspiciatis rerum hic, consectetur error rem aspernatur!</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magni explicabo id
-                            molestiae, minima quas assumenda consectetur, nobis neque rem, incidunt quam tempore perferendis
-                            provident obcaecati sapiente, animi vel expedita omnis quae ipsa! Obcaecati eligendi sed odio
-                            labore vero reiciendis facere accusamus molestias eaque impedit, consequuntur quae fuga vitae
-                            fugit?</p>
-                    </div>
+                            <div class="comment__content">
 
+                                <div class="comment__info">
+                                    <div class="comment__author">Itachi Uchiha</div>
 
-                    <div class="pt-5">
-                        <p>Chuyên mục: <a href="#">{{ $post->getCategory->name }}</a> Tags: <a href="#">#manila</a>, <a
-                                href="#">#asia</a></p>
-                    </div>
-
-
-                    <div class="pt-5">
-                        <h3 class="mb-5">6 Comments</h3>
-                        <ul class="comment-list">
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="{{ asset('MiniBlog/images/person_1.jpg') }}" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="{{ asset('MiniBlog/images/person_1.jpg') }}" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard">
-                                            <img src="{{ asset('MiniBlog/images/person_1.jpg') }}"
-                                                alt="Image placeholder">
+                                    <div class="comment__meta">
+                                        <div class="comment__time">April 30, 2019</div>
+                                        <div class="comment__reply">
+                                            <a class="comment-reply-link" href="#0">Reply</a>
                                         </div>
-                                        <div class="comment-body">
-                                            <h3>Jean Doe</h3>
-                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                                laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                                enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?
-                                            </p>
-                                            <p><a href="#" class="reply rounded">Reply</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="comment__text">
+                                    <p>Adhuc quaerendum est ne, vis ut harum tantas noluisse, id suas iisque mei.
+                                        Nec te inani ponderum vulputate,
+                                        facilisi expetenda has et. Iudico dictas scriptorem an vim, ei alia mentitum
+                                        est, ne has voluptua praesent.</p>
+                                </div>
+
+                            </div>
+
+                        </li> <!-- end comment level 1 -->
+
+                        <li class="thread-alt depth-1 comment">
+
+                            <div class="comment__avatar">
+                                <img class="avatar" src="images/avatars/user-04.jpg" alt="" width="50" height="50">
+                            </div>
+
+                            <div class="comment__content">
+
+                                <div class="comment__info">
+                                    <div class="comment__author">John Doe</div>
+
+                                    <div class="comment__meta">
+                                        <div class="comment__time">April 30, 2019</div>
+                                        <div class="comment__reply">
+                                            <a class="comment-reply-link" href="#0">Reply</a>
                                         </div>
+                                    </div>
+                                </div>
 
+                                <div class="comment__text">
+                                    <p>Sumo euismod dissentiunt ne sit, ad eos iudico qualisque adversarium, tota
+                                        falli et mei. Esse euismod
+                                        urbanitas ut sed, et duo scaevola pericula splendide. Primis veritus
+                                        contentiones nec ad, nec et
+                                        tantas semper delicatissimi.</p>
+                                </div>
 
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="vcard">
-                                                    <img src="{{ asset('MiniBlog/images/person_1.jpg') }}"
-                                                        alt="Image placeholder">
+                            </div>
+
+                            <ul class="children">
+
+                                <li class="depth-2 comment">
+
+                                    <div class="comment__avatar">
+                                        <img class="avatar" src="images/avatars/user-03.jpg" alt="" width="50" height="50">
+                                    </div>
+
+                                    <div class="comment__content">
+
+                                        <div class="comment__info">
+                                            <div class="comment__author">Kakashi Hatake</div>
+
+                                            <div class="comment__meta">
+                                                <div class="comment__time">April 29, 2019</div>
+                                                <div class="comment__reply">
+                                                    <a class="comment-reply-link" href="#0">Reply</a>
                                                 </div>
-                                                <div class="comment-body">
-                                                    <h3>Jean Doe</h3>
-                                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                                        quidem laborum necessitatibus, ipsam impedit vitae autem, eum
-                                                        officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
-                                                        impedit necessitatibus, nihil?</p>
-                                                    <p><a href="#" class="reply rounded">Reply</a></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="comment__text">
+                                            <p>Duis sed odio sit amet nibh vulputate
+                                                cursus a sit amet mauris. Morbi accumsan ipsum velit. Duis sed odio
+                                                sit amet nibh vulputate
+                                                cursus a sit amet mauris</p>
+                                        </div>
+
+                                    </div>
+
+                                    <ul class="children">
+
+                                        <li class="depth-3 comment">
+
+                                            <div class="comment__avatar">
+                                                <img class="avatar" src="images/avatars/user-04.jpg" alt="" width="50"
+                                                    height="50">
+                                            </div>
+
+                                            <div class="comment__content">
+
+                                                <div class="comment__info">
+                                                    <div class="comment__author">John Doe</div>
+
+                                                    <div class="comment__meta">
+                                                        <div class="comment__time">April 29, 2019</div>
+                                                        <div class="comment__reply">
+                                                            <a class="comment-reply-link" href="#0">Reply</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                <ul class="children">
-                                                    <li class="comment">
-                                                        <div class="vcard">
-                                                            <img src="{{ asset('MiniBlog/images/person_1.jpg') }}"
-                                                                alt="Image placeholder">
-                                                        </div>
-                                                        <div class="comment-body">
-                                                            <h3>Jean Doe</h3>
-                                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-                                                                autem, eum officia, fugiat saepe enim sapiente iste iure!
-                                                                Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                            <p><a href="#" class="reply rounded">Reply</a></p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                                                <div class="comment__text">
+                                                    <p>Investigationes demonstraverunt lectores legere me lius quod
+                                                        ii legunt saepius. Claritas est
+                                                        etiam processus dynamicus, qui sequitur mutationem
+                                                        consuetudium lectorum.</p>
+                                                </div>
 
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="{{ asset('MiniBlog/images/person_1.jpg') }}" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- END comment-list -->
-
-                        <div class="comment-form-wrap pt-5">
-                            <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="p-5 bg-light">
-                                <div class="form-group">
-                                    <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="url" class="form-control" id="website">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Post Comment" class="btn btn-primary">
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- END main-content -->
-
-                <div class="col-md-12 col-lg-4 sidebar">
-                    <div class="sidebar-box search-form-wrap">
-                        <form action="#" class="search-form">
-                            <div class="form-group">
-                                <span class="icon fa fa-search"></span>
-                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-                            </div>
-                        </form>
-                    </div>
-                    <!-- END sidebar-box -->
-                    <div class="sidebar-box">
-                        <div class="bio text-center">
-                            <img src="{{ asset('MiniBlog/images/person_2.jpg') }}" alt="Image Placeholder"
-                                class="img-fluid mb-5">
-                            <div class="bio-body">
-                                <h2>{{ $post->createdBy->name }}</h2>
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem
-                                    facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga
-                                    sit molestias minus.</p>
-                                <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Tìm hiểu thêm</a></p>
-                                <p class="social">
-                                    <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                                    <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                                    <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                                    <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END sidebar-box -->
-                    <div class="sidebar-box">
-                        <h3 class="heading">Bài viết phổ biến</h3>
-                        <div class="post-entry-sidebar">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <img src="{{ asset('MiniBlog/images/img_1.jpg') }}" alt="Image placeholder"
-                                            class="mr-4">
-                                        <div class="text">
-                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                            <div class="post-meta">
-                                                <span class="mr-2">March 15, 2018 </span>
                                             </div>
-                                        </div>
-                                    </a>
+
+                                        </li>
+
+                                    </ul>
+
                                 </li>
-                                <li>
-                                    <a href="">
-                                        <img src="{{ asset('MiniBlog/images/img_2.jpg') }}" alt="Image placeholder"
-                                            class="mr-4">
-                                        <div class="text">
-                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                            <div class="post-meta">
-                                                <span class="mr-2">March 15, 2018 </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="{{ asset('MiniBlog/images/img_3.jpg') }}" alt="Image placeholder"
-                                            class="mr-4">
-                                        <div class="text">
-                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                            <div class="post-meta">
-                                                <span class="mr-2">March 15, 2018 </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+
                             </ul>
-                        </div>
-                    </div>
-                    <!-- END sidebar-box -->
 
-                    <div class="sidebar-box">
-                        <h3 class="heading">Categories</h3>
-                        <ul class="categories">
-                            <li><a href="#">Food <span>(12)</span></a></li>
-                            <li><a href="#">Travel <span>(22)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(37)</span></a></li>
-                            <li><a href="#">Business <span>(42)</span></a></li>
-                            <li><a href="#">Adventure <span>(14)</span></a></li>
-                        </ul>
-                    </div>
-                    <!-- END sidebar-box -->
+                        </li> <!-- end comment level 1 -->
 
-                    <div class="sidebar-box">
-                        <h3 class="heading">Tags</h3>
-                        <ul class="tags">
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Adventure</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Freelancing</a></li>
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Adventure</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Freelancing</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- END sidebar -->
+                        <li class="depth-1 comment">
 
-            </div>
-        </div>
-    </section>
-
-    <div class="site-section bg-light">
-        <div class="container">
-
-            <div class="row mb-5">
-                <div class="col-12">
-                    <h2>More Related Posts</h2>
-                </div>
-            </div>
-
-            <div class="row align-items-stretch retro-layout">
-
-                <div class="col-md-5 order-md-2">
-                    <a href="single.html" class="hentry img-1 h-100 gradient"
-                        style="background-image: url('{{ asset('MiniBlog/images/img_4.jpg') }}');">
-                        <span class="post-category text-white bg-danger">Travel</span>
-                        <div class="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-7">
-
-                    <a href="single.html" class="hentry img-2 v-height mb30 gradient"
-                        style="background-image: url('{{ asset('MiniBlog/images/img_1.jpg') }}');">
-                        <span class="post-category text-white bg-success">Nature</span>
-                        <div class="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
-
-                    <div class="two-col d-block d-md-flex">
-                        <a href="single.html" class="hentry v-height img-2 gradient"
-                            style="background-image: url('{{ asset('MiniBlog/images/img_2.jpg') }}');">
-                            <span class="post-category text-white bg-primary">Sports</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
+                            <div class="comment__avatar">
+                                <img class="avatar" src="images/avatars/user-02.jpg" alt="" width="50" height="50">
                             </div>
-                        </a>
-                        <a href="single.html" class="hentry v-height img-2 ml-auto gradient"
-                            style="background-image: url('{{ asset('MiniBlog/images/img_3.jpg') }}');">
-                            <span class="post-category text-white bg-warning">Lifestyle</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
+
+                            <div class="comment__content">
+
+                                <div class="comment__info">
+                                    <div class="comment__author">Shikamaru Nara</div>
+
+                                    <div class="comment__meta">
+                                        <div class="comment__time">April 26, 2019</div>
+                                        <div class="comment__reply">
+                                            <a class="comment-reply-link" href="#0">Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="comment__text">
+                                    <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum
+                                        claritatem.</p>
+                                </div>
+
                             </div>
-                        </a>
+
+                        </li> <!-- end comment level 1 -->
+
+                    </ol>
+                    <!-- END commentlist -->
+
+                </div> <!-- end comments -->
+
+                <div class="column large-12 comment-respond">
+
+                    <!-- START respond -->
+                    <div id="respond">
+
+                        <h3 class="h2">Add Comment <span>Your email address will not be published</span></h3>
+
+                        <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off">
+                            <fieldset>
+
+                                <div class="form-field">
+                                    <input name="cName" id="cName" class="full-width" placeholder="Your Name" value=""
+                                        type="text">
+                                </div>
+
+                                <div class="form-field">
+                                    <input name="cEmail" id="cEmail" class="full-width" placeholder="Your Email" value=""
+                                        type="text">
+                                </div>
+
+                                <div class="form-field">
+                                    <input name="cWebsite" id="cWebsite" class="full-width" placeholder="Website" value=""
+                                        type="text">
+                                </div>
+
+                                <div class="message form-field">
+                                    <textarea name="cMessage" id="cMessage" class="full-width"
+                                        placeholder="Your Message"></textarea>
+                                </div>
+
+                                <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width"
+                                    value="Add Comment" type="submit">
+
+                            </fieldset>
+                        </form> <!-- end form -->
+
                     </div>
+                    <!-- END respond-->
 
-                </div>
-            </div>
+                </div> <!-- end comment-respond -->
 
-        </div>
-    </div>
+            </div> <!-- end comments-wrap -->
+        </main>
+
+    </div> <!-- end s-content -->
 @endsection

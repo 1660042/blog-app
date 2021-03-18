@@ -29,7 +29,7 @@ class CreateRequest extends FormRequest
             'slug' => 'required|string|max:255|unique:post,slug',
             'path_image' => 'required|string|max:255',
             'content' => 'required|string|max:10000',
-            'category_id' => 'required|integer|max:10000',
+            'category_id' => 'required|array|max:100',
             //tự custom 1 rule
             // 'category_id' => [
             //     function($attribute, $value, $fail) {
@@ -40,8 +40,8 @@ class CreateRequest extends FormRequest
             //     }
             // ],
             'status' => [
-                function($attribute, $value, $fail) {
-                    if($value == 1 || $value == '') {
+                function ($attribute, $value, $fail) {
+                    if ($value == 1 || $value == '') {
                         return true;
                     }
                     $fail('Giá trị của :attribute không hợp lệ!');
@@ -50,14 +50,15 @@ class CreateRequest extends FormRequest
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
 
         return [
             'required' => ':attribute không được để trống!',
-            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho '. Str::lower(':attribute') . '!',
+            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho ' . Str::lower(':attribute') . '!',
             'max' => 'Bạn đã nhập ' . Str::lower(':attribute') . ' quá giới hạn ký tự cho phép!',
             'unique' => ':attribute đã tồn tại trong hệ thống!',
-            'integer' => 'Bạn vui lòng nhập số cho '. Str::lower(':attribute') . '!',
+            'integer' => 'Bạn vui lòng nhập số cho ' . Str::lower(':attribute') . '!',
         ];
     }
 
@@ -71,5 +72,5 @@ class CreateRequest extends FormRequest
             'path_img' => 'Đường dẫn hình ảnh',
             'content' => 'Nội dung bài viết'
         ];
-}
+    }
 }

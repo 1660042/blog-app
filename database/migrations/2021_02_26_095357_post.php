@@ -19,7 +19,6 @@ class Post extends Migration
             $table->string('slug')->unique();
             $table->string('path_image');
             $table->longText('content');
-            $table->integer('category_id');
             $table->integer('status')->default('1');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

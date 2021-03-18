@@ -21,7 +21,6 @@ class postSeeder extends Seeder
                 'slug' => 'hello-world',
                 'path_image' => '/hinh-anh-1',
                 'content' => 'Bài viết đầu tiên',
-                'category_id' => '3',
                 'created_by' => '1'
             ],
             [
@@ -29,10 +28,9 @@ class postSeeder extends Seeder
                 'slug' => 'say-google',
                 'path_image' => '/hinh-anh-2',
                 'content' => 'Bài viết thứ 2',
-                'category_id' => '4',
                 'created_by' => '1'
             ],
-            
+
         ]);
     }
 }

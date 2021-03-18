@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         //Số lượng bài viết mỗi trang
-        $qty = 2;
+        $qty = 4;
 
         $posts = $this->post->getDataWithPagination($qty);
 

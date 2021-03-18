@@ -29,7 +29,7 @@ class EditRequest extends FormRequest
             'slug' => 'required|string|max:255|unique:post,slug,'.$this->id,
             'path_image' => 'required|string|max:255',
             'content' => 'required|string|max:10000',
-            'category_id' => 'required|integer|max:10000',
+           'category_id' => 'required|array|max:100',
             //tự custom 1 rule
             // 'category_id' => [
             //     function($attribute, $value, $fail) {

@@ -9,7 +9,8 @@ use App\Repositories\Backend\Post\PostRepositoryInterface;
 
 class EditController extends Controller
 {
-    public function __construct(CategoryRepositoryInterface $cat, PostRepositoryInterface $post) {
+    public function __construct(CategoryRepositoryInterface $cat, PostRepositoryInterface $post)
+    {
         $this->cat = $cat;
         $this->post = $post;
     }
@@ -22,9 +23,32 @@ class EditController extends Controller
     public function __invoke(Request $request, $id)
     {
         $post = $this->post->find($id);
-        $post->path_image = $this->getUrlUpload() . $post->path_image;
-        $categories = $this->cat->getAllChildCategoriesActive();
-        $data = compact('categories', 'post');
-        return view('backend.post.edit', $data);
+
+        if ($post == false) {
+
+            $this->result = false;
+            $this->msg = $this->getMessage($this->result, '', 'Bài viết không tồn tại!');
+            return redirect()->route('backend.posts.posts.index')->with($this->msg);
+        } else {
+            $post->path_image = $this->getUrlUpload() . $post->path_image;
+
+            //dd($post->getCategories->toArray());
+
+            $categoriesPost = "";
+
+            foreach ($post->getCategories->toArray() as  $key) {
+                $categoriesPost = $categoriesPost . ", " . $key['id'];
+            }
+
+            foreach ($post->getCategories->toArray() as  $key) {
+                $categoriesPost = $categoriesPost . ", " . $key['id'];
+            }
+
+            $tag = $post->getTags->implode('name', ', ');
+
+            $categories = $this->cat->getAllChildCategoriesActive();
+            $data = compact('categories', 'post', 'categoriesPost', 'tag');
+            return view('backend.post.edit', $data);
+        }
     }
 }

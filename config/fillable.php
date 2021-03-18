@@ -16,7 +16,7 @@ return [
         'slug',
         'path_image',
         'content',
-        'category_id',
+        //'category_id',
         'status',
         'created_by',
         'updated_by'

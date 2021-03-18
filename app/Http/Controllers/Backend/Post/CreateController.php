@@ -8,7 +8,8 @@ use App\Repositories\Backend\Category\CategoryRepositoryInterface;
 
 class CreateController extends Controller
 {
-    public function __construct(CategoryRepositoryInterface $cat) {
+    public function __construct(CategoryRepositoryInterface $cat)
+    {
         $this->cat = $cat;
     }
     /**
@@ -19,8 +20,9 @@ class CreateController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $categoriesPost = "";
         $categories = $this->cat->getAllChildCategoriesActive();
-        $data = compact('categories');
+        $data = compact('categories', 'categoriesPost');
         return view('backend.post.create', $data);
     }
 }

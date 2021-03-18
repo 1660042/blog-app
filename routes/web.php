@@ -18,6 +18,9 @@ Route::namespace('Frontend')->name('frontend.')->group(function () {
     Route::namespace('Post')->prefix('post')->name('post.')->group(function () {
         Route::get('/{slug}', 'PostController')->name('post');
     });
+    Route::get('/home', function() {
+        return view('frontend.home2');
+    });
 });
 
 require __DIR__.'/auth.php';

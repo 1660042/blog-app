@@ -11,7 +11,7 @@ class Post extends Model
 
     protected $table = 'post';
 
-    protected $fillable = [    
+    protected $fillable = [
         'name',
         'category_id',
         'path_image',
@@ -22,15 +22,28 @@ class Post extends Model
         'updated_by'
     ];
 
-    public function getCategory() {
+    public function getCategory()
+    {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
 
-    public function createdBy() {
+    public function createdBy()
+    {
         return $this->belongsTo('App\Models\User', 'created_by', 'id');
     }
 
-    public function updatedBy() {
+    public function updatedBy()
+    {
         return $this->belongsTo('App\Models\User', 'updated_by', 'id');
+    }
+
+    public function getCategories()
+    {
+        return $this->belongsToMany(Category::class, 'post_category', 'post_id', 'category_id');
+    }
+
+    public function getTags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
 }

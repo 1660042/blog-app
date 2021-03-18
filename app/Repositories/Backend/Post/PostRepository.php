@@ -18,6 +18,8 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface {
         ])->first();
     }
 
+    
+
     // public function getPost($level) {
     //     return $this->_model->whereNull('parent_id')->orderByRaw('number')->get();
     // }

@@ -18,4 +18,6 @@ interface CategoryRepositoryInterface {
     public function getChildCategories($id);
 
     public function getAllChildCategoriesActive();
+    
+    public function getCategoryActive($key, $value);
 }

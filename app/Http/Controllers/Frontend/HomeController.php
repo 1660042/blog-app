@@ -8,7 +8,8 @@ use App\Repositories\Backend\Post\PostRepositoryInterface;
 
 class HomeController extends Controller
 {
-    public function __construct(PostRepositoryInterface $post) {
+    public function __construct(PostRepositoryInterface $post)
+    {
         $this->post = $post;
     }
     public function __invoke(Request $request)
@@ -23,11 +24,10 @@ class HomeController extends Controller
 
         $data = compact('posts', 'pathImage');
 
-        if($request->ajax()) {
-            return view('frontend.pagination.pagination_home', $data)->render();
+        if ($request->ajax()) {
+            return view('frontend.pagination_home', $data)->render();
         }
 
         return view('frontend.home', $data);
     }
-
 }

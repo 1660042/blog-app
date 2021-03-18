@@ -28,9 +28,19 @@ class CategoryComposer
     {
         $categories = $this->cat->getCategoryMain();
 
-		$childCategories = $this->cat->getAllChildCategoriesActive();
+        // foreach($categories as $cat) {
+        //     if($cat->parent_id == null) {
+        //         dd($cat->getChildCategories);
+        //     }
+        // }
 
-		$data = compact('categories', 'childCategories');
+		// $childCategories = $this->cat->getAllChildCategoriesActive();
+        // if($categories->getChildCategories == null) {
+        //     dd('check');
+        // }
+        //dd($childCategories);
+
+		$data = compact('categories');
 		$view->with($data);
     }
 }

@@ -39,7 +39,8 @@ class StoreController extends Controller
 
         $data = $this->getFilterData($request, $fill);
 
-        $data = Arr::add($data, 'create_by', Auth::id());
+        $data = Arr::add($data, 'created_by', Auth::id());
+        $data = Arr::add($data, 'updated_by', Auth::id());
 
         //dd($data);
 

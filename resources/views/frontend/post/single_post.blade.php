@@ -22,8 +22,9 @@
                         <li class="author">By <a href="#0">{{ $post->createdBy->name }}</a></li>
                         <li class="date">{{ $post->created_at }}</li>
                         <li class="cat-links">
-                            <a href="#0">{{ $post->getCategory->name }}</a>
-                            {{-- <a href="#0">Management</a> --}}
+                            @foreach ($post->getCategories as $cat)
+                                <a href="{{ ($cat->id) }}">{{ $cat->name }}</a>
+                            @endforeach
                         </li>
                     </ul>
                 </div> <!-- end entry__header -->
@@ -37,10 +38,10 @@
                         <span>Post Tags</span>
 
                         <span class="entry__tag-list">
-                            <a href="#0">orci</a>
-                            <a href="#0">lectus</a>
-                            <a href="#0">varius</a>
-                            <a href="#0">turpis</a>
+                            @foreach ($post->getTags as $tag)
+                            <a href="{{ $tag->id }}">{{ $tag->name }}</a>
+                            @endforeach
+                            
                         </span>
 
                     </p>
@@ -48,18 +49,34 @@
 
                 <div class="entry__pagenav">
                     <div class="entry__nav">
+                        @if ($prePost != null)
                         <div class="entry__prev">
-                            <a href="#0" rel="prev">
+                            <a href="{{ route('frontend.post.post', $prePost->slug) }}" rel="prev">
                                 <span>Previous Post</span>
-                                Tips on Minimalist Design
+                                {{ $prePost->name }}
                             </a>
                         </div>
+                        @else
+                        <div class="entry__prev">
+                            <a href="#" rel="prev">
+                                <span></span>
+                            </a>
+                        </div>
+                        @endif
+                        @if ($nextPost != null)
                         <div class="entry__next">
-                            <a href="#0" rel="next">
+                            <a href="{{ route('frontend.post.post', $nextPost->slug) }}" rel="next">
                                 <span>Next Post</span>
-                                Less Is More
+                                {{ $nextPost->name }}
                             </a>
                         </div>
+                        @else 
+                        <div class="entry__next">
+                            <a href="#" rel="next">
+                                <span></span>
+                            </a>
+                        </div>
+                        @endif
                     </div>
                 </div> <!-- end entry__pagenav -->
 

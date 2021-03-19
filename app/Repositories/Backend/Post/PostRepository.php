@@ -11,11 +11,18 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface {
         return \App\Models\Post::class;
     }
 
-    public function getPost($key, $value) {
+    public function getPost($key, $value, $compare) {
         return $this->_model->where([
-            [$key, '=', $value],
+            [$key, $compare, $value],
             ['status', '=', '1']
         ])->first();
+    }
+
+    public function getPreNextPost($key, $value, $compare, $orderBy, $orderBy2) {
+        return $this->_model->where([
+            [$key, $compare, $value],
+            ['status', '=', '1']
+        ])->orderBy($orderBy, $orderBy2)->first();
     }
 
     

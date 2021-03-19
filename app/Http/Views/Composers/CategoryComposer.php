@@ -34,13 +34,13 @@ class CategoryComposer
         //     }
         // }
 
-		// $childCategories = $this->cat->getAllChildCategoriesActive();
+		$childCategories = $this->cat->getAllChildCategoriesActive();
         // if($categories->getChildCategories == null) {
         //     dd('check');
         // }
         //dd($childCategories);
 
-		$data = compact('categories');
+		$data = compact('categories', 'childCategories');
 		$view->with($data);
     }
 }

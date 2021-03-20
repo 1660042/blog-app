@@ -2,8 +2,8 @@
 
 namespace App\Http\Views\Composers;
 
-use App\Repositories\Backend\Menu\MenuRepositoryInterface;
-use App\Repositories\Backend\Menu\MenuRepository;
+use App\Repositories\Menu\MenuRepositoryInterface;
+use App\Repositories\Menu\MenuRepository;
 
 use Illuminate\View\View;
 
@@ -28,8 +28,8 @@ class MenuComposer
     {
         $listMenu = $this->menu->getMenu(1);
         //dd($listMenu);
-		$listMenuCon = $this->menu->getMenuCon();
-		$data = compact('listMenu', 'listMenuCon');
-		$view->with($data);
+        $listMenuCon = $this->menu->getMenuCon();
+        $data = compact('listMenu', 'listMenuCon');
+        $view->with($data);
     }
 }

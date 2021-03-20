@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Backend\Post\PostRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         //Số lượng bài viết mỗi trang
-        $qty = 4;
+        $qty = 3;
 
         $posts = $this->post->getDataWithPagination($qty);
 
@@ -24,9 +24,11 @@ class HomeController extends Controller
 
         $data = compact('posts', 'pathImage');
 
-        if ($request->ajax()) {
-            return view('frontend.pagination_home', $data)->render();
-        }
+        // if ($request->ajax()) {
+
+        //     //dd('aaa');
+        //     return view('frontend.pagination_home', $data)->render();
+        // }
 
         return view('frontend.home', $data);
     }

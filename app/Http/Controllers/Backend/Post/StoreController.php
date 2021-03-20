@@ -7,7 +7,7 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Post\PostRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use App\Http\Requests\Backend\Post\CreateRequest;
 
 class StoreController extends Controller

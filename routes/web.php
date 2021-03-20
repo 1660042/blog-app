@@ -17,7 +17,17 @@ Route::namespace('Frontend')->name('frontend.')->group(function () {
     Route::get('/', 'HomeController')->name('home');
     Route::namespace('Post')->prefix('post')->name('post.')->group(function () {
         Route::get('/{slug}', 'PostController')->name('post');
+        Route::post('/addComment/{id}', 'CommentController')->name('addComment');
     });
+
+    Route::namespace('Category')->prefix('category')->name('category.')->group(function () {
+        Route::get('/{url_page}', 'CategoryController')->name('index');
+    });
+
+    Route::namespace('Tag')->prefix('tag')->name('tag.')->group(function () {
+        Route::get('/{name}', 'TagController')->name('index');
+    });
+
     Route::get('/home', function () {
         return view('frontend.home2');
     });

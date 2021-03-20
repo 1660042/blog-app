@@ -16,6 +16,7 @@ class Tag extends Migration
         Schema::create('tag', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

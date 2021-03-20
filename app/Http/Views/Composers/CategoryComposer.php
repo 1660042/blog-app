@@ -2,8 +2,8 @@
 
 namespace App\Http\Views\Composers;
 
-use App\Repositories\Backend\Category\CategoryRepositoryInterface;
-use App\Repositories\Backend\Category\CategoryRepository;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Category\CategoryRepository;
 
 use Illuminate\View\View;
 
@@ -28,19 +28,21 @@ class CategoryComposer
     {
         $categories = $this->cat->getCategoryMain();
 
-        // foreach($categories as $cat) {
-        //     if($cat->parent_id == null) {
-        //         dd($cat->getChildCategories);
+        // $i = 0;
+        // foreach ($categories as $cat) {
+        //     if ($i == 0) {
+        //         dd($cat->getChildCategories()->exists());
         //     }
+        //     $i++;
         // }
 
-		$childCategories = $this->cat->getAllChildCategoriesActive();
+        //$childCategories = $this->cat->getAllChildCategoriesActive();
         // if($categories->getChildCategories == null) {
         //     dd('check');
         // }
         //dd($childCategories);
 
-		$data = compact('categories', 'childCategories');
-		$view->with($data);
+        $data = compact('categories');
+        $view->with($data);
     }
 }

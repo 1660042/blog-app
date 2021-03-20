@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Backend\Post;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Post\PostRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 
 class IndexController extends Controller
 {
 
-    public function __construct(PostRepositoryInterface $post) {
+    public function __construct(PostRepositoryInterface $post)
+    {
         $this->post = $post;
     }
 

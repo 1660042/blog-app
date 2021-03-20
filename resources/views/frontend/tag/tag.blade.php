@@ -1,5 +1,5 @@
 @extends('frontend.layouts.default')
-@section('title', 'Blog App - Chuyên mục')
+@section('title', 'Blog App - Tag')
 @section('content')
     <div class="s-content">
 

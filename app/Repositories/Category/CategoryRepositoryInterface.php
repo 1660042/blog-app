@@ -1,15 +1,14 @@
-<?php 
+<?php
 
-namespace App\Repositories\Backend\Category;
+namespace App\Repositories\Category;
 
-interface CategoryRepositoryInterface {
+interface CategoryRepositoryInterface
+{
 
-    
+
     public function getModel();
 
     public function getCategory($level);
-
-    public function getCategoryCon();
 
     public function getCategoryMain();
 
@@ -18,6 +17,6 @@ interface CategoryRepositoryInterface {
     public function getChildCategories($id);
 
     public function getAllChildCategoriesActive();
-    
+
     public function getCategoryActive($key, $value);
 }

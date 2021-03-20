@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Backend\Category\CategoryRepositoryInterface;
-use App\Repositories\Backend\Post\PostRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 
 class EditController extends Controller
 {

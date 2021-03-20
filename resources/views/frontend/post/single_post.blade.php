@@ -1,5 +1,5 @@
 @extends('frontend.layouts.default')
-@section('title', 'Blog App - Trang chủ')
+@section('title', 'Blog App - Bài viết')
 @section('content')
 
     <div class="s-content content">
@@ -7,12 +7,11 @@
 
             <article class="column large-full entry format-standard">
 
-                {{-- <div class="media-wrap entry__media">
+                <div class="media-wrap entry__media">
                     <div class="entry__post-thumb">
-                        <img src="images/thumbs/single/standard/standard-1000.jpg" sizes="(max-width: 2000px) 100vw, 2000px"
-                            alt="">
+                        <img src="{{ $pathImage . $post->path_image }}" sizes="(max-width: 2000px) 100vw, 2000px" alt="">
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="content__page-header entry__header">
                     <h1 class="display-1 entry__title">
@@ -23,7 +22,7 @@
                         <li class="date">{{ $post->created_at }}</li>
                         <li class="cat-links">
                             @foreach ($post->getCategories as $cat)
-                                <a href="{{ ($cat->id) }}">{{ $cat->name }}</a>
+                                <a href="{{ $cat->id }}">{{ $cat->name }}</a>
                             @endforeach
                         </li>
                     </ul>
@@ -39,9 +38,9 @@
 
                         <span class="entry__tag-list">
                             @foreach ($post->getTags as $tag)
-                            <a href="{{ $tag->id }}">{{ $tag->name }}</a>
+                                <a href="{{ route('frontend.tag.index', $tag->name) }}">{{ $tag->name }}</a>
                             @endforeach
-                            
+
                         </span>
 
                     </p>
@@ -50,32 +49,32 @@
                 <div class="entry__pagenav">
                     <div class="entry__nav">
                         @if ($prePost != null)
-                        <div class="entry__prev">
-                            <a href="{{ route('frontend.post.post', $prePost->slug) }}" rel="prev">
-                                <span>Previous Post</span>
-                                {{ $prePost->name }}
-                            </a>
-                        </div>
+                            <div class="entry__prev">
+                                <a href="{{ route('frontend.post.post', $prePost->slug) }}" rel="prev">
+                                    <span>Previous Post</span>
+                                    {{ $prePost->name }}
+                                </a>
+                            </div>
                         @else
-                        <div class="entry__prev">
-                            <a href="#" rel="prev">
-                                <span></span>
-                            </a>
-                        </div>
+                            <div class="entry__prev">
+                                <a href="#" rel="prev">
+                                    <span></span>
+                                </a>
+                            </div>
                         @endif
                         @if ($nextPost != null)
-                        <div class="entry__next">
-                            <a href="{{ route('frontend.post.post', $nextPost->slug) }}" rel="next">
-                                <span>Next Post</span>
-                                {{ $nextPost->name }}
-                            </a>
-                        </div>
-                        @else 
-                        <div class="entry__next">
-                            <a href="#" rel="next">
-                                <span></span>
-                            </a>
-                        </div>
+                            <div class="entry__next">
+                                <a href="{{ route('frontend.post.post', $nextPost->slug) }}" rel="next">
+                                    <span>Next Post</span>
+                                    {{ $nextPost->name }}
+                                </a>
+                            </div>
+                        @else
+                            <div class="entry__next">
+                                <a href="#" rel="next">
+                                    <span></span>
+                                </a>
+                            </div>
                         @endif
                     </div>
                 </div> <!-- end entry__pagenav -->
@@ -106,223 +105,110 @@
                 </div> <!-- end entry related -->
 
             </article> <!-- end column large-full entry-->
-
-
-            <div class="comments-wrap">
-
-                <div id="comments" class="column large-12">
-
-                    <h3 class="h2">5 Comments</h3>
-
-                    <!-- START commentlist -->
-                    <ol class="commentlist">
-
-                        <li class="depth-1 comment">
-
-                            <div class="comment__avatar">
-                                <img class="avatar" src="images/avatars/user-01.jpg" alt="" width="50" height="50">
-                            </div>
-
-                            <div class="comment__content">
-
-                                <div class="comment__info">
-                                    <div class="comment__author">Itachi Uchiha</div>
-
-                                    <div class="comment__meta">
-                                        <div class="comment__time">April 30, 2019</div>
-                                        <div class="comment__reply">
-                                            <a class="comment-reply-link" href="#0">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="comment__text">
-                                    <p>Adhuc quaerendum est ne, vis ut harum tantas noluisse, id suas iisque mei.
-                                        Nec te inani ponderum vulputate,
-                                        facilisi expetenda has et. Iudico dictas scriptorem an vim, ei alia mentitum
-                                        est, ne has voluptua praesent.</p>
-                                </div>
-
-                            </div>
-
-                        </li> <!-- end comment level 1 -->
-
-                        <li class="thread-alt depth-1 comment">
-
-                            <div class="comment__avatar">
-                                <img class="avatar" src="images/avatars/user-04.jpg" alt="" width="50" height="50">
-                            </div>
-
-                            <div class="comment__content">
-
-                                <div class="comment__info">
-                                    <div class="comment__author">John Doe</div>
-
-                                    <div class="comment__meta">
-                                        <div class="comment__time">April 30, 2019</div>
-                                        <div class="comment__reply">
-                                            <a class="comment-reply-link" href="#0">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="comment__text">
-                                    <p>Sumo euismod dissentiunt ne sit, ad eos iudico qualisque adversarium, tota
-                                        falli et mei. Esse euismod
-                                        urbanitas ut sed, et duo scaevola pericula splendide. Primis veritus
-                                        contentiones nec ad, nec et
-                                        tantas semper delicatissimi.</p>
-                                </div>
-
-                            </div>
-
-                            <ul class="children">
-
-                                <li class="depth-2 comment">
-
-                                    <div class="comment__avatar">
-                                        <img class="avatar" src="images/avatars/user-03.jpg" alt="" width="50" height="50">
-                                    </div>
-
-                                    <div class="comment__content">
-
-                                        <div class="comment__info">
-                                            <div class="comment__author">Kakashi Hatake</div>
-
-                                            <div class="comment__meta">
-                                                <div class="comment__time">April 29, 2019</div>
-                                                <div class="comment__reply">
-                                                    <a class="comment-reply-link" href="#0">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="comment__text">
-                                            <p>Duis sed odio sit amet nibh vulputate
-                                                cursus a sit amet mauris. Morbi accumsan ipsum velit. Duis sed odio
-                                                sit amet nibh vulputate
-                                                cursus a sit amet mauris</p>
-                                        </div>
-
-                                    </div>
-
-                                    <ul class="children">
-
-                                        <li class="depth-3 comment">
-
-                                            <div class="comment__avatar">
-                                                <img class="avatar" src="images/avatars/user-04.jpg" alt="" width="50"
-                                                    height="50">
-                                            </div>
-
-                                            <div class="comment__content">
-
-                                                <div class="comment__info">
-                                                    <div class="comment__author">John Doe</div>
-
-                                                    <div class="comment__meta">
-                                                        <div class="comment__time">April 29, 2019</div>
-                                                        <div class="comment__reply">
-                                                            <a class="comment-reply-link" href="#0">Reply</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="comment__text">
-                                                    <p>Investigationes demonstraverunt lectores legere me lius quod
-                                                        ii legunt saepius. Claritas est
-                                                        etiam processus dynamicus, qui sequitur mutationem
-                                                        consuetudium lectorum.</p>
-                                                </div>
-
-                                            </div>
-
-                                        </li>
-
-                                    </ul>
-
-                                </li>
-
-                            </ul>
-
-                        </li> <!-- end comment level 1 -->
-
-                        <li class="depth-1 comment">
-
-                            <div class="comment__avatar">
-                                <img class="avatar" src="images/avatars/user-02.jpg" alt="" width="50" height="50">
-                            </div>
-
-                            <div class="comment__content">
-
-                                <div class="comment__info">
-                                    <div class="comment__author">Shikamaru Nara</div>
-
-                                    <div class="comment__meta">
-                                        <div class="comment__time">April 26, 2019</div>
-                                        <div class="comment__reply">
-                                            <a class="comment-reply-link" href="#0">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="comment__text">
-                                    <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum
-                                        claritatem.</p>
-                                </div>
-
-                            </div>
-
-                        </li> <!-- end comment level 1 -->
-
-                    </ol>
-                    <!-- END commentlist -->
-
-                </div> <!-- end comments -->
-
-                <div class="column large-12 comment-respond">
-
-                    <!-- START respond -->
-                    <div id="respond">
-
-                        <h3 class="h2">Add Comment <span>Your email address will not be published</span></h3>
-
-                        <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off">
-                            <fieldset>
-
-                                <div class="form-field">
-                                    <input name="cName" id="cName" class="full-width" placeholder="Your Name" value=""
-                                        type="text">
-                                </div>
-
-                                <div class="form-field">
-                                    <input name="cEmail" id="cEmail" class="full-width" placeholder="Your Email" value=""
-                                        type="text">
-                                </div>
-
-                                <div class="form-field">
-                                    <input name="cWebsite" id="cWebsite" class="full-width" placeholder="Website" value=""
-                                        type="text">
-                                </div>
-
-                                <div class="message form-field">
-                                    <textarea name="cMessage" id="cMessage" class="full-width"
-                                        placeholder="Your Message"></textarea>
-                                </div>
-
-                                <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width"
-                                    value="Add Comment" type="submit">
-
-                            </fieldset>
-                        </form> <!-- end form -->
-
-                    </div>
-                    <!-- END respond-->
-
-                </div> <!-- end comment-respond -->
-
+            <div class="comments-wrap" style="width: 100%">
+                @include('components.comment', ['comments' => $post->getComments()])
             </div> <!-- end comments-wrap -->
         </main>
 
     </div> <!-- end s-content -->
+
+    @push('ajax')
+        <!-- summernote -->
+        <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/summernote/summernote-bs4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('AdminLTE-3.1.0/plugins/toastr/toastr.min.css') }}">
+
+
+        <!-- SweetAlert2 -->
+        <script src="{{ asset('AdminLTE-3.1.0/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+        <!-- Toastr -->
+        <script src="{{ asset('AdminLTE-3.1.0/plugins/toastr/toastr.min.js') }}"></script>
+
+
+        <script>
+            $(document).on('click', '.pgn a', function(event) {
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                console.log(page);
+                fetch_data(page);
+                window.history.pushState("", "", "{{ route('frontend.post.post', $post->slug) }}?page=" +
+                    page);
+            });
+
+            $(document).on('click', '#commentForm #submit', function(event) {
+                event.preventDefault();
+                addComment();
+                window.history.pushState("", "", "{{ route('frontend.post.post', $post->slug) }}")
+            });
+
+            function fetch_data(page) {
+                $.ajax({
+                    url: "{{ route('frontend.post.post', $post->slug) }}?page=" + page,
+                    type: 'GET',
+                    success: function(data) {
+                        $('.comments-wrap').html(data);
+                        //console.log(url);
+                        console.log("Thanh cong!: " + data);
+                    },
+                });
+            }
+
+            function addComment() {
+
+
+                let _token = $('input[name=_token]').val();
+                let name = $('input[name=name]').val();
+                let email = $('input[name=email]').val();
+                let website = $('input[name=website]').val();
+                let content = $('textarea[name=content]').val();
+                //alert(content);
+                let post_id = {{ $post->id }};
+                let answer_comment_id = $('input[name=answer_comment_id]').val();
+
+                $("#nameError").text("");
+                $("#emailError").text("");
+                $("#websiteError").text("");
+                $("#contentError").text("");
+
+                console.log("token: " + _token);
+                $.ajax({
+                    url: "{{ route('frontend.post.addComment', $post->id) }}",
+                    type: 'POST',
+                    data: {
+                        '_token': _token,
+                        'name': name,
+                        'email': email,
+                        'website': website,
+                        'content': content,
+                        'name': name,
+                        'post_id': post_id,
+                        'answer_comment_id': answer_comment_id,
+                    },
+                    success: function(response) {
+
+                        toastr.success('Đăng bình luận thành công!');
+
+                        //console.log("Thanh cong!: " + response);
+                        $('.comments-wrap').html(response);
+
+                        $('html, body').animate({
+                            scrollTop: $("#comments").offset().top
+                        }, 2000);
+                    },
+                    error: function(response) {
+                        toastr.error('Đăng bình luận thất bại!')
+                        var a = $.parseJSON(response.responseText);
+                        $.each(a.errors, function(key, value) {
+                            $("#" + key + "Error").text(value);
+                        });
+
+                        $('html, body').animate({
+                            scrollTop: $("#add-comment").offset().top
+                        }, 2000);
+
+                    }
+                });
+            }
+
+        </script>
+    @endpush
 @endsection

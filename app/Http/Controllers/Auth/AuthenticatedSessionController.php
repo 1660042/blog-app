@@ -31,9 +31,9 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate('username', 'password');
 
         $this->result = $request->session()->regenerate();
-        
+
         $this->message = $this->getMessage($this->result, 'Đăng nhập thành công!', 'Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin!');
-        
+
         return redirect()->route('backend.index')->with($this->message);
     }
 
@@ -51,6 +51,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('welcome');
+        return redirect()->route('frontend.home');
     }
 }

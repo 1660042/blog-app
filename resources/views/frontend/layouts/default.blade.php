@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 <head>
 
     <!--- basic page needs
     ================================================== -->
-    <meta charset="utf-8">
-    <title>Typerite</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog App | @yield('title', 'Trang chủ')</title>
 
     <!-- mobile specific metas
     ================================================== -->
@@ -32,9 +32,7 @@
     <link rel="manifest" href="{{ asset('Typerite/site.webmanifest') }}">
 
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.16/css/bootstrap-multiselect.css"
-        integrity="sha512-DJ1SGx61zfspL2OycyUiXuLtxNqA3GxsXNinUX3AnvnwxbZ+YQxBARtX8G/zHvWRG9aFZz+C7HxcWMB0+heo3w=="
-        crossorigin="anonymous" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.16/css/bootstrap-multiselect.css" />
 
 </head>
 
@@ -59,7 +57,8 @@
             <div class="header__top">
                 <div class="header__logo">
                     <a class="site-logo" href="{{ route('frontend.home') }}">
-                        <img src="{{ asset('Typerite/images/logo.svg') }}" alt="Homepage">
+                        {{-- <img src="{{ asset('Typerite/images/logo.svg') }}" alt="Homepage"> --}}
+                        <span class="brand-text font-weight-light">Blog App</span>
                     </a>
                 </div>
 
@@ -89,22 +88,29 @@
                 <ul class="header__nav">
                     <li class="current"><a href="{{ route('frontend.home') }}" title="">Trang chủ</a></li>
                     @foreach ($categories as $cat)
-                        <li class="has-children">
-                            <a href="#" title="{{ $cat->name }}">{{ $cat->name }}</a>
-                            @foreach ($childCategories as $childCat)
-                                @if ($cat->id == $childCat->parent_id)
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ $childCat->url_page }}">{{ $childCat->name }}</a>
+                        @if ($cat->getChildCategories()->exists())
+                            <li class="has-children">
+                                <a href="#" title="{{ $cat->name }}">{{ $cat->name }}</a>
+
+                                <ul class="sub-menu">
+                                    @foreach ($cat->getChildCategories as $childCat)
+                                        <li><a
+                                                href="{{ route('frontend.category.index', $childCat->url_page) }}">{{ $childCat->name }}</a>
                                         </li>
-                                    </ul>
-                                @endif
-                            @endforeach
-                        </li>
+                                    @endforeach
+                                </ul>
+
+                            </li>
+                        @endif
                     @endforeach
                     {{-- <li><a href="{{ asset('Typerite/styles.html') }}" title="">Styles</a></li> --}}
                     <li><a href="{{ asset('Typerite/page-about.html') }}" title="">About</a></li>
                     <li><a href="{{ asset('Typerite/page-contact.html') }}" title="">Contact</a></li>
-                    <li><a href="{{ route('login') }}" title="">Login</a></li>
+                    @if (Auth::check())
+                        <li><a href="{{ route('backend.index') }}" title="">Dashboard</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}" title="">Login</a></li>
+                    @endif
                 </ul> <!-- end header__nav -->
 
                 <ul class="header__social">
@@ -165,5 +171,8 @@
     <script src="{{ asset('Typerite/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('Typerite/js/plugins.js') }}"></script>
     <script src="{{ asset('Typerite/js/main.js') }}"></script>
-
+    @stack('script')
+    @stack('ajax')
 </body>
+
+</html>

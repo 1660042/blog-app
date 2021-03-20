@@ -10,16 +10,24 @@ class RepositoryServiceProvider extends ServiceProvider
 
     protected static $repositories = [
         'menu' => [
-            \App\Repositories\Backend\Menu\MenuRepositoryInterface::class,
-            \App\Repositories\Backend\Menu\MenuRepository::class
+            \App\Repositories\Menu\MenuRepositoryInterface::class,
+            \App\Repositories\Menu\MenuRepository::class
         ],
         'category' => [
-            \App\Repositories\Backend\Category\CategoryRepositoryInterface::class,
-            \App\Repositories\Backend\Category\CategoryRepository::class
+            \App\Repositories\Category\CategoryRepositoryInterface::class,
+            \App\Repositories\Category\CategoryRepository::class
         ],
         'post' => [
-            \App\Repositories\Backend\Post\PostRepositoryInterface::class,
-            \App\Repositories\Backend\Post\PostRepository::class
+            \App\Repositories\Post\PostRepositoryInterface::class,
+            \App\Repositories\Post\PostRepository::class
+        ],
+        'comment' => [
+            \App\Repositories\Comment\CommentRepositoryInterface::class,
+            \App\Repositories\Comment\CommentRepository::class
+        ],
+        'tag' => [
+            \App\Repositories\Tag\TagRepositoryInterface::class,
+            \App\Repositories\Tag\TagRepository::class
         ],
     ];
 

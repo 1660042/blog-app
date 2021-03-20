@@ -14,7 +14,7 @@
 
                         <div class="entry__thumb">
                             <a href="{{ route('frontend.post.post', $post->slug) }}" class="entry__thumb-link">
-                                <img src="{{ asset('Typerite/images/thumbs/masonry/woodcraft-600.jpg') }}" alt="">
+                                <img src="{{ $pathImage . $post->path_image }}" alt="">
                             </a>
                         </div>
 
@@ -25,13 +25,15 @@
                                         href="{{ route('frontend.post.post', $post->slug) }}">{{ $post->name }}</a></h2>
                                 <div class="entry__meta">
                                     <span class="entry__meta-cat">
-                                        {{-- <a
-                                            href="{{ asset('Typerite/category.html') }}">{{ $post->getCategories->name }}</a> --}}
-                                        {{-- <a href="{{ asset('Typerite/category.html') }}">Photography</a> --}}
+                                        @foreach ($post->getCategories as $category)
+
+                                            <a
+                                                href="{{ route('frontend.category.index', $category->url_page) }}">{{ $category->name }}</a>
+                                        @endforeach
                                     </span>
                                     <span class="entry__meta-date">
                                         <a
-                                            href="{{ asset('Typerite/single-standard.html') }}">{{ $post->updated_at }}</a>
+                                            href="{{ route('frontend.post.post', $post->slug) }}">{{ $post->updated_at }}</a>
                                     </span>
                                 </div>
 

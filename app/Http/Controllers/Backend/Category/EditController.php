@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Backend\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Category\CategoryRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class EditController extends Controller
 {
-    public function __construct(CategoryRepositoryInterface $cat) {
+    public function __construct(CategoryRepositoryInterface $cat)
+    {
         $this->cat = $cat;
     }
     /**

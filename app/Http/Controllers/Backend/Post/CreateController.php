@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Backend\Category\CategoryRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class CreateController extends Controller
 {

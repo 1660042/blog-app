@@ -22,23 +22,28 @@ class Category extends Model
         'updated_by'
     ];
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
     }
 
-    public function createdBy() {
+    public function createdBy()
+    {
         return $this->belongsTo('App\Models\User', 'created_by', 'id');
     }
 
-    public function updatedBy() {
+    public function updatedBy()
+    {
         return $this->belongsTo('App\Models\User', 'updated_by', 'id');
     }
 
-    public function getPosts() {
-        return $this->hasMany('App\Models\Post', 'category_id', 'id');
+    public function getChildCategories()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
-    public function getChildCategories() {
-        return $this->hasMany('App\Models\Category', 'parent_id', 'id');
+    public function getPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_category', 'category_id', 'post_id');
     }
 }

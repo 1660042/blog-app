@@ -11,19 +11,21 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function getUrlUpload() {
+    public function getUrlUpload()
+    {
         return config('filesystems.disks.public.url') . '/' . config('lfm.folder_categories.image.folder_name');
     }
 
-    public function getMessage($result, $success, $error) {
-        if($result) {
+    public function getMessage($result, $success, $error)
+    {
+        if ($result) {
             $message = [
-                'message' => __($success), 
+                'message' => __($success),
                 'type' => 'success'
             ];
         } else {
             $message = [
-                'message' => __($error), 
+                'message' => __($error),
                 'type' => 'error'
             ];
         }

@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Frontend\Category;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Backend\Category\CategoryRepositoryInterface;
-use App\Repositories\Backend\Post\PostRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 
 class CategoryController extends Controller
 {
-    public function __construct(CategoryRepositoryInterface $cat, PostRepositoryInterface $post) {
+    public function __construct(CategoryRepositoryInterface $cat, PostRepositoryInterface $post)
+    {
         $this->cat = $cat;
         $this->post = $post;
         $this->qty = 1;
@@ -17,25 +18,23 @@ class CategoryController extends Controller
 
     public function __invoke(Request $request, $url_page)
     {
-        $cat = $this->cat->getCategoryActive('url_page', $url_page);
 
-        if($cat == null) {
-            $message = $this->getMessage(false, '', 'Chuyên mục không tồn tại!');
-            return redirect()->route('frontend.home')->with($message);
-        }
+        $category = $this->cat->getCategoryActive('url_page', $url_page);
 
-        $posts = $this->post->getDataWithPaginationWithParam($this->qty, 'category_id',$cat->id,'=');
+        //dd($category);
 
-        $data = compact('cat', 'posts');
+        $posts = $category->getPosts()->orderBy('id', 'desc')->paginate(1);
 
-        if($request->ajax()) {
-            return view('frontend.category.pagination_category', $data)->render();
-        }
+        //dd($posts);
+
+
+        // $comments
+        //     ->whereNull('answer_comment_id')
+        //     ->orderBy('id', 'desc')
+        //     ->paginate(3);
+
+        $data = compact('category', 'posts');
 
         return view('frontend.category.category', $data);
-    }
-
-    private function getPostWithPagination() {
-
     }
 }

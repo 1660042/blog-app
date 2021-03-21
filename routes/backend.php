@@ -25,8 +25,8 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
-   
-   
+
+
 
     Route::group(['as' => 'posts.'], function () {
         Route::namespace('Category')->prefix('categories')->name('categories.')->group(function () {
@@ -46,14 +46,6 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
             Route::put('/update/{id}', 'UpdateController')->name('update');
             Route::delete('/delete/{id}', 'DeleteController')->name('delete');
         });
-        
-        // Route::get('/post', function() {
-        //     return view('backend.home');
-        // })->name('post');
-
-        // Route::get('/posts', function() {
-        //     return view('backend.home');
-        // })->name('posts');
     });
 
     Route::namespace('Ajax')->name('ajax.')->group(function () {
@@ -61,23 +53,18 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
         //Route::get('/create', 'CreateController')->name('create');
     });
 
+    Route::namespace('Account')->prefix('accounts')->name('accounts.')->group(function () {
+        Route::get('/', 'AccountController@index')->name('index');
+        Route::get('/create', 'AccountController@create')->name('create');
+        Route::post('/store', 'AccountController@store')->name('store');
+        Route::get('/edit/{id}', 'AccountController@edit')->name('edit');
+        Route::put('/update/{id}', 'AccountController@update')->name('update');
+    });
 
 
     Route::as('accounts.')->group(function () {
-        Route::get('/users', function() {
+        Route::get('/users', function () {
             return view('backend.home');
         })->name('users');
     });
-
-    // Route::get('/post', function() {
-    //     return view('backend.home');
-    // })->name('post');
-
-    // Route::get('/posts', function() {
-    //     return view('backend.home');
-    // })->name('posts');
-
-    // Route::get('/users', function() {
-    //     return view('backend.home');
-    // })->name('users');
 });

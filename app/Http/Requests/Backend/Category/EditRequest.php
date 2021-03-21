@@ -25,20 +25,20 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:category,name,'.$this->id,
-            'url_page' => 'required|string|max:255|max:255|unique:category,url_page,'.$this->id,
+            'name' => 'required|string|max:255|unique:category,name,' . $this->id,
+            'url_page' => 'required|string|max:255|max:255|unique:category,url_page,' . $this->id,
             //tự custom 1 rule
             'parent_id' => [
-                function($attribute, $value, $fail) {
-                    if(is_numeric($value) || $value == '') {
+                function ($attribute, $value, $fail) {
+                    if (is_numeric($value) || $value == '') {
                         return true;
                     }
                     $fail('Giá trị của :attribute không hợp lệ!');
                 }
             ],
             'status' => [
-                function($attribute, $value, $fail) {
-                    if($value == 1 || $value == '') {
+                function ($attribute, $value, $fail) {
+                    if ($value == 1 || $value == '') {
                         return true;
                     }
                     $fail('Giá trị của :attribute không hợp lệ!');
@@ -47,14 +47,15 @@ class EditRequest extends FormRequest
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
 
         return [
             'required' => ':attribute không được để trống!',
-            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho '. Str::lower(':attribute') . '!',
+            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho ' . Str::lower(':attribute') . '!',
             'max' => 'Bạn đã nhập ' . Str::lower(':attribute') . ' quá giới hạn ký tự cho phép!',
             'unique' => ':attribute đã tồn tại trong hệ thống!',
-            'integer' => 'Bạn vui lòng nhập số cho '. Str::lower(':attribute') . '!',
+            'integer' => 'Bạn vui lòng nhập số cho ' . Str::lower(':attribute') . '!',
         ];
     }
 
@@ -66,5 +67,5 @@ class EditRequest extends FormRequest
             'parent_id' => 'Chuyên mục cha',
             'status' => 'Trạng thái'
         ];
-}
+    }
 }

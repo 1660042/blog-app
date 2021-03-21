@@ -29,6 +29,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Tag\TagRepositoryInterface::class,
             \App\Repositories\Tag\TagRepository::class
         ],
+        'account' => [
+            \App\Repositories\Account\AccountRepositoryInterface::class,
+            \App\Repositories\Account\AccountRepository::class
+        ],
     ];
 
 

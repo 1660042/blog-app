@@ -45,12 +45,15 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('username', 'password'), $this->filled('remember'))) {
+        $this->merge(['status' => '1']);
+
+        if (!Auth::attempt($this->only('username', 'password', 'status'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'username' => __('auth.failed'),
-                'login' => __('Thông tin đăng nhập không chính xác! Vui lòng kiểm tra lại!')
+                'login' => __('Thông tin đăng nhập không chính xác! Vui lòng kiểm tra lại!'),
+                'status' => __('Tài khoản của bạn đã bị ngưng hoạt động! Vui lòng liên hệ Admin!')
             ]);
         }
 
@@ -66,7 +69,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited()
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -89,6 +92,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('username')).'|'.$this->ip();
+        return Str::lower($this->input('username')) . '|' . $this->ip();
     }
 }

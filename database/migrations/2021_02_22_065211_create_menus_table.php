@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableComment extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateTableComment extends Migration
      */
     public function up()
     {
-        Schema::create('comment', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('website')->nullable();
-            $table->longText('content');
-            $table->integer('post_id');
-            $table->integer('user_id')->nullable();
-            $table->integer('answer_comment_id')->nullable();
+            $table->integer('level');
+            $table->integer('parent_id')->nullable();
+            $table->integer('number');
+            $table->string('url_page')->nullable();
+            $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateTableComment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('menus');
     }
 }

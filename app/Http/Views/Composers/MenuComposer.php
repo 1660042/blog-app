@@ -26,10 +26,14 @@ class MenuComposer
      */
     public function compose(View $view)
     {
-        $listMenu = $this->menu->getMenu(1);
+        $listMenu = $this->menu->getMenus(1);
+        // foreach ($listMenu as $menu) {
+        //     dd($menu->getChildMenus);
+        // }
         //dd($listMenu);
-        $listMenuCon = $this->menu->getMenuCon();
-        $data = compact('listMenu', 'listMenuCon');
-        $view->with($data);
+        //$listMenuCon = $this->menu->getMenuCon();
+        //$data = compact('listMenu', 'listMenuCon');
+        //$view->with($data);
+        $view->with(compact('listMenu'));
     }
 }

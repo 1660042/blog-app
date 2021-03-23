@@ -156,24 +156,16 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                @foreach ($listMenuCon as $menuChild)
-                                    @php
-                                        //dd(\Request::route()->getName());
-                                        //dd( strpos(\Request::route()->getName(), '.'));
-                                        //dd(strpos(\Request::route()->getName(), '.', (strpos(\Request::route()->getName(), '.') + 1)));
-                                        //dd(Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->url_page)));
-                                    @endphp
-                                    @if ($menuChild->parent_id == $menu->id)
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="{{ route('backend.' . $menu->url_page . '.' . $menuChild->url_page) }}"
-                                                    class="nav-link {{ \Request::route()->getName() == 'backend.' . $menu->url_page . '.' . $menuChild->url_page ? 'active' : '' }}">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>{{ $menuChild->name }}</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    @endif
+                                @foreach ($menu->getChildMenus->where('status', '=', '1') as $menuChild)
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('backend.' . $menu->url_page . '.' . $menuChild->url_page) }}"
+                                                class="nav-link {{ \Request::route()->getName() == 'backend.' . $menu->url_page . '.' . $menuChild->url_page ? 'active' : '' }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ $menuChild->name }}</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 @endforeach
                             </li>
                         @endforeach

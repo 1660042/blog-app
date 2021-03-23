@@ -14,13 +14,18 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface
         return \App\Models\Menu::class;
     }
 
-    public function getMenu($level)
+    public function getMenus($level)
     {
-        return $this->_model->whereNull('parent_id')->orderByRaw('number')->get();
+        return $this->_model->whereNull('parent_id')->where([
+            ['status', '=', '1'],
+        ])->orderByRaw('number')->get();
     }
 
-    public function getMenuCon()
+    public function getMenusWithParam($level, $status)
     {
-        return $this->_model->whereNotNull('parent_id')->orderBy('parent_id')->get();
+        return $this->_model->whereNotNull('parent_id')->where([
+            ['level', '=', $level],
+            ['status', '=', $status]
+        ])->orderBy('parent_id')->get();
     }
 }

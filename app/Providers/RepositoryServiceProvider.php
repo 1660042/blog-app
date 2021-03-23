@@ -33,6 +33,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Account\AccountRepositoryInterface::class,
             \App\Repositories\Account\AccountRepository::class
         ],
+        'role' => [
+            \App\Repositories\Role\RoleRepositoryInterface::class,
+            \App\Repositories\Role\RoleRepository::class
+        ],
     ];
 
 

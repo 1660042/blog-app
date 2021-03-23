@@ -8,7 +8,7 @@ interface MenuRepositoryInterface
 
     public function getModel();
 
-    public function getMenu($level);
+    public function getMenus($level);
 
-    public function getMenuCon();
+    public function getMenusWithParam($level, $status);
 }

@@ -56,7 +56,28 @@ class MenuSeeder extends Seeder
                 'level' => '2',
                 'parent_id' => 2,
                 'number' => '6',
-                'url_page' => 'users'
+                'url_page' => 'accounts.index'
+            ],
+            [
+                'name' => 'Quản trị hệ thống',
+                'level' => '1',
+                'parent_id' => null,
+                'number' => '7',
+                'url_page' => 'systems'
+            ],
+            [
+                'name' => 'Danh sách quyền',
+                'level' => '2',
+                'parent_id' => 7,
+                'number' => '8',
+                'url_page' => 'roles.index'
+            ],
+            [
+                'name' => 'Cài đặt hệ thống',
+                'level' => '2',
+                'parent_id' => 7,
+                'number' => '9',
+                'url_page' => 'settings.index'
             ]
         ]);
     }

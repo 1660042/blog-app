@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PostCategory extends Migration
+class CreateUserRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class PostCategory extends Migration
      */
     public function up()
     {
-        Schema::create('post_category', function (Blueprint $table) {
+        Schema::create('user_role', function (Blueprint $table) {
             $table->id();
-            $table->integer('post_id');
-            $table->integer('category_id');
+            $table->integer('user_id');
+            $table->integer('role_id');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class PostCategory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_category');
+        Schema::dropIfExists('user_role');
     }
 }

@@ -15,7 +15,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="form" method="POST" action="{{ route('backend.accounts.update', $account->id) }}">
+                        <form id="form" method="POST"
+                            action="{{ route('backend.accounts.accounts.update', $account->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -68,7 +69,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer d-flex justify-content-start">
-                                <a href="{{ route('backend.accounts.index') }}" class="btn btn-dark mr-2">Quay
+                                <a href="{{ route('backend.accounts.accounts.index') }}" class="btn btn-dark mr-2">Quay
                                     lại</a>
                                 <button type="submit" class="btn btn-primary ">Lưu</button>
                             </div>

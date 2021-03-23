@@ -54,17 +54,29 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
     });
 
     Route::namespace('Account')->prefix('accounts')->name('accounts.')->group(function () {
-        Route::get('/', 'AccountController@index')->name('index');
-        Route::get('/create', 'AccountController@create')->name('create');
-        Route::post('/store', 'AccountController@store')->name('store');
-        Route::get('/edit/{id}', 'AccountController@edit')->name('edit');
-        Route::put('/update/{id}', 'AccountController@update')->name('update');
+        Route::name('accounts.')->group(function () {
+            Route::get('/', 'AccountController@index')->name('index');
+            Route::get('/create', 'AccountController@create')->name('create');
+            Route::post('/store', 'AccountController@store')->name('store');
+            Route::get('/edit/{id}', 'AccountController@edit')->name('edit');
+            Route::put('/update/{id}', 'AccountController@update')->name('update');
+        });
+    });
+
+    Route::namespace('System')->prefix('system')->name('systems.')->group(function () {
+        Route::prefix('roles')->name('roles.')->group(function () {
+            Route::get('/', 'RoleController@index')->name('index');
+            Route::get('/create', 'RoleController@create')->name('create');
+            // Route::post('/store', 'AccountController@store')->name('store');
+            // Route::get('/edit/{id}', 'AccountController@edit')->name('edit');
+            // Route::put('/update/{id}', 'AccountController@update')->name('update');
+        });
     });
 
 
-    Route::as('accounts.')->group(function () {
-        Route::get('/users', function () {
-            return view('backend.home');
-        })->name('users');
-    });
+    // Route::as('accounts.')->group(function () {
+    //     Route::get('/users', function () {
+    //         return view('backend.home');
+    //     })->name('users');
+    // });
 });

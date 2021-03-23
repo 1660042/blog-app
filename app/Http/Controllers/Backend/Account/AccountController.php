@@ -68,7 +68,7 @@ class AccountController extends Controller
 
         $message = $this->getMessage($result, 'Tạo tài khoản thành công!', 'Tạo tài khoản thất bại!');
 
-        return redirect()->route('backend.accounts.index')->with($message);
+        return redirect()->route('backend.accounts.accounts.index')->with($message);
     }
 
     /**
@@ -94,7 +94,7 @@ class AccountController extends Controller
         //dd($account);
         if ($account == null) {
             $msg = $this->getMessage(false, '', 'Tài khoản không tồn tại! Vui lòng kiểm tra lại!');
-            return redirect()->route('backend.accounts.index')->with($msg);
+            return redirect()->route('backend.accounts.accounts.index')->with($msg);
         }
 
         return view('backend.account.edit', compact('account'));
@@ -129,7 +129,7 @@ class AccountController extends Controller
         $result = $this->account->update($id, $data);
         $msg = $this->getMessage($result, 'Cập nhật tài khoản thành công!', 'Cập nhật tài khoản thất bại, vui lòng kiểm tra lại!');
 
-        return redirect()->route('backend.accounts.index')->with($msg);
+        return redirect()->route('backend.accounts.accounts.index')->with($msg);
     }
 
     /**

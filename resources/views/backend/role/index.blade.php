@@ -1,5 +1,5 @@
 @extends('backend.layouts.default')
-@section('title', 'Chuyên mục')
+@section('title', 'Quyền')
 @section('content')
     <!-- Main content -->
 
@@ -11,11 +11,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Danh sách tài khoản</h3>
+                            <h3 class="card-title">Danh sách quyền</h3>
                             <div class="text-right">
-                                <a class=" btn btn-primary btn-sm"
-                                    href="{{ route('backend.accounts.accounts.create') }}"><i
-                                        class="fas fa-folder-plus"></i>&ensp;Tạo tài khoản mới</a>
+                                <a class=" btn btn-primary btn-sm" href="{{ route('backend.systems.roles.create') }}"><i
+                                        class="fas fa-folder-plus"></i>&ensp;Tạo quyền mới</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -24,37 +23,46 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">#ID</th>
-                                        <th class="text-center align-middle">Tên tài khoản</th>
-                                        <th class="text-center align-middle">Username</th>
-                                        <th class="text-center align-middle">Email</th>
+                                        <th class="text-center align-middle">Tên quyền</th>
+                                        <th class="text-center align-middle">Mô tả</th>
                                         <th class="text-center align-middle">Trạng thái</th>
+                                        <th class="text-center align-middle">Người tạo</th>
+                                        <th class="text-center align-middle">Ngày tạo</th>
+                                        <th class="text-center align-middle">Người sửa</th>
+                                        <th class="text-center align-middle">Ngày sửa</th>
                                         <th class="text-center align-middle">Tác vụ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($accounts as $account)
+                                    @foreach ($roles as $role)
 
                                         <tr>
-                                            <td class="text-center align-middle">#{{ $account->id }}</td>
-                                            <td class="text-center align-middle">{{ $account->name }}</td>
-                                            <td class="text-center align-middle">{{ $account->username }}</td>
-                                            <td class="text-center align-middle">{{ $account->email }}</td>
+                                            <td class="text-center align-middle">#{{ $role->id }}</td>
+                                            <td class="text-center align-middle">{{ $role->name }}</td>
+                                            <td class="text-center align-middle">{{ $role->description }}</td>
+
                                             <td
-                                                class="text-center align-middle {{ $account->status == '1' ? '' : 'text-danger' }}">
-                                                {{ $status[$account->status] }}</td>
+                                                class="text-center align-middle {{ $role->status == '1' ? '' : 'text-danger' }}">
+                                                {{ $status[$role->status] }}</td>
+                                            <td class="text-center align-middle">
+                                                {{ $role->createdBy == null ? '' : $role->createdBy->name }}</td>
+                                            <td class="text-center align-middle">{{ $role->created_at }}</td>
+                                            <td class="text-center align-middle">
+                                                {{ $role->updatedBy == null ? '' : $role->updatedBy->name }}</td>
+                                            <td class="text-center align-middle">{{ $role->created_at }}</td>
                                             <td class="text-center align-middle">
                                                 <div class="">
                                                     <!-- <div class="col-sm-6"> -->
-                                                    <a href="{{ route('backend.accounts.accounts.edit', $account->id) }}"
+                                                    <a href="{{ route('backend.posts.categories.edit', $role->id) }}"
                                                         class="btn btn-primary btn-sm" title="Sửa chuyên mục"><i
                                                             class="far fa-edit"></i>&ensp;Sửa</a>
                                                     <!-- </div>
-                                                                                                                                                                                <div class="col-sm-6"> -->
-                                                    {{-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        data-target="#modal-overlay-{{ $account->id }}">
+                                                                                                                <div class="col-sm-6"> -->
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                        data-target="#modal-overlay-{{ $role->id }}">
                                                         <i class="far fa-trash-alt"></i>&ensp;Xóa
-                                                    </button> --}}
+                                                    </button>
 
                                                     {{-- <a href="/" class="btn btn-danger btn-sm" title="Xóa chuyên mục"><i class="far fa-trash-alt"></i>&ensp;Xóa</a> --}}
                                                     <!-- </div> -->
@@ -89,10 +97,10 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-        @foreach ($accounts as $account)
-            <div class="modal fade" id="modal-overlay-{{ $account->id }}">
+        @foreach ($roles as $role)
+            <div class="modal fade" id="modal-overlay-{{ $role->id }}">
                 <div class="modal-dialog">
-                    <div class="modal-content" id="modal-content-{{ $account->id }}">
+                    <div class="modal-content" id="modal-content-{{ $role->id }}">
 
                         <div class="modal-header">
                             <h4 class="modal-title">Thông báo</h4>
@@ -101,14 +109,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Bạn có chắc chắn xóa chuyên mục {{ $account->name }} ?</p>
+                            <p>Bạn có chắc chắn xóa chuyên mục {{ $role->name }} ?</p>
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                            <button onclick="deleteCategory({{ $account->id }})" class="btn btn-danger">Xóa</button>
+                            <button onclick="deleteCategory({{ $role->id }})" class="btn btn-danger">Xóa</button>
                         </div>
-                        <form id="form-delete-{{ $account->id }}" method="POST"
-                            action="{{ route('backend.posts.categories.delete', $account->id) }}">
+                        <form id="form-delete-{{ $role->id }}" method="POST"
+                            action="{{ route('backend.posts.categories.delete', $role->id) }}">
                             @csrf
                             @method('DELETE')
                         </form>

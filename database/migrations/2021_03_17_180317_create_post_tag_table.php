@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableMenuTable extends Migration
+class CreatePostTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateTableMenuTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('level');
-            $table->integer('parent_id')->nullable();
-            $table->integer('number');
-            $table->string('url_page')->nullable();
-            $table->string('status')->default('1');
+            $table->integer('post_id');
+            $table->integer('tag_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateTableMenuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu');
+        Schema::dropIfExists('post_tag');
     }
 }

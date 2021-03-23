@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
         Route::prefix('roles')->name('roles.')->group(function () {
             Route::get('/', 'RoleController@index')->name('index');
             Route::get('/create', 'RoleController@create')->name('create');
-            // Route::post('/store', 'AccountController@store')->name('store');
+            Route::post('/store', 'RoleController@store')->name('store');
             // Route::get('/edit/{id}', 'AccountController@edit')->name('edit');
             // Route::put('/update/{id}', 'AccountController@update')->name('update');
         });

@@ -15,7 +15,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="form" method="POST" action="{{ route('backend.posts.posts.store') }}">
+                        <form id="form" method="POST" action="{{ route('backend.systems.roles.store') }}">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -48,55 +48,61 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10px">Ứng dụng</th>
-                                            <th>
+                                            <th class="text-center" style="width: 10px">Ứng dụng</th>
+                                            <th class="text-center">
                                                 Ứng dụng con
                                             </th>
-                                            <th>
+                                            <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
                                                     <input class="custom-control-input" value="1" name="indexTitle"
-                                                        type="checkbox" id="indexTitle">
+                                                        type="checkbox" id="indexTitle"
+                                                        onclick="checkBoxChecked('indexTitle', 'index')">
                                                     <label for="indexTitle" class="custom-control-label">Hiển thị</label>
                                                 </div>
                                             </th>
-                                            <th>
+                                            <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
                                                     <input class="custom-control-input" value="1" name="showTitle"
-                                                        type="checkbox" id="showTitle">
+                                                        type="checkbox" id="showTitle"
+                                                        onclick="checkBoxChecked('showTitle', 'show')">
                                                     <label for="showTitle" class="custom-control-label">Xem</label>
                                                 </div>
                                             </th>
-                                            <th>
+                                            <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
                                                     <input class="custom-control-input" value="1" name="createTitle"
-                                                        type="checkbox" id="createTitle">
+                                                        type="checkbox" id="createTitle"
+                                                        onclick="checkBoxChecked('createTitle', 'create')">
                                                     <label for="createTitle" class="custom-control-label">Tạo</label>
                                                 </div>
                                             </th>
-                                            <th>
+                                            <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
                                                     <input class="custom-control-input" value="1" name="editTitle"
-                                                        type="checkbox" id="editTitle">
+                                                        type="checkbox" id="editTitle"
+                                                        onclick="checkBoxChecked('editTitle', 'edit')">
                                                     <label for="editTitle" class="custom-control-label">Sửa</label>
                                                 </div>
                                             </th>
-                                            <th>
+                                            <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
                                                     <input class="custom-control-input" value="1" name="deleteTitle"
-                                                        type="checkbox" id="deleteTitle">
+                                                        type="checkbox" id="deleteTitle"
+                                                        onclick="checkBoxChecked('deleteTitle', 'delete')">
                                                     <label for="deleteTitle" class="custom-control-label">Xóa</label>
                                                 </div>
                                             </th>
-                                            <th>
+                                            <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
                                                     <input class="custom-control-input" value="1" name="censorTitle"
-                                                        type="checkbox" id="censorTitle">
+                                                        type="checkbox" id="censorTitle"
+                                                        onclick="checkBoxChecked('censorTitle', 'censor')">
                                                     <label for="censorTitle" class="custom-control-label">Duyệt</label>
                                                 </div>
                                             </th>
@@ -119,11 +125,13 @@
                                                     $menuTemp = $menu->getParentMenu->id;
                                                 @endphp
                                                 <td>
-                                                    {{ $menu->name }}
+                                                    <span onclick="tickMenu({{ $i }})">{{ $menu->name }}</span>
+                                                    <input class="custom-control-input" value="{{ $menu->id }}"
+                                                        name="menuId[]" type="hidden">
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" value="1" name="index[]"
+                                                        <input class="custom-control-input" value="{{ $menu->id }}" name="index[]"
                                                             type="checkbox" id="index_{{ $i }}">
                                                         <label for="index_{{ $i }}"
                                                             class="custom-control-label"></label>
@@ -131,7 +139,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" value="1" name="show[]"
+                                                        <input class="custom-control-input" value="{{ $menu->id }}" name="show[]"
                                                             type="checkbox" id="show_{{ $i }}">
                                                         <label for="show_{{ $i }}"
                                                             class="custom-control-label"></label>
@@ -139,7 +147,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" value="1" name="create[]"
+                                                        <input class="custom-control-input" value="{{ $menu->id }}" name="create[]"
                                                             type="checkbox" id="create_{{ $i }}">
                                                         <label for="create_{{ $i }}"
                                                             class="custom-control-label"></label>
@@ -147,15 +155,15 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" value="1" name="update[]"
-                                                            type="checkbox" id="update_{{ $i }}">
-                                                        <label for="update_{{ $i }}"
+                                                        <input class="custom-control-input" value="{{ $menu->id }}" name="edit[]"
+                                                            type="checkbox" id="edit_{{ $i }}">
+                                                        <label for="edit_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" value="1" name="delete[]"
+                                                        <input class="custom-control-input" value="{{ $menu->id }}" name="delete[]"
                                                             type="checkbox" id="delete_{{ $i }}">
                                                         <label for="delete_{{ $i }}"
                                                             class="custom-control-label"></label>
@@ -163,7 +171,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" value="1" name="censor[]"
+                                                        <input class="custom-control-input" value="{{ $menu->id }}" name="censor[]"
                                                             type="checkbox" id="censor_{{ $i }}">
                                                         <label for="censor_{{ $i }}"
                                                             class="custom-control-label"></label>
@@ -291,22 +299,165 @@
         </script>
 
         <script>
+            var countIndexChecked = 0;
+            var countShowChecked = 0;
+            var countCreateChecked = 0;
+            var countEditChecked = 0;
+            var countDeleteChecked = 0;
+            var countCensorChecked = 0;
+
             $(document).ready(function() {
-                        $("#indexTitle").click(function() {
-                            if ($('#indexTitle').prop("checked") == true) {
-                                $('input[name="index[]"]').prop('checked', true);
-                            } else {
-                                $('input[name="index[]"]').prop('checked', false);
-                            }
-                        });
-                        $('input[name="index[]"]').change(function() {
-                                if (this.checked == false) {
+                checkBoxChecked('indexTitle', 'index');
+                checkBoxChecked('showTitle', 'show');
+                checkBoxChecked('createTitle', 'create');
+                checkBoxChecked('updateTitle', 'update');
+                checkBoxChecked('deleteTitle', 'delete');
+                checkBoxChecked('censorTitle', 'censor');
+            });
 
-                                    $('#indexTitle').prop('checked', this.checked);
-                                } else {
+            function checkBoxChecked(checkBoxTitle, checkBoxInput) {
 
-                                });
-                        });
+                let title = $("#" + checkBoxTitle);
+                let input = $("input[name=\"" + checkBoxInput + "[]\"]");
+
+                // title.click(function() {
+                //     if (title.prop("checked") == true) {
+                //         input.prop('checked', true);
+                //         countIndexChecked = input.length;
+                //     } else {
+                //         input.prop('checked', false);
+                //         countIndexChecked = 0;
+                //     }
+                // });
+
+                //Check vào tiêu đề
+                if (title.prop("checked") == true) {
+                    input.prop('checked', true);
+                    calculateCountCheck(checkBoxInput, 0, input.length);
+                } else {
+                    input.prop('checked', false);
+                    calculateCountCheck(checkBoxInput, 0, 0);
+                }
+
+                //Check vào chi tiết
+                // khi input checkbox có thay đổi tick sẽ vào
+                input.change(function() {
+                    if (this.checked == false) {
+                        title.prop('checked', this.checked);
+                        calculateCountCheck(checkBoxInput, 2, 0);
+                        checkTitleChecked(title, input);
+                        console.log("vao");
+                    } else {
+                        calculateCountCheck(checkBoxInput, 1, 0);
+                        checkTitleChecked(title, input, checkBoxInput);
+                    }
+                });
+
+            }
+
+            //Kiểm tra nếu tất cả chi tiết đều checked thì title checked
+            function checkTitleChecked(title, input, nameCheckBox) {
+
+                if (nameCheckBox == 'index' && countIndexChecked == input.length)
+                    title.prop('checked', true);
+                else if (nameCheckBox == 'show' && countShowChecked == input.length)
+                    title.prop('checked', true);
+                else if (nameCheckBox == 'create' && countCreateChecked == input.length)
+                    title.prop('checked', true);
+                else if (nameCheckBox == 'edit' && countEditChecked == input.length)
+                    title.prop('checked', true);
+                else if (nameCheckBox == 'delete' && countDeleteChecked == input.length)
+                    title.prop('checked', true);
+                else if (nameCheckBox == 'censor' && countCensorChecked == input.length)
+                    title.prop('checked', true);
+            }
+
+            //tính toán các checkbox
+            function calculateCountCheck(nameCheckBox, type, value) {
+
+                switch (type) {
+                    case 0:
+                        if (nameCheckBox == 'index')
+                            countIndexChecked = value;
+                        else if (nameCheckBox == 'show')
+                            countShowChecked = value;
+                        else if (nameCheckBox == 'create')
+                            countCreateChecked = value;
+                        else if (nameCheckBox == 'edit')
+                            countEditChecked = value;
+                        else if (nameCheckBox == 'delete')
+                            countDeleteChecked = value;
+                        else if (nameCheckBox == 'censor')
+                            countCensorChecked = value;
+
+                        break;
+                    case 1:
+                        if (nameCheckBox == 'index')
+                            countIndexChecked++;
+                        else if (nameCheckBox == 'show')
+                            countShowChecked++;
+                        else if (nameCheckBox == 'create')
+                            countCreateChecked++;
+                        else if (nameCheckBox == 'edit')
+                            countEditChecked++;
+                        else if (nameCheckBox == 'delete')
+                            countDeleteChecked++;
+                        else if (nameCheckBox == 'censor')
+                            countCensorChecked++;
+                        break;
+                    case 2:
+                        if (nameCheckBox == 'index')
+                            countIndexChecked--;
+                        else if (nameCheckBox == 'show')
+                            countShowChecked--;
+                        else if (nameCheckBox == 'create')
+                            countCreateChecked--;
+                        else if (nameCheckBox == 'edit')
+                            countEditChecked--;
+                        else if (nameCheckBox == 'delete')
+                            countDeleteChecked--;
+                        else if (nameCheckBox == 'censor')
+                            countCensorChecked--;
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+
+            input.change(function() {
+                if (this.checked == false) {
+                    title.prop('checked', this.checked);
+                    calculateCountCheck(checkBoxInput, 2, 0);
+                    checkTitleChecked(title, input);
+                    console.log("vao");
+                } else {
+                    calculateCountCheck(checkBoxInput, 1, 0);
+                    checkTitleChecked(title, input, checkBoxInput);
+                }
+            });
+
+            function tickMenu(i) {
+                if ($("#index_" + i).prop('checked') == true && $("#show_" + i).prop('checked') == true &&
+                    $("#create_" + i).prop('checked') == true && $("#edit_" + i).prop('checked') == true &&
+                    $("#delete_" + i).prop('checked') == true && $("#censor_" + i).prop('checked') == true) {
+
+                    $("#index_" + i).prop('checked', false);
+                    $("#show_" + i).prop('checked', false);
+                    $("#create_" + i).prop('checked', false);
+                    $("#edit_" + i).prop('checked', false);
+                    $("#delete_" + i).prop('checked', false);
+                    $("#censor_" + i).prop('checked', false);
+                } else {
+                    $("#index_" + i).prop('checked', true);
+                    $("#show_" + i).prop('checked', true);
+                    $("#create_" + i).prop('checked', true);
+                    $("#edit_" + i).prop('checked', true);
+                    $("#delete_" + i).prop('checked', true);
+                    $("#censor_" + i).prop('checked', true);
+                }
+
+            }
 
         </script>
 

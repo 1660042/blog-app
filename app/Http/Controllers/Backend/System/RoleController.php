@@ -25,7 +25,10 @@ class RoleController extends Controller
     {
         $menus = $this->menu->getMenusWithParam(2, 1);
         $data = compact('menus');
-        //dd($menus);
         return view('backend.role.create', $data);
+    }
+
+    public function store(Request $request) {
+        dd($request->all());
     }
 }

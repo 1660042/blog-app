@@ -21,7 +21,8 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
         ])->get();
     }
 
-    function findRoleActive($key, $value, $compare) {
+    function findRoleActive($key, $value, $compare)
+    {
         return $this->_model->where([
             [$key, $compare, $value],
             ['status', '=', '1']

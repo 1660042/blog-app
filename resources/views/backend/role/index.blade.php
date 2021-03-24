@@ -54,11 +54,11 @@
                                             <td class="text-center align-middle">
                                                 <div class="">
                                                     <!-- <div class="col-sm-6"> -->
-                                                    <a href="{{ route('backend.posts.categories.edit', $role->id) }}"
+                                                    <a href="{{ route('backend.systems.roles.edit', $role->id) }}"
                                                         class="btn btn-primary btn-sm" title="Sửa chuyên mục"><i
                                                             class="far fa-edit"></i>&ensp;Sửa</a>
                                                     <!-- </div>
-                                                                                                                <div class="col-sm-6"> -->
+                                                                                                                            <div class="col-sm-6"> -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#modal-overlay-{{ $role->id }}">
                                                         <i class="far fa-trash-alt"></i>&ensp;Xóa

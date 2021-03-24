@@ -27,7 +27,14 @@ class Role extends Model
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 
-    public function getPermissions() {
+    public function getPermissions()
+    {
         return $this->hasMany(Permission::class, 'role_id', 'id');
+    }
+
+    public function getMenus()
+    {
+        return $this->belongsToMany(Menu::class, 'permissions', 'role_id', 'menu_id')
+            ->withPivot('menu_id', 'indexAll', 'index', 'show', 'create', 'edit', 'delete', 'censor');
     }
 }

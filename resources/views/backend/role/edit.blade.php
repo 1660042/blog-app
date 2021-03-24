@@ -15,8 +15,9 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="form" method="POST" action="{{ route('backend.systems.roles.store') }}">
+                        <form id="form" method="POST" action="{{ route('backend.systems.roles.update', $role->id) }}">
                             @csrf
+                            @method("PUT")
                             <div class="card-body">
                                 <div class="form-group">
                                     @if ($errors->first('name'))
@@ -24,7 +25,7 @@
                                     @endif
                                     <label for="">Tên quyền</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Nhập tên quyền">
+                                        value="{{ $role->name }}" placeholder="Nhập tên quyền">
                                 </div>
                                 <div class="form-group">
                                     @if ($errors->first('description'))
@@ -32,7 +33,7 @@
                                     @endif
                                     <label for="">Mô tả</label>
                                     <input type="text" class="form-control" id="description" name="description"
-                                        placeholder="Nhập mô tả">
+                                        placeholder="Nhập mô tả" value="{{ $role->description }}">
                                 </div>
 
                                 <div class="form-group">
@@ -41,7 +42,7 @@
                                     @endif
                                     <div class="custom-control custom-checkbox">
                                         <input class="custom-control-input" value="1" name="status" type="checkbox"
-                                            id="customCheckbox1" checked>
+                                            id="customCheckbox1" {{ $role->status == 1 ? 'checked' : '' }}>
                                         <label for="customCheckbox1" class="custom-control-label">Hoạt động</label>
                                     </div>
                                 </div>
@@ -134,8 +135,13 @@
                                                 @php
                                                     $menuTemp = $menu->getParentMenu->id;
                                                 @endphp
+
+
+
+
                                                 <td>
-                                                    <span onclick="tickMenu({{ $i }})">{{ $menu->name }}</span>
+                                                    <span
+                                                        onclick="tickMenu({{ $i }})">{{ $menu->name }}</span>
                                                     <input class="custom-control-input" value="{{ $menu->id }}"
                                                         name="menuId[]" type="hidden">
                                                 </td>
@@ -144,7 +150,8 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="indexAll[]" type="checkbox"
                                                             id="indexAll_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('indexAll')">
+                                                            onclick="checkInputCheckedAll('indexAll')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->indexAll == 1 ? 'checked' : '' }}>
                                                         <label for="indexAll_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -153,16 +160,19 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="index[]" type="checkbox" id="index_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('index')">
+                                                            onclick="checkInputCheckedAll('index')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->index == 1 ? 'checked' : '' }}>
                                                         <label for="index_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
                                                 </td>
+
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="show[]" type="checkbox" id="show_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('show')">
+                                                            onclick="checkInputCheckedAll('show')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->show == 1 ? 'checked' : '' }}>
                                                         <label for="show_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -171,7 +181,8 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="create[]" type="checkbox" id="create_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('create')">
+                                                            onclick="checkInputCheckedAll('create')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->create == 1 ? 'checked' : '' }}>
                                                         <label for="create_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -180,7 +191,8 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="edit[]" type="checkbox" id="edit_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('edit')">
+                                                            onclick="checkInputCheckedAll('edit')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->edit == 1 ? 'checked' : '' }}>
                                                         <label for="edit_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -189,7 +201,8 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="delete[]" type="checkbox" id="delete_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('delete')">
+                                                            onclick="checkInputCheckedAll('delete')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->delete == 1 ? 'checked' : '' }}>
                                                         <label for="delete_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -198,7 +211,8 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="censor[]" type="checkbox" id="censor_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('censor')">
+                                                            onclick="checkInputCheckedAll('censor')"
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->censor == 1 ? 'checked' : '' }}>
                                                         <label for="censor_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>

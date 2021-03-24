@@ -20,5 +20,12 @@ return [
         'status',
         'created_by',
         'updated_by'
-    ]
+    ],
+    'role' => [
+        'name',
+        'description',
+        'status',
+        'created_by',
+        'updated_by'
+    ],
 ];

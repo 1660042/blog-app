@@ -19,4 +19,10 @@ class Menu extends Model
     {
         return $this->belongsTo(Menu::class, 'parent_id', 'id');
     }
+
+    public function getRoles()
+    {
+        return $this->belongsToMany(Role::class, 'permissions', 'menu_id', 'role_id')
+            ->withPivot('menu_id', 'indexAll', 'index', 'show', 'create', 'edit', 'delete', 'censor');
+    }
 }

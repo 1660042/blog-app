@@ -17,10 +17,11 @@ class CreatePermissionsTable extends Migration
             $table->id();
             $table->integer('role_id');
             $table->integer('menu_id');
+            $table->tinyInteger('indexAll')->default(0);
             $table->tinyInteger('index')->default(0);
             $table->tinyInteger('show')->default(0);
             $table->tinyInteger('create')->default(0);
-            $table->tinyInteger('update')->default(0);
+            $table->tinyInteger('edit')->default(0);
             $table->tinyInteger('delete')->default(0);
             $table->tinyInteger('censor')->default(0);
             $table->timestamps();

@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repositories\Account\AccountRepositoryInterface;
+use App\Repositories\Role\RoleRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
 
-    public function __construct(AccountRepositoryInterface $account)
+    public function __construct(AccountRepositoryInterface $account, RoleRepositoryInterface $role)
     {
         $this->account = $account;
+        $this->role = $role;
     }
     /**
      * Display a listing of the resource.
@@ -38,7 +40,8 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('backend.account.create');
+        $roles = $this->role->getRolesActive();
+        return view('backend.account.create', compact('roles'));
     }
 
     /**
@@ -146,5 +149,23 @@ class AccountController extends Controller
     private function mergeRequest($request, $nameRequest, $value)
     {
         return $request->merge([$nameRequest => $value]);
+    }
+
+    private function getDefaultRole() {
+        return $this->role->findRoleActive('code', 'Member', '=');
+    }
+
+    private function insertUserRoles($request) {
+
+        if($request->has('role_id') == false) {
+            //tìm quyền mặc định
+            if($this->getDefaultRole() == null) {
+
+                $this->message = $this->getMessage(false, '', 'Không tìm thấy quyền mặc định! Vui lòng kiểm tra lại!');
+                return false;
+            }
+            $this->mergeRequest($request, 'role_id', $this->getDefaultRole()->id);
+
+        }
     }
 }

@@ -22,6 +22,7 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         return [
+            'code' => 'required|string|max:100|unique:roles,code,' . $this->id,
             'name' => 'required|string|max:255|unique:roles,name,' . $this->id,
             'description' => 'nullable|string|max:255',
         ];
@@ -43,6 +44,7 @@ class RoleRequest extends FormRequest
     public function attributes()
     {
         return [
+            'code' => 'Mã quyền',
             'name' => 'Tên quyền',
             'description' => 'Mô tả quyền',
             'menuId' => 'Bảng quyền'

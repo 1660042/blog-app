@@ -77,7 +77,7 @@ class MenuSeeder extends Seeder
                 'level' => '2',
                 'parent_id' => 7,
                 'number' => '9',
-                'url_page' => 'settings.index'
+                'url_page' => 'settings.index',
             ]
         ]);
     }

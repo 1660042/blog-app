@@ -19,6 +19,14 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    @if ($errors->first('code'))
+                                        <label class="text-danger">{{ $errors->first('code') }}</label></br>
+                                    @endif
+                                    <label for="">Mã quyền</label>
+                                    <input type="text" class="form-control" id="code" name="code"
+                                        placeholder="Nhập mã quyền">
+                                </div>
+                                <div class="form-group">
                                     @if ($errors->first('name'))
                                         <label class="text-danger">{{ $errors->first('name') }}</label></br>
                                     @endif
@@ -216,7 +224,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer d-flex justify-content-start">
-                                <a href="{{ route('backend.posts.posts.index') }}" class="btn btn-dark mr-2">Quay lại</a>
+                                <a href="{{ route('backend.systems.roles.index') }}" class="btn btn-dark mr-2">Quay lại</a>
                                 <button type="submit" class="btn btn-primary ">Lưu</button>
                             </div>
                         </form>

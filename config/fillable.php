@@ -22,6 +22,7 @@ return [
         'updated_by'
     ],
     'role' => [
+        'code',
         'name',
         'description',
         'status',

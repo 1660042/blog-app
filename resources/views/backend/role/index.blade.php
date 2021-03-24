@@ -23,6 +23,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">#ID</th>
+                                        <th class="text-center align-middle">Mã quyền</th>
                                         <th class="text-center align-middle">Tên quyền</th>
                                         <th class="text-center align-middle">Mô tả</th>
                                         <th class="text-center align-middle">Trạng thái</th>
@@ -39,6 +40,7 @@
 
                                         <tr>
                                             <td class="text-center align-middle">#{{ $role->id }}</td>
+                                            <td class="text-center align-middle">{{ $role->code }}</td>
                                             <td class="text-center align-middle">{{ $role->name }}</td>
                                             <td class="text-center align-middle">{{ $role->description }}</td>
 

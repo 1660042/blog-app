@@ -127,6 +127,10 @@ class AccountController extends Controller
     {
         $account = $this->account->find($id);
 
+       //dd($account->getRoles->where('status', '=', '1')[0]
+       //->getPermissions->where('menu_id', '=', 4)->where('indexAll', '=', '1')->first()->index);
+        //dd($account->getRoles()->where('role_id', '=', 1)->first());
+
         //dd($account);
         if ($account == null) {
             $message = $this->getMessage(false, '', 'Tài khoản không tồn tại! Vui lòng kiểm tra lại!');
@@ -149,6 +153,7 @@ class AccountController extends Controller
      */
     public function update(RegisterRequest $request, $id)
     {
+        //dd($request->all());
 
         $account = $this->account->find($id);
         if ($account == null) {
@@ -186,16 +191,14 @@ class AccountController extends Controller
             }
 
             $message = $this->getMessage(true, 'Cập nhật tài khoản thành công!', '');
+            $this->message = $this->getMessage($result, 'Cập nhật tài khoản thành công!', 'Cập nhật tài khoản thất bại, vui lòng kiểm tra lại!');
+            DB::commit();
+            return redirect()->route('backend.accounts.accounts.index')->with($this->message);
         } catch (Exception $e) {
             DB::rollback();
             $message = $this->getMessage(false, '', 'Đã có lỗi xảy ra trong quá trình cập nhật! Vui lòng báo Admin!');
             return redirect()->route('backend.accounts.accounts.edit', $id)->with($message);
         }
-
-
-        $this->message = $this->getMessage($result, 'Cập nhật tài khoản thành công!', 'Cập nhật tài khoản thất bại, vui lòng kiểm tra lại!');
-
-        return redirect()->route('backend.accounts.accounts.index')->with($this->message);
     }
 
     /**
@@ -233,6 +236,7 @@ class AccountController extends Controller
 
         $account->getRoles()->detach();
         $account->getRoles()->attach($request->role_id);
+
         if (!$account->getRoles->contains($request->role_id)) {
             return 'Không thể tạo các dữ liệu quyền!';
         }

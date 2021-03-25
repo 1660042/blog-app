@@ -159,7 +159,7 @@
                                                             name="indexAll[]" type="checkbox"
                                                             id="indexAll_{{ $i }}"
                                                             onclick="checkInputCheckedAll('indexAll')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->indexAll == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->indexAll == 1 ? 'checked' : '' }}>
                                                         <label for="indexAll_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -169,7 +169,7 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="index[]" type="checkbox" id="index_{{ $i }}"
                                                             onclick="checkInputCheckedAll('index')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->index == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->index == 1 ? 'checked' : '' }}>
                                                         <label for="index_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -180,7 +180,7 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="show[]" type="checkbox" id="show_{{ $i }}"
                                                             onclick="checkInputCheckedAll('show')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->show == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->show == 1 ? 'checked' : '' }}>
                                                         <label for="show_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -190,7 +190,7 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="create[]" type="checkbox" id="create_{{ $i }}"
                                                             onclick="checkInputCheckedAll('create')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->create == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->create == 1 ? 'checked' : '' }}>
                                                         <label for="create_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -200,7 +200,7 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="edit[]" type="checkbox" id="edit_{{ $i }}"
                                                             onclick="checkInputCheckedAll('edit')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->edit == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->edit == 1 ? 'checked' : '' }}>
                                                         <label for="edit_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -210,7 +210,7 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="delete[]" type="checkbox" id="delete_{{ $i }}"
                                                             onclick="checkInputCheckedAll('delete')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->delete == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->delete == 1 ? 'checked' : '' }}>
                                                         <label for="delete_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
@@ -220,7 +220,7 @@
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
                                                             name="censor[]" type="checkbox" id="censor_{{ $i }}"
                                                             onclick="checkInputCheckedAll('censor')"
-                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first()->censor == 1 ? 'checked' : '' }}>
+                                                            {{ $role->getPermissions->where('menu_id', '=', $menu->id)->first() != null && $role->getPermissions->where('menu_id', '=', $menu->id)->first()->censor == 1 ? 'checked' : '' }}>
                                                         <label for="censor_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>

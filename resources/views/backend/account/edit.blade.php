@@ -98,7 +98,7 @@
                                                         <td class="text-center align-middle">
                                                             <input class="" value="{{ $role->id }}" name="role_id"
                                                                 type="checkbox" id="checkBox_{{ $i }}"
-                                                                {{ $account->getRoles()->where('role_id', '=', $role->id)->first()->pivot->role_id == $role->id
+                                                                {{ $account->getRoles()->where('role_id', '=', $role->id)->first() != null && $account->getRoles()->where('role_id', '=', $role->id)->first()->pivot->role_id == $role->id
     ? 'checked'
     : '' }}>
                                                         </td>

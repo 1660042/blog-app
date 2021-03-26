@@ -15,7 +15,8 @@ class UserSeeder extends Seeder
                 'name' => 'Bảo Lương',
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('123456')
+                'password' => bcrypt('123456'),
+                'is_supper_admin' => '1'
             ]
             
         ]);

@@ -144,8 +144,9 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
+               
                         @foreach ($listMenu as $menu)
+                        @can('viewAny', $menu)
                             <li
                                 class="nav-item {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'menu-open' : '' }}">
                                 <a href="#"
@@ -166,9 +167,12 @@
                                             </a>
                                         </li>
                                     </ul>
+                                    
                                 @endforeach
                             </li>
+                            @endcan
                         @endforeach
+                        
                         <li class="nav-item">
                             <a href="{{ asset('AdminLTE-3.1.0/pages/widgets.html') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>

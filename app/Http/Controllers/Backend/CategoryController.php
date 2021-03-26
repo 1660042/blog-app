@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $this->_category = $_category;
         $this->category = $category;
         $this->tag = $tag;
-        $this->authorizeResource(Category::class);
+       // $this->authorizeResource(Category::class);
     }
     /**
      * Display a listing of the resource.
@@ -108,11 +108,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($category)
     {
         //$this->authorize('update', $this->_category);
-        $cat = $this->category->find($id);
-        $categories = $this->category->getCategoryMainWithParam($id);
+        $cat = $this->category->find($category);
+        $categories = $this->category->getCategoryMainWithParam($category);
         $data = compact('categories', 'cat');
         return view('backend.category.edit', $data);
     }

@@ -39,7 +39,7 @@
                           <td class="text-center align-middle">#{{ $cat->id }}</td>
                           <td class="text-center align-middle">{{ $cat->name }}</td>
                           <td class="text-center align-middle {{ ($cat->category == null ? "text-danger" : "") }}"> {{ ($cat->category == null ? "(Trống)" : $cat->category->name) }}</td>
-                          <td class="text-center align-middle {{ ($cat->url_page == null ? "text-danger" : "") }}">{{ $cat->url_page == null ? "(Trống)" : $cat->url_page }}</td>
+                          <td class="text-center align-middle {{ ($cat->name_route == null ? "text-danger" : "") }}">{{ $cat->name_route == null ? "(Trống)" : $cat->name_route }}</td>
                           <td class="text-center align-middle {{ $cat->status == '1' ? "" : "text-danger" }}">{{ $status[$cat->status] }}</td>
                           <td class="text-center align-middle">{{ $cat->createdBy == null ? "" : $cat->createdBy->name }}</td>
                           <td class="text-center align-middle">{{ $cat->updatedBy == null ? "" : $cat->updatedBy->name }}</td>

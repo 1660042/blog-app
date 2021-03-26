@@ -26,19 +26,19 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:category,name',
-            'url_page' => 'required|string|max:255|unique:category,url_page|max:255',
+            'name_route' => 'required|string|max:255|unique:category,name_route|max:255',
             //tự custom 1 rule
             'parent_id' => [
-                function($attribute, $value, $fail) {
-                    if(is_numeric($value) || $value == '') {
+                function ($attribute, $value, $fail) {
+                    if (is_numeric($value) || $value == '') {
                         return true;
                     }
                     $fail('Giá trị của :attribute không hợp lệ!');
                 }
             ],
             'status' => [
-                function($attribute, $value, $fail) {
-                    if($value == 1 || $value == '') {
+                function ($attribute, $value, $fail) {
+                    if ($value == 1 || $value == '') {
                         return true;
                     }
                     $fail('Giá trị của :attribute không hợp lệ!');
@@ -47,14 +47,15 @@ class CreateRequest extends FormRequest
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
 
         return [
             'required' => ':attribute không được để trống!',
-            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho '. Str::lower(':attribute') . '!',
+            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho ' . Str::lower(':attribute') . '!',
             'max' => 'Bạn đã nhập ' . Str::lower(':attribute') . ' quá giới hạn ký tự cho phép!',
             'unique' => ':attribute đã tồn tại trong hệ thống!',
-            'integer' => 'Bạn vui lòng nhập số cho '. Str::lower(':attribute') . '!',
+            'integer' => 'Bạn vui lòng nhập số cho ' . Str::lower(':attribute') . '!',
         ];
     }
 
@@ -62,9 +63,9 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'Tên chuyên mục',
-            'url_page' => 'Đường dẫn chuyên mục',
+            'name_route' => 'Đường dẫn chuyên mục',
             'parent_id' => 'Chuyên mục cha',
             'status' => 'Trạng thái'
         ];
-}
+    }
 }

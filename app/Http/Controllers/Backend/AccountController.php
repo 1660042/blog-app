@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Account;
+namespace App\Http\Controllers\Backend;
 
 use DB;
 use Auth;
 use App\Models\User;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repositories\Account\AccountRepositoryInterface;
@@ -127,8 +126,8 @@ class AccountController extends Controller
     {
         $account = $this->account->find($id);
 
-       //dd($account->getRoles->where('status', '=', '1')[0]
-       //->getPermissions->where('menu_id', '=', 4)->where('indexAll', '=', '1')->first()->index);
+        //dd($account->getRoles->where('status', '=', '1')[0]
+        //->getPermissions->where('menu_id', '=', 4)->where('indexAll', '=', '1')->first()->index);
         //dd($account->getRoles()->where('role_id', '=', 1)->first());
 
         //dd($account);

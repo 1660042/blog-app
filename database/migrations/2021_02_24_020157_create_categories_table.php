@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('level');
             $table->integer('parent_id')->nullable();
             $table->integer('number');
-            $table->string('url_page')->nullable();
+            $table->string('name_route')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

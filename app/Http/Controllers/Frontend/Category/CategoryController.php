@@ -16,10 +16,10 @@ class CategoryController extends Controller
         $this->qty = 1;
     }
 
-    public function __invoke(Request $request, $url_page)
+    public function __invoke(Request $request, $name_route)
     {
 
-        $category = $this->cat->getCategoryActive('url_page', $url_page);
+        $category = $this->cat->getCategoryActive('name_route', $name_route);
 
         //dd($category);
 

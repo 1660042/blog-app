@@ -5,7 +5,7 @@ namespace App\Http\Requests\Backend\Category;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:category,name,' . $this->id,
-            'url_page' => 'required|string|max:255|max:255|unique:category,url_page,' . $this->id,
+            'name' => 'required|string|max:255|unique:categories,name,' . $this->id,
+            'name_route' => 'required|string|max:255|max:255|unique:categories,name_route,' . $this->id,
             //tự custom 1 rule
             'parent_id' => [
                 function ($attribute, $value, $fail) {
@@ -63,7 +63,7 @@ class EditRequest extends FormRequest
     {
         return [
             'name' => 'Tên chuyên mục',
-            'url_page' => 'Đường dẫn chuyên mục',
+            'name_route' => 'Đường dẫn chuyên mục',
             'parent_id' => 'Chuyên mục cha',
             'status' => 'Trạng thái'
         ];

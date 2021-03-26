@@ -6,7 +6,7 @@ return [
         'level',
         'parent_id',
         'number',
-        'url_page',
+        'name_route',
         'status',
         'created_by',
         'updated_by'

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Backend\Post;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:post,name,'.$this->id,
-            'slug' => 'required|string|max:255|unique:post,slug,'.$this->id,
+            'name' => 'required|string|max:255|unique:posts,name,' . $this->id,
+            'slug' => 'required|string|max:255|unique:posts,slug,' . $this->id,
             'path_image' => 'required|string|max:255',
             'content' => 'required|string|max:10000',
-           'category_id' => 'required|array|max:100',
+            'category_id' => 'required|array|max:100',
             //tự custom 1 rule
             // 'category_id' => [
             //     function($attribute, $value, $fail) {
@@ -40,8 +40,8 @@ class EditRequest extends FormRequest
             //     }
             // ],
             'status' => [
-                function($attribute, $value, $fail) {
-                    if($value == 1 || $value == '') {
+                function ($attribute, $value, $fail) {
+                    if ($value == 1 || $value == '') {
                         return true;
                     }
                     $fail('Giá trị của :attribute không hợp lệ!');
@@ -50,14 +50,15 @@ class EditRequest extends FormRequest
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
 
         return [
             'required' => ':attribute không được để trống!',
-            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho '. Str::lower(':attribute') . '!',
+            'string' => 'Bạn vui lòng nhập kiểu chuỗi cho ' . Str::lower(':attribute') . '!',
             'max' => 'Bạn đã nhập ' . Str::lower(':attribute') . ' quá giới hạn ký tự cho phép!',
             'unique' => ':attribute đã tồn tại trong hệ thống!',
-            'integer' => 'Bạn vui lòng nhập số cho '. Str::lower(':attribute') . '!',
+            'integer' => 'Bạn vui lòng nhập số cho ' . Str::lower(':attribute') . '!',
         ];
     }
 
@@ -68,8 +69,8 @@ class EditRequest extends FormRequest
             'slug' => 'Đường dẫn bài viết',
             'category_id' => 'Chuyên mục',
             'status' => 'Trạng thái',
-            'path_img' => 'Đường dẫn hình ảnh',
+            'path_image' => 'Đường dẫn hình ảnh',
             'content' => 'Nội dung bài viết'
         ];
-}
+    }
 }

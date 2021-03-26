@@ -136,7 +136,7 @@
                                             <tr>
                                                 @if ($menu->getParentMenu->id != $menuTemp)
                                                     <td
-                                                        rowspan="{{ $menu->getParentMenu->getChildMenus->where('status', '=', '1')->count() }}">
+                                                        rowspan="{{ $menu->getParentMenu->getChildMenus->where('status', '=', '1')->where('is_show_role', '=', 1)->count() }}">
                                                         {{ $menu->getParentMenu->name }}</td>
                                                 @endif
 
@@ -238,7 +238,8 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer d-flex justify-content-start">
-                                <a href="{{ route('backend.systems.roles.index') }}" class="btn btn-dark mr-2">Quay lại</a>
+                                <a href="{{ route('backend.systems.roles.index') }}" class="btn btn-dark mr-2">Quay
+                                    lại</a>
                                 <button type="submit" class="btn btn-primary ">Lưu</button>
                             </div>
                         </form>

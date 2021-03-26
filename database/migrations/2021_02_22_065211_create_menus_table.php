@@ -19,8 +19,9 @@ class CreateMenusTable extends Migration
             $table->integer('level');
             $table->integer('parent_id')->nullable();
             $table->integer('number');
-            $table->string('url_page')->nullable();
+            $table->string('name_route')->nullable();
             $table->tinyInteger('status')->default('1');
+            $table->tinyInteger('is_show_role')->default('1');
             $table->timestamps();
         });
     }

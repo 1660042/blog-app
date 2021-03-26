@@ -147,9 +147,9 @@
 
                         @foreach ($listMenu as $menu)
                             <li
-                                class="nav-item {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->url_page)) == $menu->url_page ? 'menu-open' : '' }}">
+                                class="nav-item {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'menu-open' : '' }}">
                                 <a href="#"
-                                    class="nav-link {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->url_page)) == $menu->url_page ? 'active' : '' }}">
+                                    class="nav-link {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         {{ $menu->name }}
@@ -159,8 +159,8 @@
                                 @foreach ($menu->getChildMenus->where('status', '=', '1') as $menuChild)
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ route('backend.' . $menu->url_page . '.' . $menuChild->url_page) }}"
-                                                class="nav-link {{ \Request::route()->getName() == 'backend.' . $menu->url_page . '.' . $menuChild->url_page ? 'active' : '' }}">
+                                            <a href="{{ route('backend.' . $menu->name_route . '.' . $menuChild->name_route) }}"
+                                                class="nav-link {{ \Request::route()->getName() == 'backend.' . $menu->name_route . '.' . $menuChild->name_route ? 'active' : '' }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>{{ $menuChild->name }}</p>
                                             </a>

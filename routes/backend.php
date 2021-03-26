@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,22 +30,22 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
 
 
     Route::group(['as' => 'posts.'], function () {
-        Route::namespace('Category')->prefix('categories')->name('categories.')->group(function () {
-            Route::get('/', 'IndexController')->name('index');
-            Route::get('/create', 'CreateController')->name('create');
-            Route::post('/store', 'StoreController')->name('store');
-            Route::get('/edit/{id}', 'EditController')->name('edit');
-            Route::put('/update/{id}', 'UpdateController')->name('update');
-            Route::delete('/delete/{id}', 'DeleteController')->name('delete');
+        Route::prefix('categories')->name('categories.')->group(function () {
+            Route::get('/', 'CategoryController@index')->name('index');
+            Route::get('/create', 'CategoryController@create')->name('create');
+            Route::post('/store', 'CategoryController@store')->name('store');
+            Route::get('/edit/{id}', 'CategoryController@edit')->middleware('can:update,category')->name('edit');
+            Route::put('/update/{id}', 'CategoryController@update')->name('update');
+            Route::delete('/delete/{id}', 'CategoryController@destroy')->name('delete');
         });
 
-        Route::namespace('Post')->prefix('posts')->name('posts.')->group(function () {
-            Route::get('/', 'IndexController')->name('index');
-            Route::get('/create', 'CreateController')->name('create');
-            Route::post('/store', 'StoreController')->name('store');
-            Route::get('/edit/{id}', 'EditController')->name('edit');
-            Route::put('/update/{id}', 'UpdateController')->name('update');
-            Route::delete('/delete/{id}', 'DeleteController')->name('delete');
+        Route::prefix('posts')->name('posts.')->group(function () {
+            Route::get('/', 'PostController@index')->name('index');
+            Route::get('/create', 'PostController@create')->name('create');
+            Route::post('/store', 'PostController@store')->name('store');
+            Route::get('/edit/{id}', 'PostController@edit')->name('edit');
+            Route::put('/update/{id}', 'PostController@update')->name('update');
+            Route::delete('/delete/{id}', 'PostController@destroy')->name('delete');
         });
     });
 
@@ -53,7 +54,7 @@ Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
         //Route::get('/create', 'CreateController')->name('create');
     });
 
-    Route::namespace('Account')->prefix('accounts')->name('accounts.')->group(function () {
+    Route::prefix('accounts')->name('accounts.')->group(function () {
         Route::name('accounts.')->group(function () {
             Route::get('/', 'AccountController@index')->name('index');
             Route::get('/create', 'AccountController@create')->name('create');

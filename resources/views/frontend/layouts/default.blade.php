@@ -95,7 +95,7 @@
                                 <ul class="sub-menu">
                                     @foreach ($cat->getChildCategories as $childCat)
                                         <li><a
-                                                href="{{ route('frontend.category.index', $childCat->url_page) }}">{{ $childCat->name }}</a>
+                                                href="{{ route('frontend.category.index', $childCat->name_route) }}">{{ $childCat->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>

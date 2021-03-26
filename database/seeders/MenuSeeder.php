@@ -21,63 +21,63 @@ class MenuSeeder extends Seeder
                 'level' => '1',
                 'parent_id' => null,
                 'number' => '1',
-                'url_page' => 'posts'
+                'name_route' => 'posts'
             ],
             [
                 'name' => 'Tài khoản',
                 'level' => '1',
                 'parent_id' => null,
                 'number' => '2',
-                'url_page' => 'accounts'
+                'name_route' => 'accounts'
             ],
             [
                 'name' => 'Chuyên mục',
                 'level' => '2',
                 'parent_id' => 1,
                 'number' => '3',
-                'url_page' => 'categories.index'
+                'name_route' => 'categories.index'
             ],
             [
                 'name' => 'Danh sách bài viết',
                 'level' => '2',
                 'parent_id' => 1,
                 'number' => '4',
-                'url_page' => 'posts.index'
+                'name_route' => 'posts.index'
             ],
             [
                 'name' => 'Viết bài mới',
                 'level' => '2',
                 'parent_id' => 1,
                 'number' => '5',
-                'url_page' => 'posts.create'
+                'name_route' => 'posts.create'
             ],
             [
                 'name' => 'Danh sách thành viên',
                 'level' => '2',
                 'parent_id' => 2,
                 'number' => '6',
-                'url_page' => 'accounts.index'
+                'name_route' => 'accounts.index'
             ],
             [
                 'name' => 'Quản trị hệ thống',
                 'level' => '1',
                 'parent_id' => null,
                 'number' => '7',
-                'url_page' => 'systems'
+                'name_route' => 'systems'
             ],
             [
                 'name' => 'Danh sách quyền',
                 'level' => '2',
                 'parent_id' => 7,
                 'number' => '8',
-                'url_page' => 'roles.index'
+                'name_route' => 'roles.index'
             ],
             [
                 'name' => 'Cài đặt hệ thống',
                 'level' => '2',
                 'parent_id' => 7,
                 'number' => '9',
-                'url_page' => 'settings.index',
+                'name_route' => 'settings.index',
             ]
         ]);
     }

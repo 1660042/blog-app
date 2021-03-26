@@ -27,9 +27,9 @@
                     </div>
                     
                     <div class="form-group">
-                    <label class="text-danger">{{ $errors->first('url_page') }}</label></br>
+                    <label class="text-danger">{{ $errors->first('name_route') }}</label></br>
                       <label for="">Đường dẫn chuyên mục</label>
-                      <input type="text" class="form-control" value="{{ $cat->url_page }}" id="url_page" name="url_page" placeholder="Nhập đường dẫn chuyên mục">
+                      <input type="text" class="form-control" value="{{ $cat->name_route }}" id="name_route" name="name_route" placeholder="Nhập đường dẫn chuyên mục">
                     </div>
                     <div class="form-group">
                     <label class="text-danger">{{ $errors->first('parent_id') }}</label></br>
@@ -85,7 +85,7 @@
 			// 	xhr.setRequestHeader('x-csrf-token', _token);
 			// },
 			success: function (data) {
-                $('#url_page').val(data);
+                $('#name_route').val(data);
 				//console.log("thành công: " + data);
 			},
 			error:function(data, xhr){ 

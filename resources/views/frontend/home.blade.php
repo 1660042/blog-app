@@ -28,7 +28,7 @@
                                         @foreach ($post->getCategories as $category)
 
                                             <a
-                                                href="{{ route('frontend.category.index', $category->url_page) }}">{{ $category->name }}</a>
+                                                href="{{ route('frontend.category.index', $category->name_route) }}">{{ $category->name }}</a>
                                         @endforeach
                                     </span>
                                     <span class="entry__meta-date">

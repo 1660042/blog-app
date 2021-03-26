@@ -21,11 +21,13 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface
         ])->orderByRaw('number')->get();
     }
 
-    public function getMenusWithParam($level, $status)
+
+    public function getMenusWithParam($level, $status, $is_show_role = 1)
     {
         return $this->_model->whereNotNull('parent_id')->where([
             ['level', '=', $level],
-            ['status', '=', $status]
+            ['status', '=', $status],
+            ['is_show_role', '=', $is_show_role],
         ])->orderBy('parent_id')->get();
     }
 }

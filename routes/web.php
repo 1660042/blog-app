@@ -21,7 +21,7 @@ Route::namespace('Frontend')->name('frontend.')->group(function () {
     });
 
     Route::namespace('Category')->prefix('category')->name('category.')->group(function () {
-        Route::get('/{url_page}', 'CategoryController')->name('index');
+        Route::get('/{name_route}', 'CategoryController')->name('index');
     });
 
     Route::namespace('Tag')->prefix('tag')->name('tag.')->group(function () {

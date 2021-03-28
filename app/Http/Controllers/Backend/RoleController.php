@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backend\System;
+namespace App\Http\Controllers\Backend;
 
 use DB;
 use Auth;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
+use App\Models\Role;
 use App\Http\Requests\Backend\Role\RoleRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Role\RoleRepositoryInterface;
@@ -13,13 +12,17 @@ use App\Repositories\Menu\MenuRepositoryInterface;
 
 class RoleController extends Controller
 {
-    public function __construct(RoleRepositoryInterface $role, MenuRepositoryInterface $menu)
+    public function __construct(RoleRepositoryInterface $role, MenuRepositoryInterface $menu, Role $_role)
     {
         $this->role = $role;
         $this->menu = $menu;
+        $this->_role = $_role;
     }
     public function index()
     {
+
+        $this->authorize('view', $this->_role);
+
         $roles = $this->role->getAll();
 
         $status = config('status.status');
@@ -29,6 +32,8 @@ class RoleController extends Controller
 
     public function create()
     {
+
+        $this->authorize('create', $this->_role);
         $menus = $this->menu->getMenusWithParam(2, 1);
         $data = compact('menus');
         return view('backend.role.create', $data);
@@ -36,6 +41,8 @@ class RoleController extends Controller
 
     public function store(RoleRequest $request)
     {
+        $this->authorize('create', $this->_role);
+
         $this->permissions = config('role.permission');
 
         $fillable = config('fillable.role');
@@ -96,8 +103,28 @@ class RoleController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+
+        $this->authorize('update', $this->_role);
+
+        $menus = $this->menu->getMenusWithParam(2, 1);
+        $role = $this->role->find($id);
+
+        // foreach ($role->getMenus as $a) {
+        //     dd($a->pivot->where([['menu_id', '=', 5]])->get());
+        // }
+
+        //dd($role->getPermissions->where('menu_id', '=', '5')->first()->index);
+
+        $data = compact('menus', 'role');
+        return view('backend.role.edit', $data);
+    }
+
     public function update(RoleRequest $request, $id)
     {
+        $this->authorize('update', $this->_role);
+
         $this->permissions = config('role.permission');
 
         $fillable = config('fillable.role');
@@ -165,21 +192,6 @@ class RoleController extends Controller
             $msg = $this->getMessage(false, '', 'Đã có lỗi trong Exception!');
             return redirect()->route('backend.systems.roles.edit', $id)->with($msg);
         }
-    }
-
-    public function edit($id)
-    {
-        $menus = $this->menu->getMenusWithParam(2, 1);
-        $role = $this->role->find($id);
-
-        // foreach ($role->getMenus as $a) {
-        //     dd($a->pivot->where([['menu_id', '=', 5]])->get());
-        // }
-
-        //dd($role->getPermissions->where('menu_id', '=', '5')->first()->index);
-
-        $data = compact('menus', 'role');
-        return view('backend.role.edit', $data);
     }
 
     //Thêm 1 field vào request

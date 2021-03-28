@@ -83,7 +83,7 @@
                                                             <label for="checkBox_{{$i}}" class="">{{ $role->name }}</label>
                                                         </td>
                                                         <td class="text-center align-middle">
-                                                            <input class="" value="{{ $role->id }}" name="role_id" type="checkbox"
+                                                            <input class="" value="{{ $role->id }}" name="role_id[]" type="checkbox"
                                                                 id="checkBox_{{$i}}">
                                                         </td>
                                                     </tr>

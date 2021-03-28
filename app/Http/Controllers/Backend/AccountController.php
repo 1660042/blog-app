@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller
 {
 
-    public function __construct(AccountRepositoryInterface $account, RoleRepositoryInterface $role)
+    public function __construct(AccountRepositoryInterface $account, RoleRepositoryInterface $role, User $user)
     {
         $this->account = $account;
         $this->role = $role;
+        $this->user = $user;
     }
     /**
      * Display a listing of the resource.
@@ -28,6 +29,8 @@ class AccountController extends Controller
      */
     public function index()
     {
+        //dd($permissions = $this->user->hasPermissions('accounts.index', 'index'));
+        $this->authorize('view', $this->user);
         $accounts = $this->account->getAll();
 
         $status = Config('status.status');
@@ -42,6 +45,7 @@ class AccountController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', $this->user);
         $roles = $this->role->getRolesActive();
         return view('backend.account.create', compact('roles'));
     }
@@ -54,7 +58,7 @@ class AccountController extends Controller
      */
     public function store(RegisterRequest $request)
     {
-
+        $this->authorize('create', $this->user);
         if ($request->has('status') == false) {
             $this->mergeRequest($request, 'status', '0');
         }
@@ -124,6 +128,7 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', $this->user);
         $account = $this->account->find($id);
 
         //dd($account->getRoles->where('status', '=', '1')[0]
@@ -152,6 +157,7 @@ class AccountController extends Controller
      */
     public function update(RegisterRequest $request, $id)
     {
+        $this->authorize('update', $this->user);
         //dd($request->all());
 
         $account = $this->account->find($id);
@@ -232,6 +238,8 @@ class AccountController extends Controller
             }
             $this->mergeRequest($request, 'role_id', $this->getDefaultRole()->id);
         }
+
+        //dd($request->role_id);
 
         $account->getRoles()->detach();
         $account->getRoles()->attach($request->role_id);

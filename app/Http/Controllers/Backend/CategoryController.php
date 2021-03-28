@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $this->_category = $_category;
         $this->category = $category;
         $this->tag = $tag;
-       // $this->authorizeResource(Category::class);
+        // $this->authorizeResource(Category::class);
     }
     /**
      * Display a listing of the resource.
@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //$this->authorize('view', $this->_category);
+        $this->authorize('view', $this->_category);
         $categories = $this->category->getAll();
         $status = config('status.status');
         $data = compact('categories', 'status');
@@ -60,7 +60,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        //$this->authorize('store', $this->_category);
+        $this->authorize('create', $this->_category);
         $fill = $this->getFillable();
 
         if ($request->has('status') == false) {
@@ -108,11 +108,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($category)
+    public function edit($id)
     {
-        //$this->authorize('update', $this->_category);
-        $cat = $this->category->find($category);
-        $categories = $this->category->getCategoryMainWithParam($category);
+        $this->authorize('update', $this->_category);
+        $cat = $this->category->find($id);
+        $categories = $this->category->getCategoryMainWithParam($id);
         $data = compact('categories', 'cat');
         return view('backend.category.edit', $data);
     }
@@ -127,6 +127,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
 
+        $this->authorize('update', $this->_category);
         $cat = $this->category->find($id);
 
         if ($cat == false) {
@@ -169,7 +170,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //$this->authorize('delete', $this->_category);
+        $this->authorize('delete', $this->_category);
         $cat = $this->category->find($id);
 
         if ($cat == false) {

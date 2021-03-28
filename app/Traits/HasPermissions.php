@@ -19,8 +19,10 @@ trait HasPermissions
         foreach ($roles as $role) {
             if ($role->getPermissions->where('menu_id', '=', $menu->id)->where($permission, '=', 1)->first() != null) {
                 $result = $role->getPermissions->where('menu_id', '=', $menu->id)->where($permission, '=', '1')->first();
+                if ($result->indexAll == '1' && $result->$permission == '1')
+                    return $result;
             }
         }
-        return $result;
+        return false;
     }
 }

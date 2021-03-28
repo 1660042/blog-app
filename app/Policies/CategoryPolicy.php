@@ -18,14 +18,13 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        if($user->is_supper_admin == 1) return true;
+        if ($user->is_supper_admin == 1) return true;
         $permissions = $user->hasPermissions('categories.index', 'indexAll');
 
         if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
-            //false;
         }
     }
 
@@ -36,17 +35,20 @@ class CategoryPolicy
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function view(?User $user, Category $category)
+    public function view(User $user, Category $category)
     {
-        // $permissions = $user->hasPermissions('categories.index', 'index');
+        if ($user->is_supper_admin == 1) return true;
+        $permissions = $user->hasPermissions('categories.index', 'index');
 
-        // if ($user->status == '1' && $permissions != false && $permissions->index != null && $permissions->index == '1') {
-        //     return true;
-        // } else {
-        //     return $this->deny('Truy cập bị từ chối!');
-        //     //false;
-        // }
-        return $this->deny('Truy cập bị từ chối!');
+        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+            return $this->deny('Truy cập bị từ chối!');
+        }
+
+        if ($permissions->index != null && $permissions->index == '1') {
+            return true;
+        } else {
+            return $this->deny('Truy cập bị từ chối!');
+        }
     }
 
     /**
@@ -57,15 +59,18 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        if($user->is_supper_admin == 1) return true;
+        if ($user->is_supper_admin == 1) return true;
 
         $permissions = $user->hasPermissions('categories.index', 'create');
 
-        if ($user->status == '1' && $permissions != false && $permissions->create != null && $permissions->create == '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+            return $this->deny('Truy cập bị từ chối!');
+        }
+
+        if ($permissions->create != null && $permissions->create == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
-            //false;
         }
     }
 
@@ -76,18 +81,20 @@ class CategoryPolicy
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function update(?User $user, Category $category)
+    public function update(User $user, Category $category)
     {
-        
-        if($user->is_supper_admin == 1) return true;
+        if ($user->is_supper_admin == 1) return true;
 
         $permissions = $user->hasPermissions('categories.index', 'edit');
 
-        if ($user->status == '1' && $permissions != false && $permissions->edit != null && $permissions->edit == '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+            return $this->deny('Truy cập bị từ chối!');
+        }
+
+        if ($permissions->edit != null && $permissions->edit == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
-            //false;
         }
     }
 
@@ -100,15 +107,18 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category)
     {
-        if($user->is_supper_admin == 1) return true;
+        if ($user->is_supper_admin == 1) return true;
 
         $permissions = $user->hasPermissions('categories.index', 'delete');
 
-        if ($user->status == '1' && $permissions != false && $permissions->delete != null && $permissions->delete == '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+            return $this->deny('Truy cập bị từ chối!');
+        }
+
+        if ($permissions->delete != null && $permissions->delete == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
-            //false;
         }
     }
 

@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class AccountPolicy
 {
     use HandlesAuthorization;
 
@@ -16,11 +15,10 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user, Post $post)
+    public function viewAny(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
-
-        $permissions = $user->hasPermissions('posts.index', 'indexAll');
+        $permissions = $user->hasPermissions('accounts.index', 'indexAll');
 
         if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
             return true;
@@ -33,14 +31,14 @@ class PostPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, User $model)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'index');
+        $permissions = $user->hasPermissions('accounts.index', 'index');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
@@ -59,11 +57,11 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user, Post $post)
+    public function create(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'create');
+        $permissions = $user->hasPermissions('accounts.index', 'create');
 
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
@@ -81,14 +79,14 @@ class PostPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, User $model)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'edit');
+        $permissions = $user->hasPermissions('accounts.index', 'edit');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
@@ -105,14 +103,14 @@ class PostPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, User $model)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'delete');
+        $permissions = $user->hasPermissions('accounts.index', 'delete');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
@@ -129,10 +127,10 @@ class PostPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, User $model)
     {
         //
     }
@@ -141,10 +139,10 @@ class PostPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, User $model)
     {
         //
     }

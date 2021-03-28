@@ -144,35 +144,36 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               
+
                         @foreach ($listMenu as $menu)
-                        @can('viewAny', $menu)
-                            <li
-                                class="nav-item {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'menu-open' : '' }}">
-                                <a href="#"
-                                    class="nav-link {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        {{ $menu->name }}
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                @foreach ($menu->getChildMenus->where('status', '=', '1') as $menuChild)
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('backend.' . $menu->name_route . '.' . $menuChild->name_route) }}"
-                                                class="nav-link {{ \Request::route()->getName() == 'backend.' . $menu->name_route . '.' . $menuChild->name_route ? 'active' : '' }}">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ $menuChild->name }}</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    
-                                @endforeach
-                            </li>
+                            @can('viewAny', $menu)
+                                <li
+                                    class="nav-item {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'menu-open' : '' }}">
+                                    <a href="#"
+                                        class="nav-link {{ Str::substr(\Request::route()->getName(), strpos(\Request::route()->getName(), '.') + 1, Str::length($menu->name_route)) == $menu->name_route ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            {{ $menu->name }}
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    @foreach ($menu->getChildMenus->where('status', '=', '1') as $menuChild)
+                                        @can('viewAny', $menuChild)
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">
+                                                    <a href="{{ route('backend.' . $menu->name_route . '.' . $menuChild->name_route) }}"
+                                                        class="nav-link {{ \Request::route()->getName() == 'backend.' . $menu->name_route . '.' . $menuChild->name_route ? 'active' : '' }}">
+                                                        <i class="far fa-circle nav-icon"></i>
+                                                        <p>{{ $menuChild->name }}</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        @endcan
+                                    @endforeach
+                                </li>
                             @endcan
                         @endforeach
-                        
+
                         <li class="nav-item">
                             <a href="{{ asset('AdminLTE-3.1.0/pages/widgets.html') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>

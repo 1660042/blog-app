@@ -18,18 +18,26 @@ class MenuPolicy
      */
     public function viewAny(User $user, Menu $menu)
     {
-        if($user->is_supper_admin == 1) return true;
+        if ($user->is_supper_admin == 1) return true;
 
-        $childMenu = $menu->getChildMenus()->where('name_route', 'like', '%'.'.index')->first();
-        $permissions = $user->hasPermissions($childMenu->name_route, 'indexAll');
+        if ($menu->parent_id == null) {
+            $childMenus = $menu->getChildMenus()->where('name_route', 'like', '%' . '.index')->get();
+            foreach ($childMenus as $childMenu) {
+                $permissions = $user->hasPermissions($childMenu->name_route, 'indexAll');
 
-        if($user->is_supper_admin == 1) return true;
+                if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+                    return true;
+                }
+            }
+            return $this->deny('Truy cập bị từ chối!');
+        } else {
+            $permissions = $user->hasPermissions($menu->name_route, 'indexAll');
+        }
 
         if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
             return true;
         } else {
-            $this->deny('Ko the truy cap');
-            return false;
+            return $this->deny('Truy cập bị từ chối!');
         }
     }
 

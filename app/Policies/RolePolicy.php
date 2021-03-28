@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class RolePolicy
 {
     use HandlesAuthorization;
 
@@ -16,11 +16,10 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user, Post $post)
+    public function viewAny(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
-
-        $permissions = $user->hasPermissions('posts.index', 'indexAll');
+        $permissions = $user->hasPermissions('roles.index', 'indexAll');
 
         if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
             return true;
@@ -33,14 +32,14 @@ class PostPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, Role $role)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'index');
+        $permissions = $user->hasPermissions('roles.index', 'index');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
@@ -59,18 +58,17 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user, Post $post)
+    public function create(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'create');
-
+        $permissions = $user->hasPermissions('roles.index', 'index');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
-        if ($permissions->create != null && $permissions->create == '1') {
+        if ($permissions->index != null && $permissions->index == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -81,20 +79,20 @@ class PostPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Role $role)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'edit');
+        $permissions = $user->hasPermissions('roles.index', 'index');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
-        if ($permissions->edit != null && $permissions->edit == '1') {
+        if ($permissions->index != null && $permissions->index == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -105,20 +103,20 @@ class PostPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Role $role)
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'delete');
+        $permissions = $user->hasPermissions('roles.index', 'index');
 
         if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
-        if ($permissions->delete != null && $permissions->delete == '1') {
+        if ($permissions->index != null && $permissions->index == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -129,23 +127,47 @@ class PostPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, Role $role)
     {
-        //
+        if ($user->is_supper_admin == 1) return true;
+
+        $permissions = $user->hasPermissions('roles.index', 'index');
+
+        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+            return $this->deny('Truy cập bị từ chối!');
+        }
+
+        if ($permissions->index != null && $permissions->index == '1') {
+            return true;
+        } else {
+            return $this->deny('Truy cập bị từ chối!');
+        }
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, Role $role)
     {
-        //
+        if ($user->is_supper_admin == 1) return true;
+
+        $permissions = $user->hasPermissions('roles.index', 'index');
+
+        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+            return $this->deny('Truy cập bị từ chối!');
+        }
+
+        if ($permissions->index != null && $permissions->index == '1') {
+            return true;
+        } else {
+            return $this->deny('Truy cập bị từ chối!');
+        }
     }
 }

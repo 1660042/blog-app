@@ -27,9 +27,13 @@ class MenuComposer
     public function compose(View $view)
     {
         $listMenu = $this->menu->getMenus(1);
-        // foreach ($listMenu as $menu) {
-        //     dd($menu->getChildMenus);
-        // }
+            // foreach ($listMenu as $menu) {
+            //     $menu = $menu->where([
+            //         ['name_route', '=', 'systems'],
+            //         ['status', '=', '1']
+            //     ])->first();
+            //     dd($menu->id);
+            // }
         //dd($listMenu);
         //$listMenuCon = $this->menu->getMenuCon();
         //$data = compact('listMenu', 'listMenuCon');

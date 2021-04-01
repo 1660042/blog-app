@@ -13,7 +13,7 @@ class PermissionSeeder extends Seeder
             [
                 'menu_id' => '3',
                 'role_id' => '1',
-                'indexAll' => '1',
+                'access' => '1',
                 'index' => '1',
                 'show' => '1',
                 'create' => '1',
@@ -24,7 +24,7 @@ class PermissionSeeder extends Seeder
             [
                 'menu_id' => '4',
                 'role_id' => '1',
-                'indexAll' => '1',
+                'access' => '1',
                 'index' => '1',
                 'show' => '1',
                 'create' => '1',
@@ -35,7 +35,7 @@ class PermissionSeeder extends Seeder
             [
                 'menu_id' => '6',
                 'role_id' => '1',
-                'indexAll' => '1',
+                'access' => '1',
                 'index' => '1',
                 'show' => '1',
                 'create' => '1',
@@ -46,7 +46,7 @@ class PermissionSeeder extends Seeder
             [
                 'menu_id' => '8',
                 'role_id' => '1',
-                'indexAll' => '1',
+                'access' => '1',
                 'index' => '1',
                 'show' => '1',
                 'create' => '1',

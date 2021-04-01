@@ -18,9 +18,9 @@ class AccountPolicy
     public function viewAny(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
-        $permissions = $user->hasPermissions('accounts.index', 'indexAll');
+        $permissions = $user->hasPermissions('accounts.index', 'access');
 
-        if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+        if ($user->status == '1' && $permissions != false && $permissions->access != null && $permissions->access == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -40,7 +40,7 @@ class AccountPolicy
 
         $permissions = $user->hasPermissions('accounts.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -64,7 +64,7 @@ class AccountPolicy
         $permissions = $user->hasPermissions('accounts.index', 'create');
 
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -88,7 +88,7 @@ class AccountPolicy
 
         $permissions = $user->hasPermissions('accounts.index', 'edit');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -112,7 +112,7 @@ class AccountPolicy
 
         $permissions = $user->hasPermissions('accounts.index', 'delete');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 

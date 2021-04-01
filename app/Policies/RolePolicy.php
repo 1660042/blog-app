@@ -19,9 +19,9 @@ class RolePolicy
     public function viewAny(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
-        $permissions = $user->hasPermissions('roles.index', 'indexAll');
+        $permissions = $user->hasPermissions('roles.index', 'access');
 
-        if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+        if ($user->status == '1' && $permissions != false && $permissions->access != null && $permissions->access == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -41,7 +41,7 @@ class RolePolicy
 
         $permissions = $user->hasPermissions('roles.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -64,7 +64,7 @@ class RolePolicy
 
         $permissions = $user->hasPermissions('roles.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -88,7 +88,7 @@ class RolePolicy
 
         $permissions = $user->hasPermissions('roles.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -112,7 +112,7 @@ class RolePolicy
 
         $permissions = $user->hasPermissions('roles.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -136,7 +136,7 @@ class RolePolicy
 
         $permissions = $user->hasPermissions('roles.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -160,7 +160,7 @@ class RolePolicy
 
         $permissions = $user->hasPermissions('roles.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 

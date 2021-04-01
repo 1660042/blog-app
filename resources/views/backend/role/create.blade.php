@@ -63,11 +63,10 @@
                                             <th class="text-center">
                                                 <div class="custom-control custom-checkbox">
 
-                                                    <input class="custom-control-input" value="1" name="indexAllTitle"
-                                                        type="checkbox" id="indexAllTitle"
-                                                        onclick="checkBoxChecked('indexAllTitle', 'indexAll')">
-                                                    <label for="indexAllTitle" class="custom-control-label">Hiển thị
-                                                        ALL</label>
+                                                    <input class="custom-control-input" value="1" name="accessTitle"
+                                                        type="checkbox" id="accessTitle"
+                                                        onclick="checkBoxChecked('accessTitle', 'access')">
+                                                    <label for="accessTitle" class="custom-control-label">Truy cập</label>
                                                 </div>
                                             </th>
                                             <th class="text-center">
@@ -150,10 +149,10 @@
                                                 <td class="text-center">
                                                     <div class="custom-control custom-checkbox">
                                                         <input class="custom-control-input" value="{{ $menu->id }}"
-                                                            name="indexAll[]" type="checkbox"
-                                                            id="indexAll_{{ $i }}"
-                                                            onclick="checkInputCheckedAll('indexAll')">
-                                                        <label for="indexAll_{{ $i }}"
+                                                            name="access[]" type="checkbox"
+                                                            id="access_{{ $i }}"
+                                                            onclick="checkInputCheckedAll('access')">
+                                                        <label for="access_{{ $i }}"
                                                             class="custom-control-label"></label>
                                                     </div>
                                                 </td>
@@ -336,7 +335,7 @@
         <script>
             $(document).ready(function() {
 
-                checkInputCheckedAll("indexAll");
+                checkInputCheckedAll("access");
                 checkInputCheckedAll("index");
                 checkInputCheckedAll("show");
                 checkInputCheckedAll("create");
@@ -384,7 +383,7 @@
                 if ($("#index_" + i).prop('checked') == true && $("#show_" + i).prop('checked') == true &&
                     $("#create_" + i).prop('checked') == true && $("#edit_" + i).prop('checked') == true &&
                     $("#delete_" + i).prop('checked') == true && $("#censor_" + i).prop('checked') == true &&
-                    $('#indexAll_' + i).prop('checked') == true) {
+                    $('#access_' + i).prop('checked') == true) {
 
                     $("#index_" + i).prop('checked', false);
                     $("#show_" + i).prop('checked', false);
@@ -392,7 +391,7 @@
                     $("#edit_" + i).prop('checked', false);
                     $("#delete_" + i).prop('checked', false);
                     $("#censor_" + i).prop('checked', false);
-                    $("#indexAll_" + i).prop('checked', false);
+                    $("#access_" + i).prop('checked', false);
                 } else {
                     $("#index_" + i).prop('checked', true);
                     $("#show_" + i).prop('checked', true);
@@ -400,7 +399,7 @@
                     $("#edit_" + i).prop('checked', true);
                     $("#delete_" + i).prop('checked', true);
                     $("#censor_" + i).prop('checked', true);
-                    $("#indexAll_" + i).prop('checked', true);
+                    $("#access_" + i).prop('checked', true);
                 }
 
                 checkInputCheckedAll("index");
@@ -409,7 +408,7 @@
                 checkInputCheckedAll("edit");
                 checkInputCheckedAll("delete");
                 checkInputCheckedAll("censor");
-                checkInputCheckedAll("indexAll");
+                checkInputCheckedAll("access");
             }
 
         </script>

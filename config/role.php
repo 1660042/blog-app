@@ -2,7 +2,7 @@
 
 return [
     'permission' => [
-        'INDEXALL' => 'indexAll',
+        'access' => 'access',
         'INDEX' => 'index',
         'SHOW' => 'show',
         'CREATE' => 'create',

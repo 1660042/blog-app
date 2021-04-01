@@ -19,9 +19,9 @@ class CategoryPolicy
     public function viewAny(User $user)
     {
         if ($user->is_supper_admin == 1) return true;
-        $permissions = $user->hasPermissions('categories.index', 'indexAll');
+        $permissions = $user->hasPermissions('categories.index', 'access');
 
-        if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+        if ($user->status == '1' && $permissions != false && $permissions->access != null && $permissions->access == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -40,7 +40,7 @@ class CategoryPolicy
         if ($user->is_supper_admin == 1) return true;
         $permissions = $user->hasPermissions('categories.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -63,7 +63,7 @@ class CategoryPolicy
 
         $permissions = $user->hasPermissions('categories.index', 'create');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -87,7 +87,7 @@ class CategoryPolicy
 
         $permissions = $user->hasPermissions('categories.index', 'edit');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -111,7 +111,7 @@ class CategoryPolicy
 
         $permissions = $user->hasPermissions('categories.index', 'delete');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 

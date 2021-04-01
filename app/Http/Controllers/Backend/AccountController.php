@@ -132,7 +132,7 @@ class AccountController extends Controller
         $account = $this->account->find($id);
 
         //dd($account->getRoles->where('status', '=', '1')[0]
-        //->getPermissions->where('menu_id', '=', 4)->where('indexAll', '=', '1')->first()->index);
+        //->getPermissions->where('menu_id', '=', 4)->where('access', '=', '1')->first()->index);
         //dd($account->getRoles()->where('role_id', '=', 1)->first());
 
         //dd($account);

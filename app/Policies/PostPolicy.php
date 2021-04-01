@@ -20,9 +20,9 @@ class PostPolicy
     {
         if ($user->is_supper_admin == 1) return true;
 
-        $permissions = $user->hasPermissions('posts.index', 'indexAll');
+        $permissions = $user->hasPermissions('posts.index', 'access');
 
-        if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+        if ($user->status == '1' && $permissions != false && $permissions->access != null && $permissions->access == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');
@@ -42,7 +42,7 @@ class PostPolicy
 
         $permissions = $user->hasPermissions('posts.index', 'index');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -66,7 +66,7 @@ class PostPolicy
         $permissions = $user->hasPermissions('posts.index', 'create');
 
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -90,7 +90,7 @@ class PostPolicy
 
         $permissions = $user->hasPermissions('posts.index', 'edit');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 
@@ -114,7 +114,7 @@ class PostPolicy
 
         $permissions = $user->hasPermissions('posts.index', 'delete');
 
-        if ($user->status != '1' || $permissions == false || $permissions->indexAll == null || $permissions->indexAll != '1') {
+        if ($user->status != '1' || $permissions == false || $permissions->access == null || $permissions->access != '1') {
             return $this->deny('Truy cập bị từ chối!');
         }
 

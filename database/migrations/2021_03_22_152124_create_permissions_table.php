@@ -17,7 +17,7 @@ class CreatePermissionsTable extends Migration
             $table->id();
             $table->integer('role_id');
             $table->integer('menu_id');
-            $table->tinyInteger('indexAll')->default(0);
+            $table->tinyInteger('access')->default(0);
             $table->tinyInteger('index')->default(0);
             $table->tinyInteger('show')->default(0);
             $table->tinyInteger('create')->default(0);

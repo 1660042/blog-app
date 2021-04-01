@@ -36,6 +36,6 @@ class Role extends Model
     public function getMenus()
     {
         return $this->belongsToMany(Menu::class, 'permissions', 'role_id', 'menu_id')
-            ->withPivot('menu_id', 'indexAll', 'index', 'show', 'create', 'edit', 'delete', 'censor');
+            ->withPivot('menu_id', 'access', 'index', 'show', 'create', 'edit', 'delete', 'censor');
     }
 }

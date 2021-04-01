@@ -21,20 +21,26 @@ class MenuPolicy
         if ($user->is_supper_admin == 1) return true;
 
         if ($menu->parent_id == null) {
-            $childMenus = $menu->getChildMenus()->where('name_route', 'like', '%' . '.index')->get();
+            $childMenus = $menu->getChildMenus()->where([
+                ['name_route', 'like', '%' . '.index'],
+                ['status', '=', '1']
+            ])->get();
             foreach ($childMenus as $childMenu) {
-                $permissions = $user->hasPermissions($childMenu->name_route, 'indexAll');
+                $permissions = $user->hasPermissions($childMenu->name_route, 'access');
 
-                if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+                if (
+                    $user->status == '1' && $permissions != false
+                    && $permissions->access != null && $permissions->access == '1'
+                ) {
                     return true;
                 }
             }
             return $this->deny('Truy cập bị từ chối!');
         } else {
-            $permissions = $user->hasPermissions($menu->name_route, 'indexAll');
+            $permissions = $user->hasPermissions($menu->name_route, 'access');
         }
 
-        if ($user->status == '1' && $permissions != false && $permissions->indexAll != null && $permissions->indexAll == '1') {
+        if ($user->status == '1' && $permissions != false && $permissions->access != null && $permissions->access == '1') {
             return true;
         } else {
             return $this->deny('Truy cập bị từ chối!');

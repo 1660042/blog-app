@@ -51,7 +51,7 @@ class RoleController extends Controller
             !$request->has($this->permissions['INDEX']) && !$request->has($this->permissions['SHOW'])
             && !$request->has($this->permissions['CREATE']) && !$request->has($this->permissions['EDIT'])
             && !$request->has($this->permissions['DELETE']) && !$request->has('CENSOR')
-            && !$request->has($this->permissions['INDEXALL'])
+            && !$request->has($this->permissions['access'])
         ) {
 
             $msg = $this->getMessage(false, '', 'Vui lòng tick chọn các quyền của ứng dụng trước khi lưu!');
@@ -140,7 +140,7 @@ class RoleController extends Controller
             !$request->has($this->permissions['INDEX']) && !$request->has($this->permissions['SHOW'])
             && !$request->has($this->permissions['CREATE']) && !$request->has($this->permissions['EDIT'])
             && !$request->has($this->permissions['DELETE']) && !$request->has($this->permissions['CENSOR'])
-            && !$request->has($this->permissions['INDEXALL'])
+            && !$request->has($this->permissions['access'])
         ) {
 
             $msg = $this->getMessage(false, '', 'Vui lòng tick chọn các quyền của ứng dụng trước khi lưu!');
@@ -217,7 +217,7 @@ class RoleController extends Controller
 
         foreach ($request->menuId as $menu) {
 
-            $indexAll = $this->checkExistPermission($request->indexAll, $menu) ? '1' : '0';
+            $access = $this->checkExistPermission($request->access, $menu) ? '1' : '0';
             $index = $this->checkExistPermission($request->index, $menu) ? '1' : '0';
             $show = $this->checkExistPermission($request->show, $menu) ? '1' : '0';
             $create = $this->checkExistPermission($request->create, $menu) ? '1' : '0';
@@ -228,7 +228,7 @@ class RoleController extends Controller
             $data = [
                 'role_id' => $role->id,
                 'menu_id' => $menu,
-                'indexAll' => $indexAll,
+                'access' => $access,
                 'index' => $index,
                 'show' => $show,
                 'create' => $create,

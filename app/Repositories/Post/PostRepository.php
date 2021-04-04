@@ -21,4 +21,12 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ['status', '=', '1']
         ])->first();
     }
+
+    public function searchPost($key, $value, $compare)
+    {
+        return $this->_model->where([
+            [$key, $compare, $value],
+            ['status', '=', '1'],
+        ]);
+    }
 }

@@ -37,7 +37,8 @@ class CommentController extends Controller
 
             $message = $this->getMessage(true, 'Thêm bình luận thành công!', 'Đã có lỗi xảy ra! Vui lòng xem lại!');
 
-            return view('components.comment', compact('comments'))->render();
+            $qty = $this->qty;
+            return view('components.comment', compact('comments', 'qty'))->render();
             //return $result;
         } else {
             return 'not ajax';

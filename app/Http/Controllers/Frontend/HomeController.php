@@ -15,9 +15,8 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         //Số lượng bài viết mỗi trang
-        $qty = 3;
 
-        $posts = $this->post->getDataWithPagination($qty);
+        $posts = $this->post->getDataWithPagination($this->qty);
 
         $pathImage = $this->getUrlUpload();
 

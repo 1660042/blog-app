@@ -23,7 +23,7 @@ class TagController extends Controller
 
         //d($tag);
 
-        $posts = $tag->getPosts()->orderBy('id', 'desc')->paginate(3);
+        $posts = $tag->getPosts()->orderBy('id', 'desc')->paginate($this->qty);
 
         //dd($posts);
 

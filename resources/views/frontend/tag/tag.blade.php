@@ -14,7 +14,7 @@
 
                         <div class="entry__thumb">
                             <a href="{{ route('frontend.post.post', $post->slug) }}" class="entry__thumb-link">
-                                <img src="{{ asset('Typerite/images/thumbs/masonry/woodcraft-600.jpg') }}" alt="">
+                                <img src="{{ $pathImage . $post->path_image }}" alt="">
                             </a>
                         </div>
 

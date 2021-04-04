@@ -11,6 +11,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $qty = 3;
+
     public function getUrlUpload()
     {
         return config('filesystems.disks.public.url') . '/' . config('lfm.folder_categories.image.folder_name');

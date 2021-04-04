@@ -41,6 +41,9 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ route('frontend.home') }}" class="nav-link">Xem trang web</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('backend.index') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
@@ -106,7 +109,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{ route('frontend.home') }}" class="brand-link">
+            <a href="{{ route('backend.index') }}" class="brand-link">
                 <img src="{{ asset('AdminLTE-3.1.0/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Blog App</span>
@@ -174,7 +177,7 @@
                             @endcan
                         @endforeach
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ asset('AdminLTE-3.1.0/pages/widgets.html') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -212,7 +215,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </nav>
@@ -232,8 +235,9 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('backend.index') }}">Home</a></li>
-                                <li class="breadcrumb-item active">@yield('title', '')</li>
+                                {{ Breadcrumbs::render(\Request::route()->getName()) }}
+                                {{-- <li class="breadcrumb-item"><a href="{{ route('backend.index') }}">Home</a></li>
+                                <li class="breadcrumb-item active">@yield('title', '')</li> --}}
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

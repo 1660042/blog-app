@@ -64,11 +64,12 @@
 
                 <div class="header__search">
 
-                    <form role="search" method="get" class="header__search-form" action="#">
+                    <form role="search" method="get" class="header__search-form"
+                        action="{{ route('frontend.search') }}">
                         <label>
                             <span class="hide-content">Search for:</span>
                             <input type="search" class="header__search-field" placeholder="Type Keywords" value=""
-                                name="s" title="Search for:" autocomplete="off">
+                                name="keyword" title="Search for:" autocomplete="off">
                         </label>
                         <input type="submit" class="header__search-submit" value="Search">
                     </form>
@@ -78,7 +79,7 @@
                 </div> <!-- end header__search -->
 
                 <!-- toggles -->
-                <a href="{{ asset('Typerite/#0') }}" class="header__search-trigger"></a>
+                <a href="{{ asset('Typerite/#search') }}" class="header__search-trigger"></a>
                 <a href="{{ asset('Typerite/#0') }}" class="header__menu-toggle"><span>Menu</span></a>
 
             </div> <!-- end header__top -->

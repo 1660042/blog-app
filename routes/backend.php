@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth', 'as' => 'backend.'], function () {
-    Route::get('/', function () {
-        return view('backend.home');
-    })->name('index');
+    Route::get('/', 'HomeController')->name('index');
 
     // Route::namespace('Category')->group(function () {
     //     Route::get('/categories', 'IndexController')->name('categories');

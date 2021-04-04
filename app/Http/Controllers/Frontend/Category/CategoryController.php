@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
         //dd($category);
 
-        $posts = $category->getPosts()->orderBy('id', 'desc')->paginate(1);
+        $posts = $category->getPosts()->orderBy('id', 'desc')->paginate($this->qty);
 
         //dd($posts);
 
@@ -33,7 +33,9 @@ class CategoryController extends Controller
         //     ->orderBy('id', 'desc')
         //     ->paginate(3);
 
-        $data = compact('category', 'posts');
+        $pathImage = $this->getUrlUpload();
+
+        $data = compact('category', 'posts', 'pathImage');
 
         return view('frontend.category.category', $data);
     }

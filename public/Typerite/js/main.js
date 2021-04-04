@@ -94,11 +94,11 @@
             }
         });
 
-        searchWrap.on('click',  function(e) {
-            if( !$(e.target).is('.search-field') ) {
-                closeSearch.trigger('click');
-            }
-        });
+        // searchWrap.on('click',  function(e) {
+        //     if( !$(e.target).is('.search-field') ) {
+        //         closeSearch.trigger('click');
+        //     }
+        // });
             
         searchField.on('click', function(e){
             e.stopPropagation();

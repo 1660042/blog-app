@@ -27,7 +27,7 @@ class PostController extends Controller
             return redirect()->route('frontend.home')->with($message);
         }
 
-        // $a = $post->getComments()->whereNull('answer_comment_id')->orderBy('id', 'desc')->paginate(2);
+        // $a = $post->getComments()->whereNull('answer_comment_id')->orderBy('id', 'desc')->paginate($this->qty);
         // foreach ($a as $key) {
         //     // foreach ($key->getChildComments as $child) {
         //     //     dd($child);
@@ -40,18 +40,18 @@ class PostController extends Controller
         $nextPost = $this->post->getPost('id', $post->id, '>', 'id', 'asc');
 
         //dd($prePost);
-
+        $qty = $this->qty;
         if ($request->ajax()) {
 
             $comments = $post->getComments();
 
-            return view('components.comment', compact('comments'))->render();
+            return view('components.comment', compact('comments', 'qty'))->render();
         }
 
         $pathImage = $this->getUrlUpload();
 
 
-        $data = compact('post', 'prePost', 'nextPost', 'pathImage');
+        $data = compact('post', 'prePost', 'nextPost', 'pathImage', 'qty');
 
         return view('frontend.post.single_post', $data);
     }

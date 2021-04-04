@@ -81,4 +81,14 @@ abstract class BaseRepository
     {
         return $this->_model->where('status', '=', '1')->orderBy('id', 'desc')->paginate($qty);
     }
+
+    public function countActive()
+    {
+        return $this->_model->where('status', '=', '1')->count();
+    }
+
+    public function total()
+    {
+        return $this->_model->count();
+    }
 }

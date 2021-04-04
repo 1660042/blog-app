@@ -2,7 +2,7 @@
 $comments = $comments
     ->whereNull('answer_comment_id')
     ->orderBy('id', 'desc')
-    ->paginate(3);
+    ->paginate($qty);
 @endphp
 
 <div id="comments" class="column large-12">

@@ -28,6 +28,10 @@ Route::namespace('Frontend')->name('frontend.')->group(function () {
         Route::get('/{name}', 'TagController')->name('index');
     });
 
+    Route::prefix('search')->group(function () {
+        Route::get('/', 'SearchController')->name('search');
+    });
+
     Route::get('/home', function () {
         return view('frontend.home2');
     });
